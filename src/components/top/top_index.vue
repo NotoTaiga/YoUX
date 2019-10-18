@@ -12,7 +12,7 @@
 
          <ul class="main__list">
              <router-link to="/">
-             <li class="main__item">見てみる！</li>
+                <li class="main__item">見てみる！</li>
              </router-link>
              <li class="main__item">YoUXって？</li>
              <li class="main__item">その他資料</li>
