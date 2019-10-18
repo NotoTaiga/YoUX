@@ -11,7 +11,9 @@
          </div>
 
          <ul class="main__list">
+             <router-link to="/">
              <li class="main__item">見てみる！</li>
+             </router-link>
              <li class="main__item">YoUXって？</li>
              <li class="main__item">その他資料</li>
          </ul>
@@ -97,6 +99,7 @@ export default class topIndex extends Vue {
                 box-sizing: border-box;
             }
             &__item{
+                cursor:pointer;
                 width: 14rem;
                 height: 3rem;
                 line-height: 3rem;
