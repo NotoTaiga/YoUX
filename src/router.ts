@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 // import Home from './views/Home.vue'
 import top from './components/top/top_index.vue'
-
+import main from './components/main/main_index.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -14,6 +14,11 @@ export default new Router({
       name: 'top',
       component: top
     },
+    {
+      path:'/main',
+      name:'main',
+      component:main
+    }
     // {
       // path: '/about',
       // name: 'about',
