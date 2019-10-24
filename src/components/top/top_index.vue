@@ -11,7 +11,7 @@
          </div>
 
          <ul class="main__list">
-             <router-link to="/">
+             <router-link to="/main">
                 <li class="main__item">見てみる！</li>
              </router-link>
              <li class="main__item">イメージマップ</li>

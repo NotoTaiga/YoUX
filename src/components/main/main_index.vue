@@ -1,17 +1,17 @@
 <template>
   <div class="mainIndex">
-    
+    <!-- <MasterNav></MasterNav> -->
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-
-import MasterNav from '@/components/common/header.vue';
+// 
+// import MasterNav from '@/components/common/nav.vue';
 
 @Component({
   components:{
-    MasterNav
+    // MasterNav
   }
 })
 export default class mainIndex extends Vue {
