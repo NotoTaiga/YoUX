@@ -3,23 +3,29 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
+export interface pageState {
+  pageId:number;
+  pageName:string;
+}
+
 export default new Vuex.Store({
   state: {
-    pageName:'TOP',
+      pageId:0
+    
   },
   getters:{
-    getPageName(state){
-      return state.pageName;
+    getPageId(state){
+      return state.pageId;
     }
   },
   mutations: {
-    setPageName(state,name){
-      state.pageName = name;
+    setPageName(state,pageId:number){
+      state.pageId = pageId;
     }
   },
   actions: {
-    changePageName({commit},name){
-      commit('setPageName',name);
+    changePageId({commit},pageId:number){
+      commit('setPageName',pageId);
     }
   }
 })

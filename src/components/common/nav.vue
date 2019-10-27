@@ -1,24 +1,16 @@
 <template>
-  <div class="nav" :class="{nav__close: navClose}">
+  <div class="nav" :class="{nav__close: navClose}" v-if="getPageId() !== 0">
     <div class="nav__ttl" @click="changeNavClose">
       <div class="menuIcon icon"></div>閉じる
     </div>
     <nav>
       <ul class="nav__list">
-        <router-link to="/">
-          <li class="nav__item nav__item--home">
-            <div class="homeIcon icon"></div>Home
+        <router-link v-for="(state,i) in navStates" :key="'navItem' + i" :to="state.pageLink">
+          <li class="nav__item" :class="['nav__item--'+state.pageClass , {'nav__item--activ' : checkSelect(i)}]" @click="changePageId(i)">
+            <div class="icon" :class="state.pageClass + 'Icon'"></div>
+            {{state.pageText}}
           </li>
         </router-link>
-        <li class="nav__item">
-          <div class="mainIcon icon"></div>資料一覧
-        </li>
-        <li class="nav__item">
-          <div class="mapIcon icon"></div>イメージマップ
-        </li>
-        <li class="nav__item">
-          <div class="otherIcon icon"></div>その他資料
-        </li>
       </ul>
     </nav>
 
@@ -29,13 +21,56 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 
+export interface navState {
+  pageLink: string;
+  pageText: string;
+  pageClass: string;
+}
+
 @Component
 export default class MasterNav extends Vue {
   //   @Prop() private msg!: string;
   private name: string = "";
+
   private navClose: boolean = true;
-  private changeNavClose(){
+  private changeNavClose() {
     this.navClose = !this.navClose;
+  }
+
+  private navStates: navState[] = [
+    {
+      pageLink: "/",
+      pageText: "Home",
+      pageClass: "home"
+    },
+    {
+      pageLink: "/main",
+      pageText: "資料一覧",
+      pageClass: "main"
+    },
+    {
+      pageLink: "/map",
+      pageText: "イメージマップ",
+      pageClass: "map"
+    },
+    {
+      pageLink: "/other",
+      pageText: "その他資料",
+      pageClass: "other"
+    }
+  ];
+
+
+  private checkSelect(index:number){
+    return this.getPageId() == index;
+  }
+
+  private changePageId(index:number) {
+    this.$store.dispatch("changePageId", index);
+  }
+
+  private getPageId(){
+    return this.$store.getters.getPageId;
   }
 
   mounted(): void {}
@@ -48,7 +83,7 @@ export default class MasterNav extends Vue {
 .nav {
   position: absolute;
   left: 0;
-  top:5rem;
+  top: 5rem;
   z-index: 99;
   height: calc(100vh - 5rem);
   width: 15rem;

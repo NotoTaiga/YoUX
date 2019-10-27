@@ -4,7 +4,7 @@
          YoUX
      </h1>
      <h2 class="header__pageName">
-         {{nameChange()}}
+         {{pageName[nameChange()]}}
      </h2>
  </header>
 </template>
@@ -16,7 +16,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 export default class header extends Vue {
 //   @Prop() private msg!: string;
     private name:string = "";
-
+    private pageName:string[] = ['HOME','資料一覧','イメージマップ'];
     mounted():void{
         this.nameChange();
         
@@ -26,7 +26,7 @@ export default class header extends Vue {
     }
 
     private nameChange(){
-        return this.$store.getters.getPageName;
+        return this.$store.getters.getPageId;
     } 
 }
 </script>
