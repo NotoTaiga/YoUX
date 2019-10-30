@@ -16,7 +16,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 export default class header extends Vue {
 //   @Prop() private msg!: string;
     private name:string = "";
-    private pageName:string[] = ['HOME','資料一覧','イメージマップ'];
+    private pageName:string[] = ['HOME','資料一覧','イメージマップ','その他資料'];
     mounted():void{
         this.nameChange();
         
