@@ -8,11 +8,20 @@ export interface pageState {
   pageName: string;
 }
 
+export interface targetStory{
+  student?:string[];
+  teacher?:string[];
+  admin?:string[];
+  other?:string[];
+  all?:string[];
+}
+
 export interface dataSet {
   id: number;
   name: string;
   place: string[];
   target: string[];
+  targetStory:targetStory;
   usetech: string[];
   text: string[];
   img: any;
@@ -30,6 +39,9 @@ export default new Vuex.Store({
         name: 'デスクcloud',
         place: ['All place'],
         target: ['学生'],
+        targetStory:{
+          student:['aaa']
+        },
         usetech: [],
         text: [],
         img: null,
@@ -39,6 +51,9 @@ export default new Vuex.Store({
         name: 'aaa',
         place: ['All place'],
         target: ['aa'],
+        targetStory:{
+          student:['aaa']
+        },
         usetech: [],
         text: [],
         img: null,
@@ -48,6 +63,9 @@ export default new Vuex.Store({
         name: 'bb',
         place: ['bb'],
         target: ['bb'],
+        targetStory:{
+          student:['aaa']
+        },
         usetech: [],
         text: [],
         img: null,
@@ -57,6 +75,9 @@ export default new Vuex.Store({
         name: 'cc',
         place: ['All place'],
         target: ['学生'],
+        targetStory:{
+          student:['aaa']
+        },
         usetech: [],
         text: [],
         img: null,
@@ -66,6 +87,9 @@ export default new Vuex.Store({
         name: 'dd',
         place: ['All place'],
         target: ['dd'],
+        targetStory:{
+          student:['aaa']
+        },
         usetech: [],
         text: [],
         img: null,
@@ -75,6 +99,9 @@ export default new Vuex.Store({
         name: 'deed',
         place: ['ee'],
         target: ['学生'],
+        targetStory:{
+          student:['aaa']
+        },
         usetech: [],
         text: [],
         img: null,
@@ -84,6 +111,9 @@ export default new Vuex.Store({
         name: 'ff',
         place: ['All place'],
         target: ['学生'],
+        targetStory:{
+          student:['aaa']
+        },
         usetech: [],
         text: [],
         img: null,
@@ -97,6 +127,9 @@ export default new Vuex.Store({
         name: 'デスクcloud',
         place: ['All place'],
         target: ['学生'],
+        targetStory:{
+          student:['aaa']
+        },
         usetech: [],
         text: [],
         img: null,
@@ -106,6 +139,9 @@ export default new Vuex.Store({
         name: 'aaa',
         place: ['All place'],
         target: ['aa'],
+        targetStory:{
+          student:['aaa']
+        },
         usetech: [],
         text: [],
         img: null,
@@ -115,6 +151,9 @@ export default new Vuex.Store({
         name: 'bb',
         place: ['bb'],
         target: ['bb'],
+        targetStory:{
+          student:['aaa']
+        },
         usetech: [],
         text: [],
         img: null,
@@ -124,6 +163,9 @@ export default new Vuex.Store({
         name: 'cc',
         place: ['All place'],
         target: ['学生'],
+        targetStory:{
+          student:['aaa']
+        },
         usetech: [],
         text: [],
         img: null,
@@ -133,6 +175,9 @@ export default new Vuex.Store({
         name: 'dd',
         place: ['All place'],
         target: ['dd'],
+        targetStory:{
+          student:['aaa']
+        },
         usetech: [],
         text: [],
         img: null,
@@ -142,6 +187,9 @@ export default new Vuex.Store({
         name: 'deed',
         place: ['ee'],
         target: ['学生'],
+        targetStory:{
+          student:['aaa']
+        },
         usetech: [],
         text: [],
         img: null,
@@ -151,6 +199,9 @@ export default new Vuex.Store({
         name: 'ff',
         place: ['All place'],
         target: ['学生'],
+        targetStory:{
+          student:['aaa']
+        },
         usetech: [],
         text: [],
         img: null,
