@@ -7,7 +7,7 @@
         <button v-if="isNamelevelArr()">back</button>
       </div>
     </div>
-    <ag-grid-vue class="masterGrid" :columnDefs="columnDefs" :rowData="rowData"></ag-grid-vue>
+    <ag-grid-vue class="masterGrid" :gridOptions="gridOptions"></ag-grid-vue>
   </div>
 </template>
 
@@ -16,7 +16,8 @@ import { dataSet } from "../../interface";
 import {
   GridOptions,
   ValueFormatterParams,
-  ValueParserParams
+  ValueParserParams,
+  GridApi
 } from "ag-grid-community";
 
 import { Component, Prop, Vue } from "vue-property-decorator";
@@ -50,10 +51,11 @@ export default class mainIndex extends Vue {
     return showData;
   }
 
-  private gridOptions: GridOptions = {
+  public gridOptions: GridOptions = {
     columnDefs : this.columnDefs,
     rowData:[]
   };
+
   private rowDataArr:any = [];
   private makeRowData(){
     this.rowDataArr = this.showData.map((d,i)=>{
@@ -113,18 +115,27 @@ export default class mainIndex extends Vue {
     }
   }
 
-  mounted(): void {
-    this.columnDefs = [
-      { headerName: "name", field: "name" },
+  beforeMount(): void {
+    this.gridOptions.columnDefs = [
+      { headerName: "name",
+        field: "name",
+        cellRenderer:(params)=>{
+          const el = document.createElement('div');
+          el.innerHTML = params.value;
+          el.addEventListener('click',()=>{
+            console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+          })
+          return el;
+        }
+        },
       { headerName: "place", field: "place" },
       { headerName: "target", field: "target" },
       { headerName: "child", field: "child" },
       { headerName: "explanation", field: "explanation" },
     ];
-    debugger;
     this.showData = this.getMasterData();
     this.makeRowData();
-    this.rowData = this.rowDataArr;
+    this.gridOptions.rowData = this.rowDataArr;
   }
 }
 </script>
