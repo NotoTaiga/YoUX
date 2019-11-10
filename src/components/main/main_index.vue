@@ -118,6 +118,7 @@ export default class mainIndex extends Vue {
   }
   private childClick(i:number){
     const nowChild:string[] = this.showData[i].child;
+    if (nowChild.length == 0) return;
     this.changeRowData(nowChild);
     this.updateAggrid();
   }
