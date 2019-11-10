@@ -29,9 +29,6 @@ import { AgGridVue } from "ag-grid-vue";
 })
 export default class mainIndex extends Vue {
   //aggrid
-  private columnDefs: any = null;
-  private rowData: any = null;
-
   private showData: dataSet[] = [];
   private getMasterData():dataSet[] {
     let masterData:dataSet[] = this.$store.getters.getMasterData;
@@ -52,7 +49,7 @@ export default class mainIndex extends Vue {
   }
 
   public gridOptions: GridOptions = {
-    columnDefs : this.columnDefs,
+    columnDefs : [],
     rowData:[]
   };
 
@@ -115,7 +112,18 @@ export default class mainIndex extends Vue {
     }
   }
 
+  public api:any;
+  private updateAggrid(){
+    this.gridOptions.api.setRowData(this.rowDataArr);
+  }
+  private childClick(i:number){
+    const nowChild:string[] = this.showData[i].child;
+    this.changeRowData(nowChild);
+    this.updateAggrid();
+  }
+
   beforeMount(): void {
+    this.api = this.gridOptions.api;
     this.gridOptions.columnDefs = [
       { headerName: "name",
         field: "name",
@@ -123,11 +131,11 @@ export default class mainIndex extends Vue {
           const el = document.createElement('div');
           el.innerHTML = params.value;
           el.addEventListener('click',()=>{
-            console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
-          })
+            this.childClick(params.rowIndex);
+          });
           return el;
         }
-        },
+      },
       { headerName: "place", field: "place" },
       { headerName: "target", field: "target" },
       { headerName: "child", field: "child" },
