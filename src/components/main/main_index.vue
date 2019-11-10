@@ -4,7 +4,7 @@
     <div class="headCont">
       <div class="datalevelBox">
         <h3>{{dataLevelText()}}</h3>
-        <button v-if="isNamelevelArr()">back</button>
+        <button v-if="isNamelevelArr()" @click="backClick()">back</button>
       </div>
     </div>
     <ag-grid-vue class="masterGrid" :gridOptions="gridOptions"></ag-grid-vue>
@@ -93,14 +93,59 @@ export default class mainIndex extends Vue {
     this.makeRowData();
   }
 
+  public api:any;
+  private updateAggrid(){
+    this.gridOptions.api.setRowData(this.rowDataArr);
+  }
+  private childClick(i:number){
+    // debugger;
+    const data:dataSet = this.showData[i];
+    const nowChild:string[] = this.showData[i].child;
+    if (nowChild.length == 0) return;
+    this.addNamelevels(data.name,i);
+    this.changeRowData(nowChild);
+    this.updateAggrid();
+  }
+
+  private backClick(){
+    this.rmNameLevels();
+    const masterData:dataSet[] = this.getMasterData();
+    const arr:string[] = this.getNameLevelArr();
+    if (arr.length == 0) {
+      this.showData = masterData;
+      this.makeRowData();
+      this.updateAggrid();
+    }else{
+      const name:string = arr[arr.length - 1];
+      const nowData:any = masterData.find((d)=>{
+        return d.name === name;
+      });
+      this.changeRowData(nowData.child);
+      this.updateAggrid();
+    }
+  }
+
   //view
+
+  private namelevelindex:number[] = [];
   private namelevelArr: string[] = [];
   private isNamelevelArr() {
     return this.namelevelArr.length > 0;
   }
+  private addNamelevels(name:string,index:number){
+    this.namelevelArr.push(name);
+    this.namelevelindex.push(index);
+  }
+  private rmNameLevels(){
+    this.namelevelArr.pop();
+    this.namelevelindex.pop();
+  }
+  private getNameLevelArr():string[]{
+    return this.namelevelArr;
+  }
+
 
   private dataLevelText() {
-    // this.namelevelArr = this.getDataLevel();
     if (this.namelevelArr.length > 0) {
       let newName: string = "一覧 → ";
       this.namelevelArr.forEach((name, i) => {
@@ -110,17 +155,6 @@ export default class mainIndex extends Vue {
     } else {
       return "ソリューション一覧";
     }
-  }
-
-  public api:any;
-  private updateAggrid(){
-    this.gridOptions.api.setRowData(this.rowDataArr);
-  }
-  private childClick(i:number){
-    const nowChild:string[] = this.showData[i].child;
-    if (nowChild.length == 0) return;
-    this.changeRowData(nowChild);
-    this.updateAggrid();
   }
 
   beforeMount(): void {
