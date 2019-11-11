@@ -8,6 +8,7 @@
       </div>
     </div>
     <ag-grid-vue class="masterGrid" :gridOptions="gridOptions"></ag-grid-vue>
+    <mainExplanation v-if="openExplanation" :dataSet="clickDataSet"></mainExplanation>
   </div>
 </template>
 
@@ -20,27 +21,30 @@ import {
   GridApi
 } from "ag-grid-community";
 
+import mainExplanation from "@/components/main/main_explanation.vue";
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { AgGridVue } from "ag-grid-vue";
+
 @Component({
   components: {
-    AgGridVue
+    AgGridVue,
+    mainExplanation
   }
 })
 export default class mainIndex extends Vue {
   //aggrid
   private showData: dataSet[] = [];
-  private getMasterData():dataSet[] {
-    let masterData:dataSet[] = this.$store.getters.getMasterData;
+  private getMasterData(): dataSet[] {
+    let masterData: dataSet[] = this.$store.getters.getMasterData;
     return masterData;
   }
 
-  private makeShowData(child:string[]):dataSet[] {
-    const masterData:dataSet[] = this.getMasterData();
-    let showData:dataSet[] = []
-    masterData.forEach((d,i) => {
-      child.forEach((name,i) =>{
-        if(d.name === name){
+  private makeShowData(child: string[]): dataSet[] {
+    const masterData: dataSet[] = this.getMasterData();
+    let showData: dataSet[] = [];
+    masterData.forEach((d, i) => {
+      child.forEach((name, i) => {
+        if (d.name === name) {
           showData.push(d);
         }
       });
@@ -49,75 +53,74 @@ export default class mainIndex extends Vue {
   }
 
   public gridOptions: GridOptions = {
-    columnDefs : [],
-    rowData:[]
+    columnDefs: [],
+    rowData: []
   };
 
-  private rowDataArr:any = [];
-  private makeRowData(){
-    this.rowDataArr = this.showData.map((d,i)=>{
-      const childText:string = d.child.length > 0? d.child.length + "のソリューション":"";
-      let placeText:string = "";
-      d.place.forEach((text,i)=>{
+  private rowDataArr: any = [];
+  private makeRowData() {
+    this.rowDataArr = this.showData.map((d, i) => {
+      const childText: string =
+        d.child.length > 0 ? d.child.length + "のソリューション" : "";
+      let placeText: string = "";
+      d.place.forEach((text, i) => {
         if (i == d.place.length - 1) {
           placeText += text;
-        }else{
+        } else {
           placeText += text + " , ";
         }
       });
 
-      let targetText :string = "";
-      d.target.forEach((text,i)=>{
+      let targetText: string = "";
+      d.target.forEach((text, i) => {
         if (i == d.target.length - 1) {
           targetText += text;
-        }else{
-          targetText += text + " , "
+        } else {
+          targetText += text + " , ";
         }
       });
 
-      const rowData ={
-        name:d.name,
-        place:placeText,
-        target:targetText,
-        child:childText,
-        explanation:"click"
-      }
+      const rowData = {
+        name: d.name,
+        place: placeText,
+        target: targetText,
+        child: childText,
+        explanation: "click"
+      };
       return rowData;
     });
-
-
   }
 
-  private changeRowData(child:string[]){
+  private changeRowData(child: string[]) {
     this.showData = this.makeShowData(child);
     this.makeRowData();
   }
 
-  public api:any;
-  private updateAggrid(){
+  public api: any;
+  private updateAggrid() {
     this.gridOptions.api.setRowData(this.rowDataArr);
   }
-  private childClick(i:number){
+  private childClick(i: number) {
     // debugger;
-    const data:dataSet = this.showData[i];
-    const nowChild:string[] = this.showData[i].child;
+    const data: dataSet = this.showData[i];
+    const nowChild: string[] = this.showData[i].child;
     if (nowChild.length == 0) return;
-    this.addNamelevels(data.name,i);
+    this.addNamelevels(data.name, i);
     this.changeRowData(nowChild);
     this.updateAggrid();
   }
 
-  private backClick(){
+  private backClick() {
     this.rmNameLevels();
-    const masterData:dataSet[] = this.getMasterData();
-    const arr:string[] = this.getNameLevelArr();
+    const masterData: dataSet[] = this.getMasterData();
+    const arr: string[] = this.getNameLevelArr();
     if (arr.length == 0) {
       this.showData = masterData;
       this.makeRowData();
       this.updateAggrid();
-    }else{
-      const name:string = arr[arr.length - 1];
-      const nowData:any = masterData.find((d)=>{
+    } else {
+      const name: string = arr[arr.length - 1];
+      const nowData: any = masterData.find(d => {
         return d.name === name;
       });
       this.changeRowData(nowData.child);
@@ -127,23 +130,22 @@ export default class mainIndex extends Vue {
 
   //view
 
-  private namelevelindex:number[] = [];
+  private namelevelindex: number[] = [];
   private namelevelArr: string[] = [];
   private isNamelevelArr() {
     return this.namelevelArr.length > 0;
   }
-  private addNamelevels(name:string,index:number){
+  private addNamelevels(name: string, index: number) {
     this.namelevelArr.push(name);
     this.namelevelindex.push(index);
   }
-  private rmNameLevels(){
+  private rmNameLevels() {
     this.namelevelArr.pop();
     this.namelevelindex.pop();
   }
-  private getNameLevelArr():string[]{
+  private getNameLevelArr(): string[] {
     return this.namelevelArr;
   }
-
 
   private dataLevelText() {
     if (this.namelevelArr.length > 0) {
@@ -157,24 +159,86 @@ export default class mainIndex extends Vue {
     }
   }
 
+  private openExplanation:boolean = false;
+  private clickExplanation(i:number){
+    const d = this.showData[i];
+    this.clickDataSet = d;
+    this.openExplanation = true;
+  }
+  private clickDataSet: dataSet = {
+    id: 0,
+    name: "",
+    place: [],
+    target: [],
+    targetStory: {},
+    usetech: [],
+    text: [],
+    img: null,
+    child: []
+  };
+
   beforeMount(): void {
     this.api = this.gridOptions.api;
     this.gridOptions.columnDefs = [
-      { headerName: "name",
+      {
+        headerName: "name",
         field: "name",
-        cellRenderer:(params)=>{
-          const el = document.createElement('div');
+        cellRenderer: params => {
+          const el = document.createElement("div");
           el.innerHTML = params.value;
-          el.addEventListener('click',()=>{
+          el.addEventListener("click", () => {
             this.childClick(params.rowIndex);
           });
           return el;
         }
       },
-      { headerName: "place", field: "place" },
-      { headerName: "target", field: "target" },
-      { headerName: "child", field: "child" },
-      { headerName: "explanation", field: "explanation" },
+      {
+        headerName: "place",
+        field: "place",
+        cellRenderer: params => {
+          const el = document.createElement("div");
+          el.innerHTML = params.value;
+          el.addEventListener("click", () => {
+            this.childClick(params.rowIndex);
+          });
+          return el;
+        }
+      },
+      {
+        headerName: "target",
+        field: "target",
+        cellRenderer: params => {
+          const el = document.createElement("div");
+          el.innerHTML = params.value;
+          el.addEventListener("click", () => {
+            this.childClick(params.rowIndex);
+          });
+          return el;
+        }
+      },
+      {
+        headerName: "child",
+        field: "child",
+        cellRenderer: params => {
+          const el = document.createElement("div");
+          el.innerHTML = params.value;
+          el.addEventListener("click", () => {
+            this.childClick(params.rowIndex);
+          });
+          return el;
+        }
+      },
+      { headerName: "explanation",
+        field: "explanation",
+        cellRenderer: params => {
+          const el = document.createElement("div");
+          el.innerHTML = params.value;
+          el.addEventListener("click", () => {
+            this.clickExplanation(params.rowIndex);
+            this.childClick(params.rowIndex);
+          });
+          return el;
+        }}
     ];
     this.showData = this.getMasterData();
     this.makeRowData();
