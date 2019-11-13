@@ -8,7 +8,7 @@
       </div>
     </div>
     <ag-grid-vue class="masterGrid" :gridOptions="gridOptions"></ag-grid-vue>
-    <mainExplanation v-if="openExplanation" :dataSet="clickDataSet"></mainExplanation>
+    <mainExplanation v-if="openExplanation" :dataSet="clickDataSet" @close="closeWindow()"></mainExplanation>
   </div>
 </template>
 
@@ -130,6 +130,21 @@ export default class mainIndex extends Vue {
 
   //view
 
+  private closeWindow(){
+    this.clickDataSet = {
+      id: -1,
+    name: "",
+    place: [],
+    target: [],
+    targetStory: {},
+    usetech: [],
+    text: [],
+    img: null,
+    child: []
+    };
+    this.openExplanation = false;
+  }
+
   private namelevelindex: number[] = [];
   private namelevelArr: string[] = [];
   private isNamelevelArr() {
@@ -166,7 +181,7 @@ export default class mainIndex extends Vue {
     this.openExplanation = true;
   }
   private clickDataSet: dataSet = {
-    id: 0,
+    id: -1,
     name: "",
     place: [],
     target: [],

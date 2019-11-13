@@ -1,7 +1,7 @@
 <template>
   <div class="mainExplanation">
     <div class="mainExplanation__inner">
-      <div class="bg"></div>
+      <div class="bg" @click="closeWindow()"></div>
       <div class="content">
         <div class="imgBox"></div>
         <div class="textBox"></div>
@@ -19,6 +19,10 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 export default class mainExplanation extends Vue {
   @Prop() private dataSet!: dataSet;
 
+
+  private closeWindow(){
+    this.$emit('close');
+  }
   beforeMount(): void {
     console.log(this.dataSet);
     
