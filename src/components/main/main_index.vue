@@ -250,7 +250,6 @@ export default class mainIndex extends Vue {
           el.innerHTML = params.value;
           el.addEventListener("click", () => {
             this.clickExplanation(params.rowIndex);
-            this.childClick(params.rowIndex);
           });
           return el;
         }}

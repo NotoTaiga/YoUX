@@ -3,7 +3,7 @@
     <div class="mainExplanation__inner">
       <div class="bg" @click="closeWindow()"></div>
       <div class="content">
-        <div class="imgBox"></div>
+        <div class="imgBox" :style="{ backgroundImage: 'url(' + dataSet.img + ')' }"></div>
         <div class="textBox"></div>
       </div>
     </div>
@@ -77,7 +77,9 @@ export default class mainExplanation extends Vue {
     .imgBox{
       width: calc(50% - 3.2rem);
       height: 90%;
-      background-color: red;
+      background-size:cover;
+      background-position: center;
+      background-repeat: no-repeat;
     }
 
     .textBox{

@@ -44,7 +44,7 @@ export default new Vuex.Store({
         },
         usetech: ['電子掲示板'],
         text: ['aaaaaaaaaaaaaaa', '改行したい場合はこれで'],
-        img: null,
+        img: require('./assets/img/neko.jpg'),
         child: ['授業中名刺交換', 'グループトーク', 'デスクcloud プラグイン', 'デスクcloud ジェスチャー', 'デスクcloud 資料表示', '感情サーモグラフィー', 'デスクcloud 出席管理', 'day ToDo', '場所チャット', '机模様替え'],
       }, {
         id: 1,
