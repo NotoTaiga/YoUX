@@ -27,7 +27,20 @@
         <div class="content__storyContent" v-if="pageState == 1">
           <div class="storyBox">
             <div class="storyBox__header">
-
+              <div class="stateBox">
+                <div class="stateBox__pageTitle">
+                  {{title}}
+                </div>
+                <div class="stateArea">
+                  <div class="stateArea__inner" @click="changeStateOpen()">
+                    <div class="stateArea__selectState">{{storyStateText}}</div>
+                    <button class="stateArea__openBtn">▼</button>
+                  </div>
+                  <ul class="stateArea__list" v-if="stateOpen">
+                    <li class="stateArea__item" v-for="(stateText,i) in storyStateTextArr" :key="'storyStateText'+i" @click="selectState(i)">{{stateText}}</li>
+                  </ul>
+                </div>
+              </div>
             </div>
             <div class="storyBox__main">
               <p class="storyBox__text" v-for="(text,i) in nowStoryText" :key="'storyText'+i">{{text}}</p>
@@ -66,6 +79,20 @@ export default class mainExplanation extends Vue {
   private storyTextArr:string[][] = [];
   private nowStoryText:string[]=[];
   private storyState:number = 0;
+  private storyStateTextArr:string[] = [];
+  private storyStateText:string = "";
+
+  private stateOpen:boolean = false;
+  private changeStateOpen(){
+    this.stateOpen = !this.stateOpen;
+  }
+
+  private selectState(i:number){
+    this.changeStateOpen();
+    this.storyState = i;
+    this.storyStateText = this.storyStateTextArr[i];
+    this.makeNowStoryText();
+  }
 
   private makeNowStoryText(){
     const nowTextArr:string[] = this.storyTextArr[this.storyState];
@@ -111,11 +138,21 @@ export default class mainExplanation extends Vue {
     for(let k in obj) {
       this.storyStateArr.push(k);
       this.storyTextArr.push(obj[k]);
+
+      if (k == "student") {
+        this.storyStateTextArr.push('学生');
+      }else if(k == "teacher"){
+        this.storyStateTextArr.push('先生');
+      }else if(k == "admin"){
+        this.storyStateTextArr.push('事務局');
+      }else if(k == "other"){
+        this.storyStateTextArr.push('その他');
+      }else if(k == "all"){
+        this.storyStateTextArr.push('All');
+      }
     }
-    // this.nowStoryText = this.storyTextArr[this.storyState]
+    this.storyStateText = this.storyStateTextArr[this.storyState];
     this.makeNowStoryText();
-    console.log(this.storyStateArr,this.storyTextArr);
-    
   }
 }
 </script>
@@ -285,6 +322,76 @@ export default class mainExplanation extends Vue {
         &__text{
           text-align: center;
           line-height: 2.5rem;
+        }
+
+        .stateBox{
+          height: 100%;
+          display: flex;
+          align-items: center;
+          padding-left: 1.6rem;
+          &__pageTitle{
+            font-size: 2rem;
+            line-height: 3rem;
+            margin-right: 1rem;
+          }
+        }
+
+        .stateArea{
+          position: relative;
+          &__inner{
+            cursor: pointer;
+            position: relative;
+            box-sizing: border-box;
+            padding-left:0.8rem;
+            text-align: left;
+            line-height: 3rem;
+            border-radius: 0.8rem; 
+            color: $black;
+            width: 10rem;
+            height: 3rem;
+            font-size: 1.8rem;
+            background-color: $white;
+          }
+
+          &__openBtn{
+            border-radius: 0 0.8rem 0.8rem 0;
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 3rem;
+            width: 2rem;
+            line-height: 3rem;
+            text-align: center;
+            border: none;
+            padding: 0;
+            background-color: $mainBlue;
+            color:$white;
+          }
+
+          &__list{
+            width: 10rem;
+            position:absolute;
+            top: 3rem;
+            left: 0;
+            border-radius: 0 0 0.8rem 0.8rem;
+            overflow:hidden;
+          }
+
+          &__item{
+            box-sizing: border-box;
+            height: 3rem;
+            font-size: 1.8rem;
+            background-color: $white;
+            color: $black;
+            line-height: 3rem;
+            padding-left: 0.8rem;
+            border-bottom: 1px solid #666;
+            cursor: pointer;
+            &:hover{
+              background-color: $mainBlue;
+              color: $white;
+            }
+          }
         }
       }
     }
