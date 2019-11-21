@@ -3,9 +3,18 @@
     <!-- <MasterNav></MasterNav> -->
     <div class="headCont">
       <div class="datalevelBox">
-        <h3>{{dataLevelText()}}</h3>
-        <button v-if="isNamelevelArr()" @click="backClick()">back</button>
+        <h3 class="datalevelBox__title">{{dataLevelText()}}</h3>
+        <button class="icon" v-if="isNamelevelArr()" @click="backClick()">
+          <img src="@/assets/img/back_black.png" alt="バックボタン" />
+          <br />
+          <span>back</span>
+        </button>
       </div>
+      <button class="icon">
+        <img src="@/assets/img/filter_black.png" alt="フィルターボタン" />
+        <br />
+        <span>filter</span>
+      </button>
     </div>
     <ag-grid-vue class="masterGrid" :gridOptions="gridOptions"></ag-grid-vue>
     <mainExplanation v-if="openExplanation" :dataSet="clickDataSet" @close="closeWindow()"></mainExplanation>
@@ -130,17 +139,17 @@ export default class mainIndex extends Vue {
 
   //view
 
-  private closeWindow(){
+  private closeWindow() {
     this.clickDataSet = {
       id: -1,
-    name: "",
-    place: [],
-    target: [],
-    targetStory: {},
-    usetech: [],
-    text: [],
-    img: null,
-    child: []
+      name: "",
+      place: [],
+      target: [],
+      targetStory: {},
+      usetech: [],
+      text: [],
+      img: null,
+      child: []
     };
     this.openExplanation = false;
   }
@@ -174,8 +183,8 @@ export default class mainIndex extends Vue {
     }
   }
 
-  private openExplanation:boolean = false;
-  private clickExplanation(i:number){
+  private openExplanation: boolean = false;
+  private clickExplanation(i: number) {
     const d = this.showData[i];
     this.clickDataSet = d;
     this.openExplanation = true;
@@ -198,9 +207,15 @@ export default class mainIndex extends Vue {
       {
         headerName: "name",
         field: "name",
+        cellStyle:{
+          'height':'100%',
+          'line-height':'100%',
+          'border':'1px solid #333'
+        },
         cellRenderer: params => {
           const el = document.createElement("div");
           el.innerHTML = params.value;
+          el.style.height = '100%';
           el.addEventListener("click", () => {
             this.childClick(params.rowIndex);
           });
@@ -210,6 +225,7 @@ export default class mainIndex extends Vue {
       {
         headerName: "place",
         field: "place",
+        cellClass:"agPlace",
         cellRenderer: params => {
           const el = document.createElement("div");
           el.innerHTML = params.value;
@@ -222,6 +238,7 @@ export default class mainIndex extends Vue {
       {
         headerName: "target",
         field: "target",
+        cellClass:"agTarget",
         cellRenderer: params => {
           const el = document.createElement("div");
           el.innerHTML = params.value;
@@ -234,6 +251,7 @@ export default class mainIndex extends Vue {
       {
         headerName: "child",
         field: "child",
+        cellClass:"agChild",
         cellRenderer: params => {
           const el = document.createElement("div");
           el.innerHTML = params.value;
@@ -243,8 +261,10 @@ export default class mainIndex extends Vue {
           return el;
         }
       },
-      { headerName: "explanation",
+      {
+        headerName: "explanation",
         field: "explanation",
+        cellClass:"agExplanation",
         cellRenderer: params => {
           const el = document.createElement("div");
           el.innerHTML = params.value;
@@ -252,7 +272,8 @@ export default class mainIndex extends Vue {
             this.clickExplanation(params.rowIndex);
           });
           return el;
-        }}
+        }
+      }
     ];
     this.showData = this.getMasterData();
     this.makeRowData();
@@ -268,11 +289,66 @@ export default class mainIndex extends Vue {
   box-sizing: border-box;
   width: 100%;
   padding-left: 4.7rem;
+  color: $black;
+
+  .headCont {
+    box-sizing: border-box;
+    width: 100%;
+    height: 5rem;
+    padding: 0 3.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-bottom: #666 solid 1px;
+    margin-bottom: 1.6rem;
+
+    .datalevelBox {
+      display: flex;
+      align-items: center;
+      &__title {
+        line-height: 5rem;
+        font-size: 1.8rem;
+        margin-right: 1rem;
+      }
+    }
+  }
+
+  .icon {
+    text-align: center;
+    height: 3.5rem;
+    width: 3.5rem;
+    box-sizing: border-box;
+    border: $black solid 2px;
+    background-color: $white;
+    line-height: 1rem;
+    border-radius: 0.8rem;
+    cursor: pointer;
+    img {
+      width: 1.2rem;
+      height: 1.2rem;
+    }
+
+    span {
+      font-size: 1rem;
+      white-space: nowrap;
+    }
+
+    &:hover{
+      background-color: $mainBlue;
+      color: $white;
+    }
+  }
 }
 
 .masterGrid {
-  width: 100%;
-  height: 50vw;
-  // background-color: red;
+  width: calc(100% - 6.4rem);
+  height: calc(100vh - 10rem - 1.6rem);
+  font-size: 1.6rem;
+  margin: 0 auto;
+}
+
+.ag-row{
+  height: 3rem;
 }
 </style>
