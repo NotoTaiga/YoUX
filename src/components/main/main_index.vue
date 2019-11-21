@@ -16,7 +16,7 @@
         <span>filter</span>
       </button>
     </div>
-    <ag-grid-vue class="masterGrid" :gridOptions="gridOptions"></ag-grid-vue>
+    <ag-grid-vue class="masterGrid" :gridOptions="gridOptions" id="grid"></ag-grid-vue>
     <mainExplanation v-if="openExplanation" :dataSet="clickDataSet" @close="closeWindow()"></mainExplanation>
   </div>
 </template>
@@ -110,7 +110,6 @@ export default class mainIndex extends Vue {
     this.gridOptions.api.setRowData(this.rowDataArr);
   }
   private childClick(i: number) {
-    // debugger;
     const data: dataSet = this.showData[i];
     const nowChild: string[] = this.showData[i].child;
     if (nowChild.length == 0) return;
@@ -135,6 +134,13 @@ export default class mainIndex extends Vue {
       this.changeRowData(nowData.child);
       this.updateAggrid();
     }
+  }
+
+  private calcWidthPercent(percent: number) {
+    const windowWidth: number = window.innerWidth;
+    const gridWidth: number = windowWidth - 64 - 47;
+    const cellWidth: number = gridWidth * percent * 0.01;
+    return cellWidth;
   }
 
   //view
@@ -203,19 +209,25 @@ export default class mainIndex extends Vue {
 
   beforeMount(): void {
     this.api = this.gridOptions.api;
+    this.gridOptions.rowHeight = 30;
     this.gridOptions.columnDefs = [
       {
         headerName: "name",
         field: "name",
-        cellStyle:{
-          'height':'100%',
-          'line-height':'100%',
-          'border':'1px solid #333'
+        width: this.calcWidthPercent(50),
+        cellStyle: {
+          "box-sizing": "border-box",
+          height: "3rem",
+          "line-height": "3rem",
+          border: "1px solid #333",
+          "border-bottom": "none",
+          "border-right": "none",
+          "padding-left": "0.6rem"
         },
         cellRenderer: params => {
           const el = document.createElement("div");
           el.innerHTML = params.value;
-          el.style.height = '100%';
+          // el.style.height = "100%";
           el.addEventListener("click", () => {
             this.childClick(params.rowIndex);
           });
@@ -225,7 +237,16 @@ export default class mainIndex extends Vue {
       {
         headerName: "place",
         field: "place",
-        cellClass:"agPlace",
+        width: this.calcWidthPercent(20),
+        cellStyle: {
+          "box-sizing": "border-box",
+          height: "3rem",
+          "line-height": "3rem",
+          border: "1px solid #333",
+          "border-bottom": "none",
+          "border-right": "none",
+          "padding-left": "0.6rem"
+        },
         cellRenderer: params => {
           const el = document.createElement("div");
           el.innerHTML = params.value;
@@ -238,7 +259,16 @@ export default class mainIndex extends Vue {
       {
         headerName: "target",
         field: "target",
-        cellClass:"agTarget",
+        width: this.calcWidthPercent(10),
+        cellStyle: {
+          "box-sizing": "border-box",
+          height: "3rem",
+          "line-height": "3rem",
+          border: "1px solid #333",
+          "border-bottom": "none",
+          "border-right": "none",
+          "padding-left": "0.6rem"
+        },
         cellRenderer: params => {
           const el = document.createElement("div");
           el.innerHTML = params.value;
@@ -251,7 +281,16 @@ export default class mainIndex extends Vue {
       {
         headerName: "child",
         field: "child",
-        cellClass:"agChild",
+        width: this.calcWidthPercent(10),
+        cellStyle: {
+          "box-sizing": "border-box",
+          height: "3rem",
+          "line-height": "3rem",
+          border: "1px solid #333",
+          "border-bottom": "none",
+          "border-right": "none",
+          "padding-left": "0.6rem"
+        },
         cellRenderer: params => {
           const el = document.createElement("div");
           el.innerHTML = params.value;
@@ -264,7 +303,15 @@ export default class mainIndex extends Vue {
       {
         headerName: "explanation",
         field: "explanation",
-        cellClass:"agExplanation",
+        width: this.calcWidthPercent(10),
+        cellStyle: {
+          "box-sizing": "border-box",
+          height: "3rem",
+          "line-height": "3rem",
+          border: "1px solid #333",
+          "border-bottom": "none",
+          "padding-left": "0.6rem"
+        },
         cellRenderer: params => {
           const el = document.createElement("div");
           el.innerHTML = params.value;
@@ -334,7 +381,7 @@ export default class mainIndex extends Vue {
       white-space: nowrap;
     }
 
-    &:hover{
+    &:hover {
       background-color: $mainBlue;
       color: $white;
     }
@@ -348,7 +395,7 @@ export default class mainIndex extends Vue {
   margin: 0 auto;
 }
 
-.ag-row{
+.ag-row {
   height: 3rem;
 }
 </style>
