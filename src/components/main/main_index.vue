@@ -18,6 +18,7 @@
     </div>
     <ag-grid-vue class="masterGrid" :gridOptions="gridOptions" id="grid"></ag-grid-vue>
     <mainExplanation v-if="openExplanation" :dataSet="clickDataSet" @close="closeWindow()"></mainExplanation>
+    <mainFilter></mainFilter>
   </div>
 </template>
 
@@ -30,6 +31,7 @@ import {
   GridApi
 } from "ag-grid-community";
 
+import mainFilter from "@/components/main/main_filter.vue";
 import mainExplanation from "@/components/main/main_explanation.vue";
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { AgGridVue } from "ag-grid-vue";
@@ -37,7 +39,8 @@ import { AgGridVue } from "ag-grid-vue";
 @Component({
   components: {
     AgGridVue,
-    mainExplanation
+    mainExplanation,
+    mainFilter
   }
 })
 export default class mainIndex extends Vue {
@@ -222,7 +225,9 @@ export default class mainIndex extends Vue {
           border: "1px solid #333",
           "border-bottom": "none",
           "border-right": "none",
-          "padding-left": "0.6rem"
+          "padding-left": "0.6rem",
+          cursor: "pointer",
+          "background-color": "#fff"
         },
         cellRenderer: params => {
           const el = document.createElement("div");
@@ -245,7 +250,9 @@ export default class mainIndex extends Vue {
           border: "1px solid #333",
           "border-bottom": "none",
           "border-right": "none",
-          "padding-left": "0.6rem"
+          "padding-left": "0.6rem",
+          cursor: "pointer",
+          "background-color": "#fff"
         },
         cellRenderer: params => {
           const el = document.createElement("div");
@@ -267,7 +274,9 @@ export default class mainIndex extends Vue {
           border: "1px solid #333",
           "border-bottom": "none",
           "border-right": "none",
-          "padding-left": "0.6rem"
+          "padding-left": "0.6rem",
+          cursor: "pointer",
+          "background-color": "#fff"
         },
         cellRenderer: params => {
           const el = document.createElement("div");
@@ -289,7 +298,9 @@ export default class mainIndex extends Vue {
           border: "1px solid #333",
           "border-bottom": "none",
           "border-right": "none",
-          "padding-left": "0.6rem"
+          "padding-left": "0.6rem",
+          cursor: "pointer",
+          "background-color": "#fff"
         },
         cellRenderer: params => {
           const el = document.createElement("div");
@@ -310,7 +321,9 @@ export default class mainIndex extends Vue {
           "line-height": "3rem",
           border: "1px solid #333",
           "border-bottom": "none",
-          "padding-left": "0.6rem"
+          "padding-left": "0.6rem",
+          cursor: "pointer",
+          "background-color": "#fff"
         },
         cellRenderer: params => {
           const el = document.createElement("div");
@@ -394,6 +407,8 @@ export default class mainIndex extends Vue {
   height: calc(100vh - 10rem - 1.6rem);
   font-size: 1.6rem;
   margin: 0 auto;
+  border-radius: 2rem;
+  overflow: hidden;
 }
 
 .ag-row {
@@ -409,8 +424,8 @@ export default class mainIndex extends Vue {
   border-right: 1px solid $black;
 }
 
-.masterGrid {
-  border-radius: 0.8rem;
+.ag-header-container {
+  border-radius: 2rem 2rem 0 0;
   overflow: hidden;
 }
 </style>
