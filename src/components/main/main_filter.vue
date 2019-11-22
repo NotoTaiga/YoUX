@@ -14,11 +14,7 @@
           <button class="textFilterBox__btn">追加</button>
         </div>
         <ul class="textFilterBox__list">
-          <li
-            class="textFilterBox__item"
-            v-for="(text, i) in filterTexts"
-            :key="'filterText'+index"
-          >
+          <li class="textFilterBox__item" v-for="(text, i) in filterTexts" :key="'filterText'+i">
             <div class="itemName">{{text}}</div>
             <button class="deleteBtn">×</button>
           </li>
@@ -197,6 +193,12 @@ export default class mainFilter extends Vue {
           }
         }
       }
+    }
+
+    .categoryFilter {
+      height: calc(100% - 30vh - 4rem - 4rem);
+      box-sizing: border-box;
+      padding-top: 0.8rem;
     }
   }
 }
