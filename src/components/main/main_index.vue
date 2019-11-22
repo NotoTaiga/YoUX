@@ -138,7 +138,7 @@ export default class mainIndex extends Vue {
 
   private calcWidthPercent(percent: number) {
     const windowWidth: number = window.innerWidth;
-    const gridWidth: number = windowWidth - 64 - 47;
+    const gridWidth: number = windowWidth - 64 - 62;
     const cellWidth: number = gridWidth * percent * 0.01;
     return cellWidth;
   }
@@ -212,7 +212,7 @@ export default class mainIndex extends Vue {
     this.gridOptions.rowHeight = 30;
     this.gridOptions.columnDefs = [
       {
-        headerName: "name",
+        headerName: "ソリューションName",
         field: "name",
         width: this.calcWidthPercent(50),
         cellStyle: {
@@ -235,7 +235,7 @@ export default class mainIndex extends Vue {
         }
       },
       {
-        headerName: "place",
+        headerName: "該当スペース",
         field: "place",
         width: this.calcWidthPercent(20),
         cellStyle: {
@@ -257,7 +257,7 @@ export default class mainIndex extends Vue {
         }
       },
       {
-        headerName: "target",
+        headerName: "対象者",
         field: "target",
         width: this.calcWidthPercent(10),
         cellStyle: {
@@ -279,7 +279,7 @@ export default class mainIndex extends Vue {
         }
       },
       {
-        headerName: "child",
+        headerName: "子ソリューション",
         field: "child",
         width: this.calcWidthPercent(10),
         cellStyle: {
@@ -301,7 +301,7 @@ export default class mainIndex extends Vue {
         }
       },
       {
-        headerName: "explanation",
+        headerName: "説明",
         field: "explanation",
         width: this.calcWidthPercent(10),
         cellStyle: {
@@ -322,6 +322,7 @@ export default class mainIndex extends Vue {
         }
       }
     ];
+    this.gridOptions.headerHeight = 60;
     this.showData = this.getMasterData();
     this.makeRowData();
     this.gridOptions.rowData = this.rowDataArr;
@@ -329,7 +330,7 @@ export default class mainIndex extends Vue {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 @import "@/assets/style/index.scss";
 .mainIndex {
   background-color: $white;
@@ -397,5 +398,19 @@ export default class mainIndex extends Vue {
 
 .ag-row {
   height: 3rem;
+}
+
+.ag-pivot-off .ag-header-cell-label {
+  box-sizing: border-box;
+  padding-left: 0.6rem;
+  color: $white;
+  background-color: $mainBlue;
+  line-height: 6rem;
+  border-right: 1px solid $black;
+}
+
+.masterGrid {
+  border-radius: 0.8rem;
+  overflow: hidden;
 }
 </style>
