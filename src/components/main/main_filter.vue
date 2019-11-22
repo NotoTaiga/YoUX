@@ -199,6 +199,40 @@ export default class mainFilter extends Vue {
       height: calc(100% - 30vh - 4rem - 4rem);
       box-sizing: border-box;
       padding-top: 0.8rem;
+
+      &__title {
+        height: 2.5rem;
+        font-size: 1.4rem;
+      }
+
+      &__list {
+      }
+
+      .category {
+        margin-bottom: 1.2rem;
+        &__title {
+          width: 100%;
+          height: 2rem;
+          font-size: 1.2rem;
+        }
+
+        &__text {
+          position: relative;
+          text-align: left;
+          box-sizing: border-box;
+          padding: 0 0.8rem;
+          width: 23rem;
+          height: 2rem;
+
+          &:before {
+            position: absolute;
+            content: "▼";
+            top: 0;
+            right: 0;
+            // height:
+          }
+        }
+      }
     }
   }
 }
