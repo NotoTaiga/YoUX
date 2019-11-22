@@ -50,7 +50,7 @@ import { AgGridVue } from "ag-grid-vue";
 })
 export default class mainIndex extends Vue {
   //filter
-  private filterTexts: string[] = ["デスク"];
+  private filterTexts: string[] = [];
   private changeFilterTexts(newArr: string[]) {
     this.filterTexts = newArr;
   }
