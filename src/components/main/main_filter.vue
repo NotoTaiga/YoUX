@@ -10,13 +10,13 @@
       <div class="textFilterBox">
         <h5 class="textFilterBox__title">テキストフィルター</h5>
         <div class="textFilterBox__inputBox">
-          <input type="text" class="textFilterBox__input" />
-          <button class="textFilterBox__btn">追加</button>
+          <input id="textFilterInput" type="text" class="textFilterBox__input" />
+          <button class="textFilterBox__btn" @click="addNewFilterText()">追加</button>
         </div>
         <ul class="textFilterBox__list">
-          <li class="textFilterBox__item" v-for="(text, i) in filterTexts" :key="'filterText'+i">
+          <li class="textFilterBox__item" v-for="(text, i) in newFilterText" :key="'filterText'+i">
             <div class="itemName">{{text}}</div>
-            <button class="deleteBtn">×</button>
+            <button class="deleteBtn" @click="spliceNewFilterText(i)">×</button>
           </li>
         </ul>
       </div>
@@ -32,7 +32,7 @@
       </div>
 
       <div class="footer">
-        <button class="confirmBtn">フィルター確定</button>
+        <button class="footer__confirmBtn" @click="confirmBtn()">フィルター確定</button>
       </div>
     </div>
   </div>
@@ -45,6 +45,25 @@ import { Component, Prop, Vue } from "vue-property-decorator";
   components: {}
 })
 export default class mainFilter extends Vue {
+  @Prop() private filterTexts!: string[];
+
+  private newFilterText: string[] = [];
+  private addNewFilterText() {
+    const inputBox: any = document.querySelector("#textFilterInput");
+    if (inputBox.value) {
+      let isText: boolean = false;
+      this.newFilterText.forEach(t => {
+        if (t == inputBox.value) isText = true;
+      });
+      if (!isText) {
+        this.newFilterText.push(inputBox.value);
+      }
+    }
+  }
+  private spliceNewFilterText(i: number) {
+    this.newFilterText.splice(i, 1);
+  }
+
   private category = [
     {
       category: "place",
@@ -90,7 +109,14 @@ export default class mainFilter extends Vue {
     }
   ];
 
-  filterTexts: string[] = ["aaaa", "bbbb"];
+  private confirmBtn() {
+    this.$emit("reload", this.newFilterText);
+    this.$emit("close");
+  }
+
+  beforeMount() {
+    this.newFilterText = this.filterTexts;
+  }
 }
 </script>
 
@@ -217,21 +243,46 @@ export default class mainFilter extends Vue {
         }
 
         &__text {
+          cursor: pointer;
           position: relative;
           text-align: left;
           box-sizing: border-box;
           padding: 0 0.8rem;
-          width: 23rem;
+          width: 100%;
           height: 2rem;
+          border: none;
+          border-radius: 0.4rem;
 
           &:before {
             position: absolute;
             content: "▼";
             top: 0;
-            right: 0;
-            // height:
+            right: -1px;
+            height: 2rem;
+            width: 1.5rem;
+            background-color: $mainBlue;
+            color: $white;
+            line-height: 2rem;
+            text-align: center;
+            border-radius: 0 0.4rem 0.4rem 0;
           }
         }
+      }
+    }
+
+    .footer {
+      height: 4rem;
+      line-height: 4rem;
+      text-align: center;
+
+      &__confirmBtn {
+        cursor: pointer;
+        width: 18rem;
+        height: 3rem;
+        border: none;
+        border-radius: 0.4rem;
+        background-color: $mainBlue;
+        color: $white;
       }
     }
   }

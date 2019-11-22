@@ -10,7 +10,7 @@
           <span>back</span>
         </button>
       </div>
-      <button class="icon">
+      <button class="icon" @click="openFilter()">
         <img src="@/assets/img/filter_black.png" alt="フィルターボタン" />
         <br />
         <span>filter</span>
@@ -18,7 +18,12 @@
     </div>
     <ag-grid-vue class="masterGrid" :gridOptions="gridOptions" id="grid"></ag-grid-vue>
     <mainExplanation v-if="openExplanation" :dataSet="clickDataSet" @close="closeWindow()"></mainExplanation>
-    <mainFilter></mainFilter>
+    <mainFilter
+      v-if="filterState"
+      @close="closeFilter"
+      @reload="reloadGrid"
+      :filterTexts="filterTexts"
+    ></mainFilter>
   </div>
 </template>
 
@@ -44,6 +49,54 @@ import { AgGridVue } from "ag-grid-vue";
   }
 })
 export default class mainIndex extends Vue {
+  //filter
+  private filterTexts: string[] = ["デスク"];
+  private changeFilterTexts(newArr: string[]) {
+    this.filterTexts = newArr;
+  }
+
+  private textFilterChecker(name: string): boolean {
+    if (this.filterTexts.length > 0) {
+      let inFilterText: boolean = false;
+      this.filterTexts.forEach((t, i) => {
+        if (name.indexOf(t) != -1) inFilterText = true;
+      });
+      return inFilterText;
+    }
+    return true;
+  }
+
+  private reloadGrid(newFilterTexts: string[]) {
+    this.changeFilterTexts(newFilterTexts);
+
+    const arr: string[] = this.getNameLevelArr();
+    let newShowData: dataSet[] = [];
+    const masterData: dataSet[] = this.getMasterData();
+
+    if (arr.length == 0) {
+      if (this.filterTexts.length > 0) {
+        masterData.forEach(d => {
+          if (this.textFilterChecker(d.name)) {
+            newShowData.push(d);
+          }
+        });
+        this.showData = newShowData;
+      } else {
+        this.showData = masterData;
+      }
+
+      this.makeRowData();
+      this.updateAggrid();
+    } else {
+      const name: string = arr[arr.length - 1];
+      const nowData: any = masterData.find(d => {
+        return d.name === name;
+      });
+      this.changeRowData(nowData.child);
+      this.updateAggrid();
+    }
+  }
+
   //aggrid
   private showData: dataSet[] = [];
   private getMasterData(): dataSet[] {
@@ -57,7 +110,9 @@ export default class mainIndex extends Vue {
     masterData.forEach((d, i) => {
       child.forEach((name, i) => {
         if (d.name === name) {
-          showData.push(d);
+          if (this.textFilterChecker(d.name)) {
+            showData.push(d);
+          }
         }
       });
     });
@@ -126,7 +181,18 @@ export default class mainIndex extends Vue {
     const masterData: dataSet[] = this.getMasterData();
     const arr: string[] = this.getNameLevelArr();
     if (arr.length == 0) {
-      this.showData = masterData;
+      if (this.filterTexts.length > 0) {
+        let newShowData: dataSet[] = [];
+        masterData.forEach(d => {
+          if (this.textFilterChecker(d.name)) {
+            newShowData.push(d);
+          }
+        });
+        this.showData = newShowData;
+      } else {
+        this.showData = masterData;
+      }
+
       this.makeRowData();
       this.updateAggrid();
     } else {
@@ -147,6 +213,14 @@ export default class mainIndex extends Vue {
   }
 
   //view
+
+  private filterState: boolean = false;
+  private openFilter() {
+    this.filterState = true;
+  }
+  private closeFilter() {
+    this.filterState = false;
+  }
 
   private closeWindow() {
     this.clickDataSet = {
@@ -337,6 +411,15 @@ export default class mainIndex extends Vue {
     ];
     this.gridOptions.headerHeight = 60;
     this.showData = this.getMasterData();
+    if (this.filterTexts.length > 0) {
+      let newShowData: dataSet[] = [];
+      this.showData.forEach(d => {
+        if (this.textFilterChecker(d.name)) {
+          newShowData.push(d);
+        }
+      });
+      this.showData = newShowData;
+    }
     this.makeRowData();
     this.gridOptions.rowData = this.rowDataArr;
   }
