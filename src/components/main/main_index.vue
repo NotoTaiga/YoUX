@@ -165,7 +165,7 @@ export default class mainIndex extends Vue {
 
   public api: any;
   private updateAggrid() {
-    this.gridOptions.api.setRowData(this.rowDataArr);
+    this.gridOptions.api!.setRowData(this.rowDataArr);
   }
   private childClick(i: number) {
     const data: dataSet = this.showData[i];
