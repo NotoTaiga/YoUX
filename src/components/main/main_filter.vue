@@ -4,7 +4,6 @@
     <div class="main">
       <div class="head">
         <h4 class="head__title">フィルター</h4>
-        <div class="head__close">×</div>
       </div>
 
       <div class="textFilterBox">
@@ -26,7 +25,7 @@
         <ul class="categoryFilter__list">
           <li class="categoryFilter__item category" v-for="(c, i) in category" :key="'category'+i">
             <h6 class="category__title">{{c.categoryTitle}}</h6>
-            <button class="category__text">{{c.selectText}}</button>
+            <button class="category__text" @click="clickCategoryBtn(i)">{{c.selectText}}</button>
           </li>
         </ul>
       </div>
@@ -35,11 +34,25 @@
         <button class="footer__confirmBtn" @click="confirmBtn()">フィルター確定</button>
       </div>
     </div>
+    <div class="categoryBox" v-if="categorySelectBox">
+      <h4 class="categoryBox__title">{{nowCategory.categoryTitle}}</h4>
+      <ul class="categoryBox__list">
+        <li
+          class="categoryBox__item"
+          v-for="(text, index) in nowCategory.filterText"
+          :key="'filterText'+index"
+        >
+        {{text}}
+        <div class="categoryBox__check">a</div>
+        </li>
+      </ul>
+      
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { dataSet } from "../../interface";
+import { dataSet, category, filterCont } from "../../interface";
 import { Component, Prop, Vue } from "vue-property-decorator";
 @Component({
   components: {}
@@ -64,41 +77,69 @@ export default class mainFilter extends Vue {
     this.newFilterText.splice(i, 1);
   }
 
-  private category = [
+  private category: category[] = [
     {
       category: "place",
       categoryTitle: "該当スペース",
-      select: [],
+      select: [
+        "駿河台ホール",
+        "E教室",
+        "３階廊下",
+        "エントランス",
+        "会議室",
+        "LabProto",
+        "カフェテリア",
+        "メディアライブラリー",
+        "大学事務局",
+        "リモート会議室",
+        "職員室",
+        "学生スマートフォン",
+        "職員スマートフォン"
+      ],
       selectText: "All",
-      filterText: []
+      filterText: [
+        "駿河台ホール",
+        "E教室",
+        "３階廊下",
+        "エントランス",
+        "会議室",
+        "LabProto",
+        "カフェテリア",
+        "メディアライブラリー",
+        "大学事務局",
+        "リモート会議室",
+        "職員室",
+        "学生スマートフォン",
+        "職員スマートフォン"
+      ]
     },
     {
       category: "target",
       categoryTitle: "ターゲット",
-      select: [],
+      select: ["学生", "先生", "事務局", "外部"],
       selectText: "All",
-      filterText: []
+      filterText: ["学生", "先生", "事務局", "外部"]
     },
     {
       category: "child",
       categoryTitle: "子ソリューションの有無",
-      select: [],
+      select: ["有り", "無し"],
       selectText: "All",
-      filterText: []
+      filterText: ["有り", "無し"]
     },
     {
       category: "explanation",
       categoryTitle: "説明の有無",
-      select: [],
+      select: ["有り", "無し"],
       selectText: "All",
-      filterText: []
+      filterText: ["有り", "無し"]
     },
     {
       category: "targetStory",
       categoryTitle: "ターゲットストーリの有無",
-      select: [],
+      select: ["有り", "無し"],
       selectText: "All",
-      filterText: []
+      filterText: ["有り", "無し"]
     },
     {
       category: "usetech",
@@ -109,8 +150,52 @@ export default class mainFilter extends Vue {
     }
   ];
 
+  private nowCategory: category = {
+    category: "",
+    categoryTitle: "",
+    select: [],
+    selectText: "",
+    filterText: []
+  };
+
+  private nowSelectState: boolean[] = [];
+  private setNowSelectState() {
+    this.nowSelectState = this.nowCategory.filterText.map((t, i) => {
+      let bool: boolean = false;
+      this.nowCategory.select.forEach(selectText => {
+        if (selectText === t) {
+          bool = true;
+        }
+      });
+      return bool;
+    });
+  }
+
+  private setNowCategory(i: number) {
+    this.nowCategory = this.category[i];
+  }
+
+  private categorySelectBox: boolean = false;
+  private openCategorySelectBox() {
+    this.categorySelectBox = true;
+  }
+
+  private clickCategoryBtn(i: number) {
+    this.setNowCategory(i);
+    this.openCategorySelectBox();
+    this.setNowSelectState();
+  }
+
   private confirmBtn() {
-    this.$emit("reload", this.newFilterText);
+    const filter: filterCont = {
+      filterText: this.newFilterText,
+      filterCategory: this.category
+    };
+    this.$emit("reload", filter);
+    this.$emit("close");
+  }
+
+  private close() {
     this.$emit("close");
   }
 
@@ -285,6 +370,20 @@ export default class mainFilter extends Vue {
         color: $white;
       }
     }
+  }
+
+  .categoryBox {
+    padding: 0.8rem;
+    color: $white;
+    z-index: 99999999999;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 35rem;
+    background-color: $black;
+    border-right: 1px solid #666;
+    box-sizing: border-box;
   }
 }
 </style>

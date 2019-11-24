@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts">
-import { dataSet } from "../../interface";
+import { dataSet, category, categoryFilter, filterCont } from "../../interface";
 import {
   GridOptions,
   ValueFormatterParams,
@@ -66,8 +66,72 @@ export default class mainIndex extends Vue {
     return true;
   }
 
-  private reloadGrid(newFilterTexts: string[]) {
-    this.changeFilterTexts(newFilterTexts);
+  private categoryFilter: categoryFilter = {
+    place: [],
+    target: [],
+    child: [],
+    explanation: [],
+    targetStory: [],
+    usetech: []
+  };
+
+  private changeCategoryFilter(category: category[]) {
+    category.forEach(c => {
+      switch (c.categoryTitle) {
+        case "place":
+          if (c.selectText === "All") {
+            break;
+          } else {
+            this.categoryFilter.place = c.select;
+            break;
+          }
+
+        case "target":
+          if (c.selectText === "All") {
+            break;
+          } else {
+            this.categoryFilter.target = c.select;
+            break;
+          }
+
+        case "child":
+          if (c.selectText === "All") {
+            break;
+          } else {
+            this.categoryFilter.child = c.select;
+            break;
+          }
+
+        case "explanation":
+          if (c.selectText === "All") {
+            break;
+          } else {
+            this.categoryFilter.explanation = c.select;
+            break;
+          }
+
+        case "targetStory":
+          if (c.selectText === "All") {
+            break;
+          } else {
+            this.categoryFilter.targetStory = c.select;
+            break;
+          }
+
+        case "usetech":
+          if (c.selectText === "All") {
+            break;
+          } else {
+            this.categoryFilter.usetech = c.select;
+            break;
+          }
+      }
+    });
+  }
+
+  private reloadGrid(filterCont: filterCont) {
+    this.changeFilterTexts(filterCont.filterText);
+    this.changeCategoryFilter(filterCont.filterCategory);
 
     const arr: string[] = this.getNameLevelArr();
     let newShowData: dataSet[] = [];
@@ -89,7 +153,7 @@ export default class mainIndex extends Vue {
       this.updateAggrid();
     } else {
       const name: string = arr[arr.length - 1];
-      const nowData: any = masterData.find(d => {
+      let nowData: any = masterData.find(d => {
         return d.name === name;
       });
       this.changeRowData(nowData.child);
