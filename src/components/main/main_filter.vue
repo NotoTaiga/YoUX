@@ -225,13 +225,15 @@ export default class mainFilter extends Vue {
       height: calc(100% - 30vh - 4rem - 4rem);
       box-sizing: border-box;
       padding-top: 0.8rem;
-
       &__title {
         height: 2.5rem;
         font-size: 1.4rem;
       }
 
       &__list {
+        height: calc(100%  - 2.5rem);
+        width: 100%;
+      overflow-y: scroll;
       }
 
       .category {
