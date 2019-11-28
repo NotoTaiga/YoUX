@@ -233,7 +233,8 @@ export default class mainFilter extends Vue {
       &__list {
         height: calc(100%  - 2.5rem);
         width: 100%;
-      overflow-y: scroll;
+        overflow-y: scroll;
+        overflow-x: hidden;
       }
 
       .category {
@@ -288,5 +289,19 @@ export default class mainFilter extends Vue {
       }
     }
   }
+}
+::-webkit-scrollbar{
+  width: 10px;
+}
+::-webkit-scrollbar-track{
+  background: #fff;
+  border: none;
+  border-radius: 10px;
+  box-shadow: inset 0 0 2px #777; 
+}
+::-webkit-scrollbar-thumb{
+  background: #ccc;
+  border-radius: 10px;
+  box-shadow: none;
 }
 </style>

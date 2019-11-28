@@ -207,7 +207,7 @@ export default class mainIndex extends Vue {
 
   private calcWidthPercent(percent: number) {
     const windowWidth: number = window.innerWidth;
-    const gridWidth: number = windowWidth - 64 - 62;
+    const gridWidth: number = windowWidth - 64 - 36;
     const cellWidth: number = gridWidth * percent * 0.01;
     return cellWidth;
   }
@@ -291,12 +291,13 @@ export default class mainIndex extends Vue {
       {
         headerName: "ソリューションName",
         field: "name",
-        width: this.calcWidthPercent(50),
+        width: this.calcWidthPercent(50) - 6,
         cellStyle: {
           "box-sizing": "border-box",
           height: "3rem",
           "line-height": "3rem",
           border: "1px solid #333",
+          "border-left":"none",
           "border-bottom": "none",
           "border-right": "none",
           "padding-left": "0.6rem",
@@ -316,7 +317,7 @@ export default class mainIndex extends Vue {
       {
         headerName: "該当スペース",
         field: "place",
-        width: this.calcWidthPercent(20),
+        width: this.calcWidthPercent(20) - 6,
         cellStyle: {
           "box-sizing": "border-box",
           height: "3rem",
@@ -340,7 +341,7 @@ export default class mainIndex extends Vue {
       {
         headerName: "対象者",
         field: "target",
-        width: this.calcWidthPercent(10),
+        width: this.calcWidthPercent(10) - 6,
         cellStyle: {
           "box-sizing": "border-box",
           height: "3rem",
@@ -364,7 +365,7 @@ export default class mainIndex extends Vue {
       {
         headerName: "子ソリューション",
         field: "child",
-        width: this.calcWidthPercent(10),
+        width: this.calcWidthPercent(10) - 6,
         cellStyle: {
           "box-sizing": "border-box",
           height: "3rem",
@@ -388,7 +389,7 @@ export default class mainIndex extends Vue {
       {
         headerName: "説明",
         field: "explanation",
-        width: this.calcWidthPercent(10),
+        width: this.calcWidthPercent(10) - 6,
         cellStyle: {
           "box-sizing": "border-box",
           height: "3rem",
@@ -410,6 +411,7 @@ export default class mainIndex extends Vue {
       }
     ];
     this.gridOptions.headerHeight = 60;
+    this.gridOptions.suppressScrollOnNewData = false;
     this.showData = this.getMasterData();
     if (this.filterTexts.length > 0) {
       let newShowData: dataSet[] = [];
@@ -487,10 +489,12 @@ export default class mainIndex extends Vue {
 
 .masterGrid {
   width: calc(100% - 6.4rem);
-  height: calc(100vh - 10rem - 1.6rem);
+  height: calc(100vh - 10rem - 1.6rem - 1.6rem);
   font-size: 1.6rem;
   margin: 0 auto;
   border-radius: 2rem;
+  border-left: 1px solid $black;
+  border-bottom: 1px solid $black;
   overflow: hidden;
 }
 
