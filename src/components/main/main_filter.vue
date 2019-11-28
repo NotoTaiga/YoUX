@@ -35,18 +35,24 @@
       </div>
     </div>
     <div class="categoryBox" v-if="categorySelectBox">
-      <h4 class="categoryBox__title">{{nowCategory.categoryTitle}}</h4>
+      <div class="categoryBox__head">
+        <h4 class="categoryBox__title">{{nowCategory.categoryTitle}}</h4>
+        <button class="categoryBox__allSelect">全選択</button>
+      </div>
       <ul class="categoryBox__list">
         <li
           class="categoryBox__item"
           v-for="(text, index) in nowCategory.filterText"
           :key="'filterText'+index"
         >
-        {{text}}
-        <div class="categoryBox__check">a</div>
+          {{text}}
+          <div class="categoryBox__check">a</div>
         </li>
       </ul>
-      
+      <div class="categoryBox__footer">
+        <button class="categoryBox__footerBtn">キャンセル</button>
+        <button class="categoryBox__footerBtn">カテゴリ確定</button>
+      </div>
     </div>
   </div>
 </template>
