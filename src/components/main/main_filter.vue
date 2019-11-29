@@ -37,21 +37,24 @@
     <div class="categoryBox" v-if="categorySelectBox">
       <div class="categoryBox__head">
         <h4 class="categoryBox__title">{{nowCategory.categoryTitle}}</h4>
-        <button class="categoryBox__allSelect">全選択</button>
+        <button class="categoryBox__allSelect" @click="allChangeNowSelectState()">全選択</button>
       </div>
       <ul class="categoryBox__list">
         <li
-          class="categoryBox__item"
           v-for="(text, index) in nowCategory.filterText"
+          :class="['categoryBox__item',{'categoryBox__item--active':isActive(index)}]"
           :key="'filterText'+index"
+          @click="changeNowSelectState(index)"
         >
+          <div
+            class="categoryBox__check"
+          >a</div>
           {{text}}
-          <div class="categoryBox__check">a</div>
         </li>
       </ul>
       <div class="categoryBox__footer">
-        <button class="categoryBox__footerBtn">キャンセル</button>
-        <button class="categoryBox__footerBtn">カテゴリ確定</button>
+        <button class="categoryBox__footerBtn categoryBox__footerBtn--false" @click="closeCategorySelectBox()">キャンセル</button>
+        <button class="categoryBox__footerBtn categoryBox__footerBtn--true" @click="confirmCategory()">カテゴリ確定</button>
       </div>
     </div>
   </div>
@@ -165,6 +168,7 @@ export default class mainFilter extends Vue {
   };
 
   private nowSelectState: boolean[] = [];
+
   private setNowSelectState() {
     this.nowSelectState = this.nowCategory.filterText.map((t, i) => {
       let bool: boolean = false;
@@ -176,6 +180,59 @@ export default class mainFilter extends Vue {
       return bool;
     });
   }
+  private changeNowSelectState(i:number){
+    this.$set(this.nowSelectState, i, !this.nowSelectState[i]);
+  }
+  private allChangeNowSelectState(){
+    let selectState:boolean[] = this.nowSelectState;
+    let allSelectState:boolean = false;
+    for (let i = 0; i < selectState.length; i++) {
+      if (!selectState[i]) {
+        allSelectState = true;
+      }
+    }
+    selectState.forEach((d,l) =>{
+      this.$set(this.nowSelectState, l, allSelectState);
+    });
+  }
+
+  private confirmCategory(){
+    let newSelect:string[]=[]
+    this.nowCategory.filterText.forEach((t,i)=>{
+      if(this.nowSelectState[i]){
+        newSelect.push(t);
+      }
+    });
+
+    let newSelectText:string = "";
+    if (newSelect.length == this.nowCategory.filterText.length) {
+      newSelectText = 'All'
+    }else{
+      newSelect.forEach((t,i)=>{
+        if (i === newSelect.length - 1) {
+          newSelectText += t
+        }else{
+          newSelectText+=t + " , "
+        }
+      });
+    }
+    this.nowCategory.select = newSelect;
+    this.nowCategory.selectText = newSelectText;
+    this.closeCategorySelectBox();
+    this.mergeCategory();
+  }
+
+  private mergeCategory(){
+    this.category.forEach((c,i)=>{
+      if (c.category === this.nowCategory.category) {
+        this.category[i] = this.nowCategory;
+      }
+    })
+  }
+
+  private isActive(i:number){
+    return this.nowSelectState[i];
+  }
 
   private setNowCategory(i: number) {
     this.nowCategory = this.category[i];
@@ -184,6 +241,9 @@ export default class mainFilter extends Vue {
   private categorySelectBox: boolean = false;
   private openCategorySelectBox() {
     this.categorySelectBox = true;
+  }
+  private closeCategorySelectBox(){
+    this.categorySelectBox = false;
   }
 
   private clickCategoryBtn(i: number) {
@@ -382,7 +442,7 @@ export default class mainFilter extends Vue {
   }
 
   .categoryBox {
-    padding: 0.8rem;
+    padding: 1.6rem;
     color: $white;
     z-index: 99999999999;
     position: absolute;
@@ -393,6 +453,78 @@ export default class mainFilter extends Vue {
     background-color: $black;
     border-right: 1px solid #666;
     box-sizing: border-box;
+
+    &__head{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 6rem;
+    }
+
+    &__title{
+      font-size: 1.8rem;
+    }
+
+    &__allSelect{
+      font-size: 1.2rem;
+      width: 6rem;
+      height: 2.3rem;
+      border: none;
+      border-radius: 0.4rem;
+      background-color: $mainBlue;
+      color: $white;
+    }
+
+    &__list{
+      height: calc(100vh - 6rem - 6rem - 3.2rem);
+    }
+
+    &__item{
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      font-size: 1.6rem;
+      margin-bottom: 1.6rem;
+          &--active .categoryBox__check{
+            background-color: $mainBlue;
+          }
+
+    }
+
+    &__check{
+      box-sizing: border-box;
+      width: 1.8rem;
+      height: 1.8rem;
+      border-radius: 0.4rem;
+      background-color: $white;
+      margin-right: 1.6rem;
+
+    }
+
+    &__footer{
+      height: 6rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: #666 1px solid;
+    }
+
+    &__footerBtn{
+      cursor: pointer;
+      width: 45%;
+      height: 3rem;
+      border-radius: 0.4rem;
+      border: none;
+      color: $white;
+
+      &--false{
+        background-color: $alert;
+      }
+
+      &--true{
+        background-color: $mainBlue;
+      }
+    }
   }
 }
 ::-webkit-scrollbar{
