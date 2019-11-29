@@ -37,7 +37,7 @@ export default new Vuex.Store({
       {
         id: 0,
         name: 'デスクcloud',
-        place: ['All place'],
+        place: ['駿河台ホール'],
         target: ['学生'],
         targetStory: {
           student: ['大学に登校する', '好きな教室、場所に移動する', '自動的な認証で出席登録', '自分の鞄やpcなどをデスクに置く', '2次元上のコンテンツと3次元上のコンテンツが混在した自分だけの空間で作業できる'],

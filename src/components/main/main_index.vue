@@ -78,65 +78,79 @@ export default class mainIndex extends Vue {
   }
 
   private categoryFilterChecker(data: dataSet): boolean {
-    let check: boolean = true;
-
-    this.categoryFilter.place.concat(data.place).forEach(d => {
-      if (!this.categoryFilter.place.includes(d) && !data.place.includes(d)) {
-        check = false;
+    let checkPlace: boolean = false;
+    debugger;
+    data.place.forEach(d => {
+      if (this.categoryFilter.place.includes(d)) {
+        checkPlace = true;
       }
     });
 
-    this.categoryFilter.target.concat(data.target).forEach(d => {
-      if (!this.categoryFilter.target.includes(d) && !data.target.includes(d)) {
-        check = false;
+    let checkTarget: boolean = false;
+    data.target.forEach(d => {
+      if (this.categoryFilter.target.includes(d)) {
+        checkTarget = true;
       }
     });
 
+    let checkChild:boolean = true;
     if (this.categoryFilter.child.length < 2) {
       let text = this.categoryFilter.child[0];
       if (text == "有り" && data.child.length == 0) {
-        check = false;
+        checkChild = false;
       } else if (text == "無し" && data.child.length > 0) {
-        check = false;
+        checkChild = false;
       }
     }
 
+    let checkExplanation:boolean = true;
     if (this.categoryFilter.explanation.length < 2) {
       let text = this.categoryFilter.explanation[0];
       if (text == "有り" && data.text.length == 0) {
-        check = false;
+        checkExplanation = false;
       } else if (text == "無し" && data.text.length > 0) {
-        check = false;
+        checkExplanation = false;
       }
     }
 
+    let checkTargetStory:boolean = true;
     if (this.categoryFilter.targetStory.length < 2) {
       let text = this.categoryFilter.targetStory[0];
       if (text == "有り" && Object.keys(data.targetStory).length == 0) {
-        check = false;
+        checkTargetStory = false;
       } else if (text == "無し" && Object.keys(data.targetStory).length > 0) {
-        check = false;
+        checkTargetStory = false;
       }
     }
 
-    this.categoryFilter.usetech.concat(data.usetech).forEach(d => {
-      if (
-        !this.categoryFilter.usetech.includes(d) &&
-        !data.usetech.includes(d)
-      ) {
-        check = false;
+    let checkUsetech: boolean = false;
+    data.usetech.forEach(d => {
+      if (this.categoryFilter.usetech.includes(d)) {
+        checkUsetech = true;
       }
     });
 
-    return check;
+    return checkPlace && checkTarget && checkChild && checkExplanation && checkTargetStory;
   }
 
   private categoryFilter: categoryFilter = {
-    place: [],
-    target: [],
-    child: [],
-    explanation: [],
-    targetStory: [],
+    place: ["駿河台ホール",
+        "E教室",
+        "３階廊下",
+        "エントランス",
+        "会議室",
+        "LabProto",
+        "カフェテリア",
+        "メディアライブラリー",
+        "大学事務局",
+        "リモート会議室",
+        "職員室",
+        "学生スマートフォン",
+        "職員スマートフォン"],
+    target: ["学生", "先生", "事務局", "外部"],
+    child: ["有り", "無し"],
+    explanation: ["有り", "無し"],
+    targetStory: ["有り", "無し"],
     usetech: []
   };
 
@@ -171,7 +185,6 @@ export default class mainIndex extends Vue {
   }
 
   private reloadGrid(filterCont: filterCont) {
-    debugger;
     this.changeFilterTexts(filterCont.filterText);
     this.changeCategoryFilter(filterCont.filterCategory);
 
