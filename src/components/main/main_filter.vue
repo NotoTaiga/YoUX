@@ -61,13 +61,14 @@
 </template>
 
 <script lang="ts">
-import { dataSet, category, filterCont } from "../../interface";
+import { dataSet, category, filterCont,categoryFilter } from "../../interface";
 import { Component, Prop, Vue } from "vue-property-decorator";
 @Component({
   components: {}
 })
 export default class mainFilter extends Vue {
   @Prop() private filterTexts!: string[];
+  @Prop() private filterCategory!: categoryFilter;
 
   private newFilterText: string[] = [];
   private addNewFilterText() {
@@ -265,8 +266,110 @@ export default class mainFilter extends Vue {
     this.$emit("close");
   }
 
-  beforeMount() {
+  created() {
     this.newFilterText = this.filterTexts;
+    this.category.forEach((data,i) =>{
+        if(data.category == 'place'){
+          this.category[i].select = this.filterCategory.place;
+          if (data.filterText.length == this.filterCategory.place.length) {
+            this.category[i].selectText = "All"
+          }else{
+            let text:string = "";
+            this.filterCategory.place.forEach((t,i)=>{
+              if (i == this.filterCategory.place.length - 1) {
+                text += t;
+              }else{
+                text += t + ' , '
+              }
+            })
+            this.category[i].selectText = text;
+          }
+        }
+        if(data.category == 'target'){
+          this.category[i].select = this.filterCategory.target;
+          if (data.filterText.length == this.filterCategory.target.length) {
+            this.category[i].selectText = "All"
+          }else{
+            let text:string = "";
+            this.filterCategory.target.forEach((t,i)=>{
+              if (i == this.filterCategory.target.length - 1) {
+                text += t;
+              }else{
+                text += t + ' , '
+              }
+            })
+            this.category[i].selectText = text;
+          }
+        }
+        if(data.category == 'child'){
+          this.category[i].select = this.filterCategory.child;
+          if (data.filterText.length == this.filterCategory.child.length) {
+            this.category[i].selectText = "All"
+          }else{
+            let text:string = "";
+            this.filterCategory.child.forEach((t,i)=>{
+              if (i == this.filterCategory.child.length - 1) {
+                text += t;
+              }else{
+                text += t + ' , '
+              }
+            })
+            this.category[i].selectText = text;
+          }
+        }
+
+        if(data.category == 'explanation'){
+          this.category[i].select = this.filterCategory.explanation;
+          if (data.filterText.length == this.filterCategory.explanation.length) {
+            this.category[i].selectText = "All"
+          }else{
+            let text:string = "";
+            this.filterCategory.explanation.forEach((t,i)=>{
+              if (i == this.filterCategory.explanation.length - 1) {
+                text += t;
+              }else{
+                text += t + ' , '
+              }
+            })
+            this.category[i].selectText = text;
+          }
+        }
+
+        if(data.category == 'targetStory'){
+          this.category[i].select = this.filterCategory.targetStory;
+          if (data.filterText.length == this.filterCategory.targetStory.length) {
+            this.category[i].selectText = "All"
+          }else{
+            let text:string = "";
+            this.filterCategory.targetStory.forEach((t,i)=>{
+              if (i == this.filterCategory.targetStory.length - 1) {
+                text += t;
+              }else{
+                text += t + ' , '
+              }
+            })
+            this.category[i].selectText = text;
+          }
+        }
+
+        if(data.category == 'usetech'){
+          this.category[i].select = this.filterCategory.usetech;
+          if (data.filterText.length == this.filterCategory.usetech.length) {
+            this.category[i].selectText = "All"
+          }else{
+            let text:string = "";
+            this.filterCategory.usetech.forEach((t,i)=>{
+              if (i == this.filterCategory.usetech.length - 1) {
+                text += t;
+              }else{
+                text += t + ' , '
+              }
+            })
+            this.category[i].selectText = text;
+          }
+        }
+      }
+    )
   }
 }
 </script>

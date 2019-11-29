@@ -23,6 +23,7 @@
       @close="closeFilter"
       @reload="reloadGrid"
       :filterTexts="filterTexts"
+      :filterCategory="categoryFilter"
     ></mainFilter>
   </div>
 </template>
@@ -55,6 +56,16 @@ export default class mainIndex extends Vue {
     this.filterTexts = newArr;
   }
 
+  private filterChecker(data: dataSet): boolean {
+    let textCheck: boolean = this.textFilterChecker(data.name);
+    let categoryFilter: boolean = this.categoryFilterChecker(data);
+    if (textCheck && categoryFilter) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   private textFilterChecker(name: string): boolean {
     if (this.filterTexts.length > 0) {
       let inFilterText: boolean = false;
@@ -64,6 +75,60 @@ export default class mainIndex extends Vue {
       return inFilterText;
     }
     return true;
+  }
+
+  private categoryFilterChecker(data: dataSet): boolean {
+    let check: boolean = true;
+
+    this.categoryFilter.place.concat(data.place).forEach(d => {
+      if (!this.categoryFilter.place.includes(d) && !data.place.includes(d)) {
+        check = false;
+      }
+    });
+
+    this.categoryFilter.target.concat(data.target).forEach(d => {
+      if (!this.categoryFilter.target.includes(d) && !data.target.includes(d)) {
+        check = false;
+      }
+    });
+
+    if (this.categoryFilter.child.length < 2) {
+      let text = this.categoryFilter.child[0];
+      if (text == "有り" && data.child.length == 0) {
+        check = false;
+      } else if (text == "無し" && data.child.length > 0) {
+        check = false;
+      }
+    }
+
+    if (this.categoryFilter.explanation.length < 2) {
+      let text = this.categoryFilter.explanation[0];
+      if (text == "有り" && data.text.length == 0) {
+        check = false;
+      } else if (text == "無し" && data.text.length > 0) {
+        check = false;
+      }
+    }
+
+    if (this.categoryFilter.targetStory.length < 2) {
+      let text = this.categoryFilter.targetStory[0];
+      if (text == "有り" && Object.keys(data.targetStory).length == 0) {
+        check = false;
+      } else if (text == "無し" && Object.keys(data.targetStory).length > 0) {
+        check = false;
+      }
+    }
+
+    this.categoryFilter.usetech.concat(data.usetech).forEach(d => {
+      if (
+        !this.categoryFilter.usetech.includes(d) &&
+        !data.usetech.includes(d)
+      ) {
+        check = false;
+      }
+    });
+
+    return check;
   }
 
   private categoryFilter: categoryFilter = {
@@ -77,59 +142,36 @@ export default class mainIndex extends Vue {
 
   private changeCategoryFilter(category: category[]) {
     category.forEach(c => {
-      switch (c.categoryTitle) {
+      switch (c.category) {
         case "place":
-          if (c.selectText === "All") {
-            break;
-          } else {
-            this.categoryFilter.place = c.select;
-            break;
-          }
+          this.categoryFilter.place = c.select;
+          break;
 
         case "target":
-          if (c.selectText === "All") {
-            break;
-          } else {
-            this.categoryFilter.target = c.select;
-            break;
-          }
+          this.categoryFilter.target = c.select;
+          break;
 
         case "child":
-          if (c.selectText === "All") {
-            break;
-          } else {
-            this.categoryFilter.child = c.select;
-            break;
-          }
+          this.categoryFilter.child = c.select;
+          break;
 
         case "explanation":
-          if (c.selectText === "All") {
-            break;
-          } else {
-            this.categoryFilter.explanation = c.select;
-            break;
-          }
+          this.categoryFilter.explanation = c.select;
+          break;
 
         case "targetStory":
-          if (c.selectText === "All") {
-            break;
-          } else {
-            this.categoryFilter.targetStory = c.select;
-            break;
-          }
+          this.categoryFilter.targetStory = c.select;
+          break;
 
         case "usetech":
-          if (c.selectText === "All") {
-            break;
-          } else {
-            this.categoryFilter.usetech = c.select;
-            break;
-          }
+          this.categoryFilter.usetech = c.select;
+          break;
       }
     });
   }
 
   private reloadGrid(filterCont: filterCont) {
+    debugger;
     this.changeFilterTexts(filterCont.filterText);
     this.changeCategoryFilter(filterCont.filterCategory);
 
@@ -138,9 +180,17 @@ export default class mainIndex extends Vue {
     const masterData: dataSet[] = this.getMasterData();
 
     if (arr.length == 0) {
-      if (this.filterTexts.length > 0) {
+      if (
+        this.filterTexts.length > 0 ||
+        this.categoryFilter.place.length ||
+        this.categoryFilter.target.length ||
+        this.categoryFilter.child.length ||
+        this.categoryFilter.explanation.length ||
+        this.categoryFilter.targetStory.length ||
+        this.categoryFilter.usetech.length
+      ) {
         masterData.forEach(d => {
-          if (this.textFilterChecker(d.name)) {
+          if (this.filterChecker(d)) {
             newShowData.push(d);
           }
         });
@@ -174,7 +224,7 @@ export default class mainIndex extends Vue {
     masterData.forEach((d, i) => {
       child.forEach((name, i) => {
         if (d.name === name) {
-          if (this.textFilterChecker(d.name)) {
+          if (this.filterChecker(d)) {
             showData.push(d);
           }
         }
@@ -248,7 +298,7 @@ export default class mainIndex extends Vue {
       if (this.filterTexts.length > 0) {
         let newShowData: dataSet[] = [];
         masterData.forEach(d => {
-          if (this.textFilterChecker(d.name)) {
+          if (this.filterChecker(d)) {
             newShowData.push(d);
           }
         });
@@ -361,7 +411,7 @@ export default class mainIndex extends Vue {
           height: "3rem",
           "line-height": "3rem",
           border: "1px solid #333",
-          "border-left":"none",
+          "border-left": "none",
           "border-bottom": "none",
           "border-right": "none",
           "padding-left": "0.6rem",
@@ -480,7 +530,7 @@ export default class mainIndex extends Vue {
     if (this.filterTexts.length > 0) {
       let newShowData: dataSet[] = [];
       this.showData.forEach(d => {
-        if (this.textFilterChecker(d.name)) {
+        if (this.filterChecker(d)) {
           newShowData.push(d);
         }
       });
