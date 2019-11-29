@@ -135,6 +135,7 @@ export default class mainIndex extends Vue {
 
   private categoryFilter: categoryFilter = {
     place: ["駿河台ホール",
+        "教室",
         "E教室",
         "３階廊下",
         "エントランス",

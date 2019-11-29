@@ -109,6 +109,7 @@ export default class mainFilter extends Vue {
       selectText: "All",
       filterText: [
         "駿河台ホール",
+        "教室",
         "E教室",
         "３階廊下",
         "エントランス",
