@@ -432,9 +432,7 @@ export default class mainIndex extends Vue {
     child: []
   };
 
-  beforeMount(): void {
-    this.api = this.gridOptions.api;
-    this.gridOptions.rowHeight = 30;
+  private setColumnDef() {
     this.gridOptions.columnDefs = [
       {
         headerName: "ソリューションName",
@@ -590,6 +588,19 @@ export default class mainIndex extends Vue {
         }
       }
     ];
+  }
+
+  beforeMount(): void {
+    window.addEventListener(
+      "resize",
+      () => {
+        this.gridOptions.api!.sizeColumnsToFit();
+      },
+      false
+    );
+    this.api = this.gridOptions.api;
+    this.gridOptions.rowHeight = 30;
+    this.setColumnDef();
     this.gridOptions.headerHeight = 60;
     this.gridOptions.suppressScrollOnNewData = false;
     this.showData = this.getMasterData();

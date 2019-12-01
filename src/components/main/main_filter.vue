@@ -46,22 +46,26 @@
           :key="'filterText'+index"
           @click="changeNowSelectState(index)"
         >
-          <div
-            class="categoryBox__check"
-          >a</div>
+          <div class="categoryBox__check">a</div>
           {{text}}
         </li>
       </ul>
       <div class="categoryBox__footer">
-        <button class="categoryBox__footerBtn categoryBox__footerBtn--false" @click="closeCategorySelectBox()">キャンセル</button>
-        <button class="categoryBox__footerBtn categoryBox__footerBtn--true" @click="confirmCategory()">カテゴリ確定</button>
+        <button
+          class="categoryBox__footerBtn categoryBox__footerBtn--false"
+          @click="closeCategorySelectBox()"
+        >キャンセル</button>
+        <button
+          class="categoryBox__footerBtn categoryBox__footerBtn--true"
+          @click="confirmCategory()"
+        >カテゴリ確定</button>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { dataSet, category, filterCont,categoryFilter } from "../../interface";
+import { dataSet, category, filterCont, categoryFilter } from "../../interface";
 import { Component, Prop, Vue } from "vue-property-decorator";
 @Component({
   components: {}
@@ -182,39 +186,39 @@ export default class mainFilter extends Vue {
       return bool;
     });
   }
-  private changeNowSelectState(i:number){
+  private changeNowSelectState(i: number) {
     this.$set(this.nowSelectState, i, !this.nowSelectState[i]);
   }
-  private allChangeNowSelectState(){
-    let selectState:boolean[] = this.nowSelectState;
-    let allSelectState:boolean = false;
+  private allChangeNowSelectState() {
+    let selectState: boolean[] = this.nowSelectState;
+    let allSelectState: boolean = false;
     for (let i = 0; i < selectState.length; i++) {
       if (!selectState[i]) {
         allSelectState = true;
       }
     }
-    selectState.forEach((d,l) =>{
+    selectState.forEach((d, l) => {
       this.$set(this.nowSelectState, l, allSelectState);
     });
   }
 
-  private confirmCategory(){
-    let newSelect:string[]=[]
-    this.nowCategory.filterText.forEach((t,i)=>{
-      if(this.nowSelectState[i]){
+  private confirmCategory() {
+    let newSelect: string[] = [];
+    this.nowCategory.filterText.forEach((t, i) => {
+      if (this.nowSelectState[i]) {
         newSelect.push(t);
       }
     });
 
-    let newSelectText:string = "";
+    let newSelectText: string = "";
     if (newSelect.length == this.nowCategory.filterText.length) {
-      newSelectText = 'All'
-    }else{
-      newSelect.forEach((t,i)=>{
+      newSelectText = "All";
+    } else {
+      newSelect.forEach((t, i) => {
         if (i === newSelect.length - 1) {
-          newSelectText += t
-        }else{
-          newSelectText+=t + " , "
+          newSelectText += t;
+        } else {
+          newSelectText += t + " , ";
         }
       });
     }
@@ -224,15 +228,15 @@ export default class mainFilter extends Vue {
     this.mergeCategory();
   }
 
-  private mergeCategory(){
-    this.category.forEach((c,i)=>{
+  private mergeCategory() {
+    this.category.forEach((c, i) => {
       if (c.category === this.nowCategory.category) {
         this.category[i] = this.nowCategory;
       }
-    })
+    });
   }
 
-  private isActive(i:number){
+  private isActive(i: number) {
     return this.nowSelectState[i];
   }
 
@@ -244,7 +248,7 @@ export default class mainFilter extends Vue {
   private openCategorySelectBox() {
     this.categorySelectBox = true;
   }
-  private closeCategorySelectBox(){
+  private closeCategorySelectBox() {
     this.categorySelectBox = false;
   }
 
@@ -269,108 +273,107 @@ export default class mainFilter extends Vue {
 
   created() {
     this.newFilterText = this.filterTexts;
-    this.category.forEach((data,i) =>{
-        if(data.category == 'place'){
-          this.category[i].select = this.filterCategory.place;
-          if (data.filterText.length == this.filterCategory.place.length) {
-            this.category[i].selectText = "All"
-          }else{
-            let text:string = "";
-            this.filterCategory.place.forEach((t,i)=>{
-              if (i == this.filterCategory.place.length - 1) {
-                text += t;
-              }else{
-                text += t + ' , '
-              }
-            })
-            this.category[i].selectText = text;
-          }
-        }
-        if(data.category == 'target'){
-          this.category[i].select = this.filterCategory.target;
-          if (data.filterText.length == this.filterCategory.target.length) {
-            this.category[i].selectText = "All"
-          }else{
-            let text:string = "";
-            this.filterCategory.target.forEach((t,i)=>{
-              if (i == this.filterCategory.target.length - 1) {
-                text += t;
-              }else{
-                text += t + ' , '
-              }
-            })
-            this.category[i].selectText = text;
-          }
-        }
-        if(data.category == 'child'){
-          this.category[i].select = this.filterCategory.child;
-          if (data.filterText.length == this.filterCategory.child.length) {
-            this.category[i].selectText = "All"
-          }else{
-            let text:string = "";
-            this.filterCategory.child.forEach((t,i)=>{
-              if (i == this.filterCategory.child.length - 1) {
-                text += t;
-              }else{
-                text += t + ' , '
-              }
-            })
-            this.category[i].selectText = text;
-          }
-        }
-
-        if(data.category == 'explanation'){
-          this.category[i].select = this.filterCategory.explanation;
-          if (data.filterText.length == this.filterCategory.explanation.length) {
-            this.category[i].selectText = "All"
-          }else{
-            let text:string = "";
-            this.filterCategory.explanation.forEach((t,i)=>{
-              if (i == this.filterCategory.explanation.length - 1) {
-                text += t;
-              }else{
-                text += t + ' , '
-              }
-            })
-            this.category[i].selectText = text;
-          }
-        }
-
-        if(data.category == 'targetStory'){
-          this.category[i].select = this.filterCategory.targetStory;
-          if (data.filterText.length == this.filterCategory.targetStory.length) {
-            this.category[i].selectText = "All"
-          }else{
-            let text:string = "";
-            this.filterCategory.targetStory.forEach((t,i)=>{
-              if (i == this.filterCategory.targetStory.length - 1) {
-                text += t;
-              }else{
-                text += t + ' , '
-              }
-            })
-            this.category[i].selectText = text;
-          }
-        }
-
-        if(data.category == 'usetech'){
-          this.category[i].select = this.filterCategory.usetech;
-          if (data.filterText.length == this.filterCategory.usetech.length) {
-            this.category[i].selectText = "All"
-          }else{
-            let text:string = "";
-            this.filterCategory.usetech.forEach((t,i)=>{
-              if (i == this.filterCategory.usetech.length - 1) {
-                text += t;
-              }else{
-                text += t + ' , '
-              }
-            })
-            this.category[i].selectText = text;
-          }
+    this.category.forEach((data, i) => {
+      if (data.category == "place") {
+        this.category[i].select = this.filterCategory.place;
+        if (data.filterText.length == this.filterCategory.place.length) {
+          this.category[i].selectText = "All";
+        } else {
+          let text: string = "";
+          this.filterCategory.place.forEach((t, i) => {
+            if (i == this.filterCategory.place.length - 1) {
+              text += t;
+            } else {
+              text += t + " , ";
+            }
+          });
+          this.category[i].selectText = text;
         }
       }
-    )
+      if (data.category == "target") {
+        this.category[i].select = this.filterCategory.target;
+        if (data.filterText.length == this.filterCategory.target.length) {
+          this.category[i].selectText = "All";
+        } else {
+          let text: string = "";
+          this.filterCategory.target.forEach((t, i) => {
+            if (i == this.filterCategory.target.length - 1) {
+              text += t;
+            } else {
+              text += t + " , ";
+            }
+          });
+          this.category[i].selectText = text;
+        }
+      }
+      if (data.category == "child") {
+        this.category[i].select = this.filterCategory.child;
+        if (data.filterText.length == this.filterCategory.child.length) {
+          this.category[i].selectText = "All";
+        } else {
+          let text: string = "";
+          this.filterCategory.child.forEach((t, i) => {
+            if (i == this.filterCategory.child.length - 1) {
+              text += t;
+            } else {
+              text += t + " , ";
+            }
+          });
+          this.category[i].selectText = text;
+        }
+      }
+
+      if (data.category == "explanation") {
+        this.category[i].select = this.filterCategory.explanation;
+        if (data.filterText.length == this.filterCategory.explanation.length) {
+          this.category[i].selectText = "All";
+        } else {
+          let text: string = "";
+          this.filterCategory.explanation.forEach((t, i) => {
+            if (i == this.filterCategory.explanation.length - 1) {
+              text += t;
+            } else {
+              text += t + " , ";
+            }
+          });
+          this.category[i].selectText = text;
+        }
+      }
+
+      if (data.category == "targetStory") {
+        this.category[i].select = this.filterCategory.targetStory;
+        if (data.filterText.length == this.filterCategory.targetStory.length) {
+          this.category[i].selectText = "All";
+        } else {
+          let text: string = "";
+          this.filterCategory.targetStory.forEach((t, i) => {
+            if (i == this.filterCategory.targetStory.length - 1) {
+              text += t;
+            } else {
+              text += t + " , ";
+            }
+          });
+          this.category[i].selectText = text;
+        }
+      }
+
+      if (data.category == "usetech") {
+        this.category[i].select = this.filterCategory.usetech;
+        if (data.filterText.length == this.filterCategory.usetech.length) {
+          this.category[i].selectText = "All";
+        } else {
+          let text: string = "";
+          this.filterCategory.usetech.forEach((t, i) => {
+            if (i == this.filterCategory.usetech.length - 1) {
+              text += t;
+            } else {
+              text += t + " , ";
+            }
+          });
+          this.category[i].selectText = text;
+        }
+      }
+    });
   }
 }
 </script>
@@ -486,7 +489,7 @@ export default class mainFilter extends Vue {
       }
 
       &__list {
-        height: calc(100%  - 2.5rem);
+        height: calc(100% - 2.5rem);
         width: 100%;
         overflow-y: scroll;
         overflow-x: hidden;
@@ -510,6 +513,9 @@ export default class mainFilter extends Vue {
           height: 2rem;
           border: none;
           border-radius: 0.4rem;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
 
           &:before {
             position: absolute;
@@ -558,18 +564,18 @@ export default class mainFilter extends Vue {
     border-right: 1px solid #666;
     box-sizing: border-box;
 
-    &__head{
+    &__head {
       display: flex;
       justify-content: space-between;
       align-items: center;
       height: 6rem;
     }
 
-    &__title{
+    &__title {
       font-size: 1.8rem;
     }
 
-    &__allSelect{
+    &__allSelect {
       font-size: 1.2rem;
       width: 6rem;
       height: 2.3rem;
@@ -579,33 +585,31 @@ export default class mainFilter extends Vue {
       color: $white;
     }
 
-    &__list{
+    &__list {
       height: calc(100vh - 6rem - 6rem - 3.2rem);
     }
 
-    &__item{
+    &__item {
       cursor: pointer;
       display: flex;
       align-items: center;
       font-size: 1.6rem;
       margin-bottom: 1.6rem;
-          &--active .categoryBox__check{
-            background-color: $mainBlue;
-          }
-
+      &--active .categoryBox__check {
+        background-color: $mainBlue;
+      }
     }
 
-    &__check{
+    &__check {
       box-sizing: border-box;
       width: 1.8rem;
       height: 1.8rem;
       border-radius: 0.4rem;
       background-color: $white;
       margin-right: 1.6rem;
-
     }
 
-    &__footer{
+    &__footer {
       height: 6rem;
       display: flex;
       justify-content: space-between;
@@ -613,7 +617,7 @@ export default class mainFilter extends Vue {
       border-top: #666 1px solid;
     }
 
-    &__footerBtn{
+    &__footerBtn {
       cursor: pointer;
       width: 45%;
       height: 3rem;
@@ -621,26 +625,26 @@ export default class mainFilter extends Vue {
       border: none;
       color: $white;
 
-      &--false{
+      &--false {
         background-color: $alert;
       }
 
-      &--true{
+      &--true {
         background-color: $mainBlue;
       }
     }
   }
 }
-::-webkit-scrollbar{
+::-webkit-scrollbar {
   width: 10px;
 }
-::-webkit-scrollbar-track{
+::-webkit-scrollbar-track {
   background: #fff;
   border: none;
   border-radius: 10px;
-  box-shadow: inset 0 0 2px #777; 
+  box-shadow: inset 0 0 2px #777;
 }
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
   background: #ccc;
   border-radius: 10px;
   box-shadow: none;
