@@ -8,15 +8,15 @@ self.__precacheManifest = [
     "url": "/YoUX/robots.txt"
   },
   {
-    "revision": "25006b681cc99de03213",
-    "url": "/YoUX/js/chunk-vendors.48d9c8d2.js"
+    "revision": "6640d49ac7af5c89f259",
+    "url": "/YoUX/js/chunk-vendors.9355f33e.js"
   },
   {
-    "revision": "5e969dfccab44caacc57",
-    "url": "/YoUX/js/app.b17ec341.js"
+    "revision": "5fdb671bf872e254ee4a",
+    "url": "/YoUX/js/app.3fbbf67b.js"
   },
   {
-    "revision": "06f78ffb5398e57ab9ff80cd624e880b",
+    "revision": "b0260399ebde4b8be5342ea404a6db75",
     "url": "/YoUX/index.html"
   },
   {
@@ -40,11 +40,11 @@ self.__precacheManifest = [
     "url": "/YoUX/img/back_black.39cdfb6d.png"
   },
   {
-    "revision": "25006b681cc99de03213",
-    "url": "/YoUX/css/chunk-vendors.37294534.css"
+    "revision": "6640d49ac7af5c89f259",
+    "url": "/YoUX/css/chunk-vendors.0d6709d8.css"
   },
   {
-    "revision": "5e969dfccab44caacc57",
-    "url": "/YoUX/css/app.27448fe9.css"
+    "revision": "5fdb671bf872e254ee4a",
+    "url": "/YoUX/css/app.cdbc3bd9.css"
   }
 ];
