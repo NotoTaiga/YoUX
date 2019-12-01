@@ -263,24 +263,38 @@ export default class mainIndex extends Vue {
   private makeRowData() {
     this.rowDataArr = this.showData.map((d, i) => {
       const childText: string =
-        d.child.length > 0 ? d.child.length + "のソリューション" : "";
+        d.child.length > 0
+          ? d.child.length + "個"
+          : "--------------------------------------------";
       let placeText: string = "";
-      d.place.forEach((text, i) => {
-        if (i == d.place.length - 1) {
-          placeText += text;
-        } else {
-          placeText += text + " , ";
-        }
-      });
+      let isPlaceAll: boolean =
+        this.categoryFilter.place.length == d.place.length;
+      if (isPlaceAll) {
+        placeText = "All";
+      } else {
+        d.place.forEach((text, i) => {
+          if (i == d.place.length - 1) {
+            placeText += text;
+          } else {
+            placeText += text + " , ";
+          }
+        });
+      }
 
       let targetText: string = "";
-      d.target.forEach((text, i) => {
-        if (i == d.target.length - 1) {
-          targetText += text;
-        } else {
-          targetText += text + " , ";
-        }
-      });
+      let isTargetAll: boolean =
+        this.categoryFilter.target.length == d.target.length;
+      if (isTargetAll) {
+        targetText = "All";
+      } else {
+        d.target.forEach((text, i) => {
+          if (i == d.target.length - 1) {
+            targetText += text;
+          } else {
+            targetText += text + " , ";
+          }
+        });
+      }
 
       const rowData = {
         name: d.name,
@@ -425,7 +439,7 @@ export default class mainIndex extends Vue {
       {
         headerName: "ソリューションName",
         field: "name",
-        width: this.calcWidthPercent(50) - 6,
+        width: this.calcWidthPercent(30) - 6,
         cellStyle: {
           "box-sizing": "border-box",
           height: "3rem",
@@ -441,7 +455,13 @@ export default class mainIndex extends Vue {
         cellRenderer: params => {
           const el = document.createElement("div");
           el.innerHTML = params.value;
-          // el.style.height = "100%";
+          el.style.width = "100%";
+          el.style.overflow = "hidden";
+          el.style.whiteSpace = "nowrap";
+          if (
+            params.data.child == "--------------------------------------------"
+          )
+            el.style.cursor = "default";
           el.addEventListener("click", () => {
             this.childClick(params.rowIndex);
           });
@@ -451,6 +471,37 @@ export default class mainIndex extends Vue {
       {
         headerName: "該当スペース",
         field: "place",
+        width: this.calcWidthPercent(25) - 6,
+        cellStyle: {
+          "box-sizing": "border-box",
+          height: "3rem",
+          "line-height": "3rem",
+          border: "1px solid #333",
+          "border-bottom": "none",
+          "border-right": "none",
+          "padding-left": "0.6rem",
+          cursor: "pointer",
+          "background-color": "#fff"
+        },
+        cellRenderer: params => {
+          const el = document.createElement("div");
+          el.innerHTML = params.value;
+          el.style.width = "100%";
+          el.style.overflow = "hidden";
+          el.style.whiteSpace = "nowrap";
+          if (
+            params.data.child == "--------------------------------------------"
+          )
+            el.style.cursor = "default";
+          el.addEventListener("click", () => {
+            this.childClick(params.rowIndex);
+          });
+          return el;
+        }
+      },
+      {
+        headerName: "対象者",
+        field: "target",
         width: this.calcWidthPercent(20) - 6,
         cellStyle: {
           "box-sizing": "border-box",
@@ -466,30 +517,13 @@ export default class mainIndex extends Vue {
         cellRenderer: params => {
           const el = document.createElement("div");
           el.innerHTML = params.value;
-          el.addEventListener("click", () => {
-            this.childClick(params.rowIndex);
-          });
-          return el;
-        }
-      },
-      {
-        headerName: "対象者",
-        field: "target",
-        width: this.calcWidthPercent(10) - 6,
-        cellStyle: {
-          "box-sizing": "border-box",
-          height: "3rem",
-          "line-height": "3rem",
-          border: "1px solid #333",
-          "border-bottom": "none",
-          "border-right": "none",
-          "padding-left": "0.6rem",
-          cursor: "pointer",
-          "background-color": "#fff"
-        },
-        cellRenderer: params => {
-          const el = document.createElement("div");
-          el.innerHTML = params.value;
+          el.style.width = "100%";
+          el.style.overflow = "hidden";
+          el.style.whiteSpace = "nowrap";
+          if (
+            params.data.child == "--------------------------------------------"
+          )
+            el.style.cursor = "default";
           el.addEventListener("click", () => {
             this.childClick(params.rowIndex);
           });
@@ -499,7 +533,7 @@ export default class mainIndex extends Vue {
       {
         headerName: "子ソリューション",
         field: "child",
-        width: this.calcWidthPercent(10) - 6,
+        width: this.calcWidthPercent(15) - 6,
         cellStyle: {
           "box-sizing": "border-box",
           height: "3rem",
@@ -507,13 +541,22 @@ export default class mainIndex extends Vue {
           border: "1px solid #333",
           "border-bottom": "none",
           "border-right": "none",
-          "padding-left": "0.6rem",
+          padding: "0 0.6rem",
+          "mergin-right": "0.6rem",
           cursor: "pointer",
-          "background-color": "#fff"
+          "background-color": "#fff",
+          "text-overflow": "hidden"
         },
         cellRenderer: params => {
           const el = document.createElement("div");
           el.innerHTML = params.value;
+          el.style.width = "100%";
+          el.style.overflow = "hidden";
+          el.style.whiteSpace = "nowrap";
+          if (
+            params.data.child == "--------------------------------------------"
+          )
+            el.style.cursor = "default";
           el.addEventListener("click", () => {
             this.childClick(params.rowIndex);
           });
@@ -536,7 +579,10 @@ export default class mainIndex extends Vue {
         },
         cellRenderer: params => {
           const el = document.createElement("div");
-          el.innerHTML = params.value;
+          el.innerHTML = "詳しく";
+          el.style.width = "100%";
+          el.style.overflow = "hidden";
+          el.style.whiteSpace = "nowrap";
           el.addEventListener("click", () => {
             this.clickExplanation(params.rowIndex);
           });
