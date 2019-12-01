@@ -79,7 +79,6 @@ export default class mainIndex extends Vue {
 
   private categoryFilterChecker(data: dataSet): boolean {
     let checkPlace: boolean = false;
-    debugger;
     data.place.forEach(d => {
       if (this.categoryFilter.place.includes(d)) {
         checkPlace = true;
@@ -93,7 +92,7 @@ export default class mainIndex extends Vue {
       }
     });
 
-    let checkChild:boolean = true;
+    let checkChild: boolean = true;
     if (this.categoryFilter.child.length < 2) {
       let text = this.categoryFilter.child[0];
       if (text == "有り" && data.child.length == 0) {
@@ -103,7 +102,7 @@ export default class mainIndex extends Vue {
       }
     }
 
-    let checkExplanation:boolean = true;
+    let checkExplanation: boolean = true;
     if (this.categoryFilter.explanation.length < 2) {
       let text = this.categoryFilter.explanation[0];
       if (text == "有り" && data.text.length == 0) {
@@ -113,7 +112,7 @@ export default class mainIndex extends Vue {
       }
     }
 
-    let checkTargetStory:boolean = true;
+    let checkTargetStory: boolean = true;
     if (this.categoryFilter.targetStory.length < 2) {
       let text = this.categoryFilter.targetStory[0];
       if (text == "有り" && Object.keys(data.targetStory).length == 0) {
@@ -130,24 +129,32 @@ export default class mainIndex extends Vue {
       }
     });
 
-    return checkPlace && checkTarget && checkChild && checkExplanation && checkTargetStory;
+    return (
+      checkPlace &&
+      checkTarget &&
+      checkChild &&
+      checkExplanation &&
+      checkTargetStory
+    );
   }
 
   private categoryFilter: categoryFilter = {
-    place: ["駿河台ホール",
-        "教室",
-        "E教室",
-        "３階廊下",
-        "エントランス",
-        "会議室",
-        "LabProto",
-        "カフェテリア",
-        "メディアライブラリー",
-        "大学事務局",
-        "リモート会議室",
-        "職員室",
-        "学生スマートフォン",
-        "職員スマートフォン"],
+    place: [
+      "駿河台ホール",
+      "教室",
+      "E教室",
+      "３階廊下",
+      "エントランス",
+      "会議室",
+      "LabProto",
+      "カフェテリア",
+      "メディアライブラリー",
+      "大学事務局",
+      "リモート会議室",
+      "職員室",
+      "学生スマートフォン",
+      "職員スマートフォン"
+    ],
     target: ["学生", "先生", "事務局", "外部"],
     child: ["有り", "無し"],
     explanation: ["有り", "無し"],
@@ -309,24 +316,23 @@ export default class mainIndex extends Vue {
     const masterData: dataSet[] = this.getMasterData();
     const arr: string[] = this.getNameLevelArr();
     if (arr.length == 0) {
-      if (this.filterTexts.length > 0) {
-        let newShowData: dataSet[] = [];
-        masterData.forEach(d => {
-          if (this.filterChecker(d)) {
-            newShowData.push(d);
-          }
-        });
-        this.showData = newShowData;
-      } else {
-        this.showData = masterData;
-      }
-
+      let newShowData: dataSet[] = [];
+      masterData.forEach(d => {
+        if (this.filterChecker(d)) {
+          newShowData.push(d);
+        }
+      });
+      this.showData = newShowData;
       this.makeRowData();
       this.updateAggrid();
     } else {
       const name: string = arr[arr.length - 1];
       const nowData: any = masterData.find(d => {
-        return d.name === name;
+        masterData.forEach(d => {
+          if (this.filterChecker(d)) {
+            return d.name === name;
+          }
+        });
       });
       this.changeRowData(nowData.child);
       this.updateAggrid();
