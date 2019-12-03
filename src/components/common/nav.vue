@@ -1,20 +1,27 @@
 <template>
-  <div class="nav" :class="{nav__close: navClose}" v-if="getPageId() !== 0">
-    <div class="nav__ttl" @click="changeNavClose">
-      <div class="menuIcon icon"></div>閉じる
-    </div>
-    <nav>
-      <ul class="nav__list">
-        <router-link v-for="(state,i) in navStates" :key="'navItem' + i" :to="state.pageLink">
-          <li class="nav__item" :class="['nav__item--'+state.pageClass , {'nav__item--activ' : checkSelect(i)}]" @click="changePageId(i)">
-            <div class="icon" :class="state.pageClass + 'Icon'"></div>
-            {{state.pageText}}
-          </li>
-        </router-link>
-      </ul>
-    </nav>
+  <div class="masterNav">
+    <div class="black" v-if="!navClose"></div>
+    <div class="nav" :class="{nav__close: navClose}" v-if="getPageId() !== 0">
+      <div class="nav__ttl" @click="changeNavClose">
+        <div class="menuIcon icon"></div>閉じる
+      </div>
+      <nav>
+        <ul class="nav__list">
+          <router-link v-for="(state,i) in navStates" :key="'navItem' + i" :to="state.pageLink">
+            <li
+              class="nav__item"
+              :class="['nav__item--'+state.pageClass , {'nav__item--activ' : checkSelect(i)}]"
+              @click="changePageId(i)"
+            >
+              <div class="icon" :class="state.pageClass + 'Icon'"></div>
+              {{state.pageText}}
+            </li>
+          </router-link>
+        </ul>
+      </nav>
 
-    <div class="closeOpen"></div>
+      <div class="closeOpen"></div>
+    </div>
   </div>
 </template>
 
@@ -33,6 +40,9 @@ export default class MasterNav extends Vue {
   private name: string = "";
 
   private navClose: boolean = true;
+  private closeNav() {
+    this.navClose = true;
+  }
   private changeNavClose() {
     this.navClose = !this.navClose;
   }
@@ -49,27 +59,22 @@ export default class MasterNav extends Vue {
       pageClass: "main"
     },
     {
-      pageLink: "/map",
-      pageText: "イメージマップ",
-      pageClass: "map"
-    },
-    {
       pageLink: "/other",
       pageText: "その他資料",
       pageClass: "other"
     }
   ];
 
-
-  private checkSelect(index:number){
+  private checkSelect(index: number) {
     return this.getPageId() == index;
   }
 
-  private changePageId(index:number) {
+  private changePageId(index: number) {
+    this.closeNav();
     this.$store.dispatch("changePageId", index);
   }
 
-  private getPageId(){
+  private getPageId() {
     return this.$store.getters.getPageId;
   }
 
@@ -80,11 +85,23 @@ export default class MasterNav extends Vue {
 
 <style scoped lang="scss">
 @import "@/assets/style/index.scss";
+.masterNav {
+  .black {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: $black;
+    opacity: 0.5;
+    z-index: 99;
+  }
+}
 .nav {
   position: absolute;
   left: 0;
   top: 5rem;
-  z-index: 99;
+  z-index: 999;
   height: calc(100vh - 5rem);
   width: 15rem;
   background-color: $black;

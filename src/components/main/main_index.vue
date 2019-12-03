@@ -261,6 +261,7 @@ export default class mainIndex extends Vue {
 
   private rowDataArr: any = [];
   private makeRowData() {
+    const windowWidth: number = window.innerWidth;
     this.rowDataArr = this.showData.map((d, i) => {
       const childText: string =
         d.child.length > 0
@@ -295,15 +296,30 @@ export default class mainIndex extends Vue {
           }
         });
       }
-
-      const rowData = {
-        name: d.name,
-        place: placeText,
-        target: targetText,
-        child: childText,
-        explanation: "click"
-      };
-      return rowData;
+      if (windowWidth > 800) {
+        const rowData = {
+          name: d.name,
+          place: placeText,
+          target: targetText,
+          child: childText,
+          explanation: "click"
+        };
+        return rowData;
+      } else if (800 > windowWidth && windowWidth >= 400) {
+        const rowData = {
+          name: d.name,
+          place: placeText,
+          target: targetText,
+          explanation: "click"
+        };
+        return rowData;
+      } else {
+        const rowData = {
+          name: d.name,
+          explanation: "click"
+        };
+        return rowData;
+      }
     });
   }
 
@@ -433,161 +449,356 @@ export default class mainIndex extends Vue {
   };
 
   private setColumnDef() {
-    this.gridOptions.columnDefs = [
-      {
-        headerName: "ソリューションName",
-        field: "name",
-        width: this.calcWidthPercent(30) - 6,
-        cellStyle: {
-          "box-sizing": "border-box",
-          height: "3rem",
-          "line-height": "3rem",
-          border: "1px solid #333",
-          "border-left": "none",
-          "border-bottom": "none",
-          "border-right": "none",
-          "padding-left": "0.6rem",
-          cursor: "pointer",
-          "background-color": "#fff"
+    const windowWidth: number = window.innerWidth;
+    if (windowWidth > 800) {
+      this.gridOptions.columnDefs = [
+        {
+          headerName: "ソリューションName",
+          field: "name",
+          width: this.calcWidthPercent(30) - 6,
+          cellStyle: {
+            "box-sizing": "border-box",
+            height: "3rem",
+            "line-height": "3rem",
+            border: "1px solid #333",
+            "border-left": "none",
+            "border-bottom": "none",
+            "border-right": "none",
+            "padding-left": "0.6rem",
+            cursor: "pointer",
+            "background-color": "#fff"
+          },
+          cellRenderer: params => {
+            const el = document.createElement("div");
+            el.innerHTML = params.value;
+            el.style.width = "100%";
+            el.style.overflow = "hidden";
+            el.style.whiteSpace = "nowrap";
+            if (
+              params.data.child ==
+              "--------------------------------------------"
+            )
+              el.style.cursor = "default";
+            el.addEventListener("click", () => {
+              this.childClick(params.rowIndex);
+            });
+            return el;
+          }
         },
-        cellRenderer: params => {
-          const el = document.createElement("div");
-          el.innerHTML = params.value;
-          el.style.width = "100%";
-          el.style.overflow = "hidden";
-          el.style.whiteSpace = "nowrap";
-          if (
-            params.data.child == "--------------------------------------------"
-          )
-            el.style.cursor = "default";
-          el.addEventListener("click", () => {
-            this.childClick(params.rowIndex);
-          });
-          return el;
-        }
-      },
-      {
-        headerName: "該当スペース",
-        field: "place",
-        width: this.calcWidthPercent(25) - 6,
-        cellStyle: {
-          "box-sizing": "border-box",
-          height: "3rem",
-          "line-height": "3rem",
-          border: "1px solid #333",
-          "border-bottom": "none",
-          "border-right": "none",
-          "padding-left": "0.6rem",
-          cursor: "pointer",
-          "background-color": "#fff"
+        {
+          headerName: "該当スペース",
+          field: "place",
+          width: this.calcWidthPercent(25) - 6,
+          cellStyle: {
+            "box-sizing": "border-box",
+            height: "3rem",
+            "line-height": "3rem",
+            border: "1px solid #333",
+            "border-bottom": "none",
+            "border-right": "none",
+            "padding-left": "0.6rem",
+            cursor: "pointer",
+            "background-color": "#fff"
+          },
+          cellRenderer: params => {
+            const el = document.createElement("div");
+            el.innerHTML = params.value;
+            el.style.width = "100%";
+            el.style.overflow = "hidden";
+            el.style.whiteSpace = "nowrap";
+            if (
+              params.data.child ==
+              "--------------------------------------------"
+            )
+              el.style.cursor = "default";
+            el.addEventListener("click", () => {
+              this.childClick(params.rowIndex);
+            });
+            return el;
+          }
         },
-        cellRenderer: params => {
-          const el = document.createElement("div");
-          el.innerHTML = params.value;
-          el.style.width = "100%";
-          el.style.overflow = "hidden";
-          el.style.whiteSpace = "nowrap";
-          if (
-            params.data.child == "--------------------------------------------"
-          )
-            el.style.cursor = "default";
-          el.addEventListener("click", () => {
-            this.childClick(params.rowIndex);
-          });
-          return el;
-        }
-      },
-      {
-        headerName: "対象者",
-        field: "target",
-        width: this.calcWidthPercent(20) - 6,
-        cellStyle: {
-          "box-sizing": "border-box",
-          height: "3rem",
-          "line-height": "3rem",
-          border: "1px solid #333",
-          "border-bottom": "none",
-          "border-right": "none",
-          "padding-left": "0.6rem",
-          cursor: "pointer",
-          "background-color": "#fff"
+        {
+          headerName: "対象者",
+          field: "target",
+          width: this.calcWidthPercent(20) - 6,
+          cellStyle: {
+            "box-sizing": "border-box",
+            height: "3rem",
+            "line-height": "3rem",
+            border: "1px solid #333",
+            "border-bottom": "none",
+            "border-right": "none",
+            "padding-left": "0.6rem",
+            cursor: "pointer",
+            "background-color": "#fff"
+          },
+          cellRenderer: params => {
+            const el = document.createElement("div");
+            el.innerHTML = params.value;
+            el.style.width = "100%";
+            el.style.overflow = "hidden";
+            el.style.whiteSpace = "nowrap";
+            if (
+              params.data.child ==
+              "--------------------------------------------"
+            )
+              el.style.cursor = "default";
+            el.addEventListener("click", () => {
+              this.childClick(params.rowIndex);
+            });
+            return el;
+          }
         },
-        cellRenderer: params => {
-          const el = document.createElement("div");
-          el.innerHTML = params.value;
-          el.style.width = "100%";
-          el.style.overflow = "hidden";
-          el.style.whiteSpace = "nowrap";
-          if (
-            params.data.child == "--------------------------------------------"
-          )
-            el.style.cursor = "default";
-          el.addEventListener("click", () => {
-            this.childClick(params.rowIndex);
-          });
-          return el;
-        }
-      },
-      {
-        headerName: "子ソリューション",
-        field: "child",
-        width: this.calcWidthPercent(15) - 6,
-        cellStyle: {
-          "box-sizing": "border-box",
-          height: "3rem",
-          "line-height": "3rem",
-          border: "1px solid #333",
-          "border-bottom": "none",
-          "border-right": "none",
-          padding: "0 0.6rem",
-          "mergin-right": "0.6rem",
-          cursor: "pointer",
-          "background-color": "#fff",
-          "text-overflow": "hidden"
+        {
+          headerName: "子ソリューション",
+          field: "child",
+          width: this.calcWidthPercent(15) - 6,
+          cellStyle: {
+            "box-sizing": "border-box",
+            height: "3rem",
+            "line-height": "3rem",
+            border: "1px solid #333",
+            "border-bottom": "none",
+            "border-right": "none",
+            padding: "0 0.6rem",
+            "mergin-right": "0.6rem",
+            cursor: "pointer",
+            "background-color": "#fff",
+            "text-overflow": "hidden"
+          },
+          cellRenderer: params => {
+            const el = document.createElement("div");
+            el.innerHTML = params.value;
+            el.style.width = "100%";
+            el.style.overflow = "hidden";
+            el.style.whiteSpace = "nowrap";
+            if (
+              params.data.child ==
+              "--------------------------------------------"
+            )
+              el.style.cursor = "default";
+            el.addEventListener("click", () => {
+              this.childClick(params.rowIndex);
+            });
+            return el;
+          }
         },
-        cellRenderer: params => {
-          const el = document.createElement("div");
-          el.innerHTML = params.value;
-          el.style.width = "100%";
-          el.style.overflow = "hidden";
-          el.style.whiteSpace = "nowrap";
-          if (
-            params.data.child == "--------------------------------------------"
-          )
-            el.style.cursor = "default";
-          el.addEventListener("click", () => {
-            this.childClick(params.rowIndex);
-          });
-          return el;
+        {
+          headerName: "説明",
+          field: "explanation",
+          width: this.calcWidthPercent(10) - 6,
+          cellStyle: {
+            "box-sizing": "border-box",
+            height: "3rem",
+            "line-height": "3rem",
+            border: "1px solid #333",
+            "border-bottom": "none",
+            "padding-left": "0.6rem",
+            cursor: "pointer",
+            "background-color": "#fff"
+          },
+          cellRenderer: params => {
+            const el = document.createElement("div");
+            el.innerHTML = "詳しく";
+            el.style.width = "100%";
+            el.style.overflow = "hidden";
+            el.style.whiteSpace = "nowrap";
+            el.addEventListener("click", () => {
+              this.clickExplanation(params.rowIndex);
+            });
+            return el;
+          }
         }
-      },
-      {
-        headerName: "説明",
-        field: "explanation",
-        width: this.calcWidthPercent(10) - 6,
-        cellStyle: {
-          "box-sizing": "border-box",
-          height: "3rem",
-          "line-height": "3rem",
-          border: "1px solid #333",
-          "border-bottom": "none",
-          "padding-left": "0.6rem",
-          cursor: "pointer",
-          "background-color": "#fff"
+      ];
+    } else if (800 > windowWidth && windowWidth >= 400) {
+      this.gridOptions.columnDefs = [
+        {
+          headerName: "ソリューションName",
+          field: "name",
+          width: this.calcWidthPercent(40) - 6,
+          cellStyle: {
+            "box-sizing": "border-box",
+            height: "3rem",
+            "line-height": "3rem",
+            border: "1px solid #333",
+            "border-left": "none",
+            "border-bottom": "none",
+            "border-right": "none",
+            "padding-left": "0.6rem",
+            cursor: "pointer",
+            "background-color": "#fff"
+          },
+          cellRenderer: params => {
+            const el = document.createElement("div");
+            el.innerHTML = params.value;
+            el.style.width = "100%";
+            el.style.overflow = "hidden";
+            el.style.whiteSpace = "nowrap";
+            if (
+              params.data.child ==
+              "--------------------------------------------"
+            )
+              el.style.cursor = "default";
+            el.addEventListener("click", () => {
+              this.childClick(params.rowIndex);
+            });
+            return el;
+          }
         },
-        cellRenderer: params => {
-          const el = document.createElement("div");
-          el.innerHTML = "詳しく";
-          el.style.width = "100%";
-          el.style.overflow = "hidden";
-          el.style.whiteSpace = "nowrap";
-          el.addEventListener("click", () => {
-            this.clickExplanation(params.rowIndex);
-          });
-          return el;
+        {
+          headerName: "該当スペース",
+          field: "place",
+          width: this.calcWidthPercent(20) - 6,
+          cellStyle: {
+            "box-sizing": "border-box",
+            height: "3rem",
+            "line-height": "3rem",
+            border: "1px solid #333",
+            "border-bottom": "none",
+            "border-right": "none",
+            "padding-left": "0.6rem",
+            cursor: "pointer",
+            "background-color": "#fff"
+          },
+          cellRenderer: params => {
+            const el = document.createElement("div");
+            el.innerHTML = params.value;
+            el.style.width = "100%";
+            el.style.overflow = "hidden";
+            el.style.whiteSpace = "nowrap";
+            if (
+              params.data.child ==
+              "--------------------------------------------"
+            )
+              el.style.cursor = "default";
+            el.addEventListener("click", () => {
+              this.childClick(params.rowIndex);
+            });
+            return el;
+          }
+        },
+        {
+          headerName: "対象者",
+          field: "target",
+          width: this.calcWidthPercent(20) - 6,
+          cellStyle: {
+            "box-sizing": "border-box",
+            height: "3rem",
+            "line-height": "3rem",
+            border: "1px solid #333",
+            "border-bottom": "none",
+            "border-right": "none",
+            "padding-left": "0.6rem",
+            cursor: "pointer",
+            "background-color": "#fff"
+          },
+          cellRenderer: params => {
+            const el = document.createElement("div");
+            el.innerHTML = params.value;
+            el.style.width = "100%";
+            el.style.overflow = "hidden";
+            el.style.whiteSpace = "nowrap";
+            if (
+              params.data.child ==
+              "--------------------------------------------"
+            )
+              el.style.cursor = "default";
+            el.addEventListener("click", () => {
+              this.childClick(params.rowIndex);
+            });
+            return el;
+          }
+        },
+        {
+          headerName: "説明",
+          field: "explanation",
+          width: this.calcWidthPercent(20) - 6,
+          cellStyle: {
+            "box-sizing": "border-box",
+            height: "3rem",
+            "line-height": "3rem",
+            border: "1px solid #333",
+            "border-bottom": "none",
+            "padding-left": "0.6rem",
+            cursor: "pointer",
+            "background-color": "#fff"
+          },
+          cellRenderer: params => {
+            const el = document.createElement("div");
+            el.innerHTML = "詳しく";
+            el.style.width = "100%";
+            el.style.overflow = "hidden";
+            el.style.whiteSpace = "nowrap";
+            el.addEventListener("click", () => {
+              this.clickExplanation(params.rowIndex);
+            });
+            return el;
+          }
         }
-      }
-    ];
+      ];
+    } else {
+      this.gridOptions.columnDefs = [
+        {
+          headerName: "ソリューションName",
+          field: "name",
+          width: this.calcWidthPercent(70) - 6,
+          cellStyle: {
+            "box-sizing": "border-box",
+            height: "3rem",
+            "line-height": "3rem",
+            border: "1px solid #333",
+            "border-left": "none",
+            "border-bottom": "none",
+            "border-right": "none",
+            "padding-left": "0.6rem",
+            cursor: "pointer",
+            "background-color": "#fff"
+          },
+          cellRenderer: params => {
+            const el = document.createElement("div");
+            el.innerHTML = params.value;
+            el.style.width = "100%";
+            el.style.overflow = "hidden";
+            el.style.whiteSpace = "nowrap";
+            if (
+              params.data.child ==
+              "--------------------------------------------"
+            )
+              el.style.cursor = "default";
+            el.addEventListener("click", () => {
+              this.childClick(params.rowIndex);
+            });
+            return el;
+          }
+        },
+        {
+          headerName: "説明",
+          field: "explanation",
+          width: this.calcWidthPercent(30) - 6,
+          cellStyle: {
+            "box-sizing": "border-box",
+            height: "3rem",
+            "line-height": "3rem",
+            border: "1px solid #333",
+            "border-bottom": "none",
+            "padding-left": "0.6rem",
+            cursor: "pointer",
+            "background-color": "#fff"
+          },
+          cellRenderer: params => {
+            const el = document.createElement("div");
+            el.innerHTML = "詳しく";
+            el.style.width = "100%";
+            el.style.overflow = "hidden";
+            el.style.whiteSpace = "nowrap";
+            el.addEventListener("click", () => {
+              this.clickExplanation(params.rowIndex);
+            });
+            return el;
+          }
+        }
+      ];
+    }
   }
 
   beforeMount(): void {
