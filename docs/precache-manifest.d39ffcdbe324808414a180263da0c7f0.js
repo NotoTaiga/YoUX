@@ -12,11 +12,11 @@ self.__precacheManifest = [
     "url": "/YoUX/js/chunk-vendors.9355f33e.js"
   },
   {
-    "revision": "5fdb671bf872e254ee4a",
-    "url": "/YoUX/js/app.3fbbf67b.js"
+    "revision": "3ac90b996f78cfd9815b",
+    "url": "/YoUX/js/app.92d8e8a7.js"
   },
   {
-    "revision": "b0260399ebde4b8be5342ea404a6db75",
+    "revision": "e30b55ef3d7c5ca054cdf3c14b3470d0",
     "url": "/YoUX/index.html"
   },
   {
@@ -44,7 +44,7 @@ self.__precacheManifest = [
     "url": "/YoUX/css/chunk-vendors.0d6709d8.css"
   },
   {
-    "revision": "5fdb671bf872e254ee4a",
-    "url": "/YoUX/css/app.cdbc3bd9.css"
+    "revision": "3ac90b996f78cfd9815b",
+    "url": "/YoUX/css/app.711503a4.css"
   }
 ];
