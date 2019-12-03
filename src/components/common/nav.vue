@@ -145,6 +145,7 @@ export default class MasterNav extends Vue {
     width: 1.5rem;
     height: 1.5rem;
     margin-right: 1.6rem;
+    background-repeat: no-repeat;
   }
 
   .menuIcon {
@@ -170,6 +171,35 @@ export default class MasterNav extends Vue {
   .otherIcon {
     background-image: url("../../assets/img/other.png");
     background-size: contain;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .nav {
+    width: 100%;
+    &__close {
+      width: calc(1.6rem * 2 + 1.5rem);
+
+      .nav__ttl {
+        width: calc(15rem - 3.2rem);
+        justify-content: flex-start;
+      }
+      .nav__item {
+        width: calc(15rem - 3.2rem);
+        justify-content: flex-start;
+      }
+    }
+
+    &__ttl {
+      margin: 1.6rem auto;
+      width: 80%;
+      justify-content: center;
+    }
+    &__item {
+      margin: 1.6rem auto;
+      width: 80%;
+      justify-content: center;
+    }
   }
 }
 </style>

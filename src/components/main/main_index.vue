@@ -261,7 +261,7 @@ export default class mainIndex extends Vue {
 
   private rowDataArr: any = [];
   private makeRowData() {
-    const windowWidth: number = window.innerWidth;
+    const windowWidth: number = window.screen.availWidth;
     this.rowDataArr = this.showData.map((d, i) => {
       const childText: string =
         d.child.length > 0
@@ -370,8 +370,12 @@ export default class mainIndex extends Vue {
   }
 
   private calcWidthPercent(percent: number) {
-    const windowWidth: number = window.innerWidth;
-    const gridWidth: number = windowWidth - 64 - 36;
+    const windowWidth: number = window.screen.availWidth;
+    let merginWidth: number = 64;
+    if (windowWidth < 800) {
+      merginWidth = 32;
+    }
+    const gridWidth: number = windowWidth - merginWidth - 36;
     const cellWidth: number = gridWidth * percent * 0.01;
     return cellWidth;
   }
@@ -449,7 +453,7 @@ export default class mainIndex extends Vue {
   };
 
   private setColumnDef() {
-    const windowWidth: number = window.innerWidth;
+    const windowWidth: number = window.screen.availWidth;
     if (windowWidth > 800) {
       this.gridOptions.columnDefs = [
         {
@@ -802,6 +806,7 @@ export default class mainIndex extends Vue {
   }
 
   beforeMount(): void {
+    debugger;
     window.addEventListener(
       "resize",
       () => {
@@ -916,5 +921,18 @@ export default class mainIndex extends Vue {
 .ag-header-container {
   border-radius: 2rem 2rem 0 0;
   overflow: hidden;
+}
+
+@media screen and (max-width: 800px) {
+  .masterGrid {
+    width: calc(100% - 3.2rem);
+    height: calc(100vh - 10rem - 1.6rem - 1.6rem);
+    font-size: 1.6rem;
+    margin: 0 auto;
+    border-radius: 2rem;
+    border-left: 1px solid $black;
+    border-bottom: 1px solid $black;
+    overflow: hidden;
+  }
 }
 </style>

@@ -509,7 +509,7 @@ export default class mainFilter extends Vue {
           text-align: left;
           box-sizing: border-box;
           padding: 0 0.8rem;
-          width: 100%;
+          width: 95%;
           height: 2rem;
           border: none;
           border-radius: 0.4rem;
@@ -587,6 +587,7 @@ export default class mainFilter extends Vue {
 
     &__list {
       height: calc(100vh - 6rem - 6rem - 3.2rem);
+      overflow-y: scroll;
     }
 
     &__item {
@@ -648,5 +649,17 @@ export default class mainFilter extends Vue {
   background: #ccc;
   border-radius: 10px;
   box-shadow: none;
+}
+
+@media screen and (max-width: 800px) {
+  .mainFilter {
+    .main {
+      width: 100%;
+    }
+
+    .categoryBox {
+      width: 100%;
+    }
+  }
 }
 </style>
