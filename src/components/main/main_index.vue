@@ -17,7 +17,10 @@
       </button>
     </div>
     <ag-grid-vue class="masterGrid" :gridOptions="gridOptions" id="grid"></ag-grid-vue>
+    <transition name="fade">
     <mainExplanation v-if="openExplanation" :dataSet="clickDataSet" @close="closeWindow()"></mainExplanation>
+    </transition>
+    <transition name="fade">
     <mainFilter
       v-if="filterState"
       @close="closeFilter"
@@ -25,6 +28,7 @@
       :filterTexts="filterTexts"
       :filterCategory="categoryFilter"
     ></mainFilter>
+    </transition>
   </div>
 </template>
 
@@ -261,7 +265,10 @@ export default class mainIndex extends Vue {
 
   private rowDataArr: any = [];
   private makeRowData() {
-    const windowWidth: number = window.screen.availWidth;
+    let windowWidth: number = window.screen.availWidth;
+    if (windowWidth > 800) {
+      windowWidth = window.innerWidth;
+    }
     this.rowDataArr = this.showData.map((d, i) => {
       const childText: string =
         d.child.length > 0
@@ -370,7 +377,11 @@ export default class mainIndex extends Vue {
   }
 
   private calcWidthPercent(percent: number) {
-    const windowWidth: number = window.screen.availWidth;
+    let windowWidth: number = window.screen.availWidth;
+    if (windowWidth > 800) {
+      windowWidth = window.innerWidth;
+    }
+
     let merginWidth: number = 64;
     if (windowWidth < 800) {
       merginWidth = 32;
@@ -453,7 +464,11 @@ export default class mainIndex extends Vue {
   };
 
   private setColumnDef() {
-    const windowWidth: number = window.screen.availWidth;
+    let windowWidth: number = window.screen.availWidth;
+    if (windowWidth > 800) {
+      windowWidth = window.innerWidth;
+    }
+
     if (windowWidth > 800) {
       this.gridOptions.columnDefs = [
         {
@@ -837,6 +852,14 @@ export default class mainIndex extends Vue {
 
 <style lang="scss">
 @import "@/assets/style/index.scss";
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .3s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
 .mainIndex {
   background-color: $white;
   box-sizing: border-box;

@@ -36,9 +36,11 @@
                     <div class="stateArea__selectState">{{storyStateText}}</div>
                     <button class="stateArea__openBtn">▼</button>
                   </div>
+                  <transition name="fade">
                   <ul class="stateArea__list" v-if="stateOpen">
                     <li class="stateArea__item" v-for="(stateText,i) in storyStateTextArr" :key="'storyStateText'+i" @click="selectState(i)">{{stateText}}</li>
                   </ul>
+                  </transition>
                 </div>
               </div>
             </div>
@@ -48,6 +50,7 @@
           </div>
         </div>
         <div class="content__btnCont">
+          <button class="changeBtn" @click="closeWindow()">閉じる</button>
           <button class="changeBtn" :class="[pageState == 0 ? 'changeBtn--active' : '']" @click="changePageState(0)">説明</button>
           <button class="changeBtn" :class="[pageState == 1 ? 'changeBtn--active' : '']" @click="changePageState(1)">ストーリー</button>
         </div>
@@ -159,6 +162,12 @@ export default class mainExplanation extends Vue {
 
 <style scoped lang="scss">
 @import "@/assets/style/index.scss";
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .2s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
 .mainExplanation {
   position: absolute;
   top: 0;
@@ -254,6 +263,7 @@ export default class mainExplanation extends Vue {
       }
 
       .title{
+        font-weight: bold;
         font-size: 2rem;
         margin-bottom:1.6rem;
       }
@@ -262,7 +272,10 @@ export default class mainExplanation extends Vue {
         font-size: 1.8rem;
         margin-left: 0.8rem;
         li{
-          margin-bottom: 1.6rem; 
+          margin-bottom: 1.6rem;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
       }
 
@@ -391,6 +404,73 @@ export default class mainExplanation extends Vue {
               background-color: $mainBlue;
               color: $white;
             }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .mainExplanation{
+    .content{
+      width:95%;
+      height:95%;
+
+      &__btnCont{
+        .changeBtn{
+          width: 8rem;
+          font-size: 1.2rem;
+          margin: 0 0.8rem;
+        }
+      }
+
+      &__textContent{
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .imgBox {
+        height: calc(70% - 2.4rem);
+        width: calc(100% - 2.4rem);
+        margin: 1.2rem auto;
+      }
+
+      .textBox{
+        width:calc(100% - 2.4rem);
+        height:calc(100% - 2.4rem);
+        margin: 0 auto;
+
+        .top{
+          height: 30%;
+        }
+
+        .title{
+          font-size: 1.6rem;
+          margin-bottom: 0.8rem;
+        }
+
+        .list{
+          font-size: 1.4rem;
+          li{
+            margin-bottom: 0.8rem;
+          }
+        }
+
+        .explanation{
+          height: 70%;
+          &__title{
+            height: 2rem;
+            font-size: 1.4rem;
+          }
+
+          &__textBox{
+            height: calc(100% - 2rem - 0.8rem);
+          }
+
+          &__text{
+            line-height: 2rem;
+            font-size: 1.4rem;
           }
         }
       }

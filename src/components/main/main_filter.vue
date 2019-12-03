@@ -380,6 +380,7 @@ export default class mainFilter extends Vue {
 
 <style scoped lang="scss">
 @import "@/assets/style/index.scss";
+
 .mainFilter {
   position: absolute;
   top: 0;
