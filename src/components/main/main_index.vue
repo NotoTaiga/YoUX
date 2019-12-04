@@ -821,7 +821,6 @@ export default class mainIndex extends Vue {
   }
 
   beforeMount(): void {
-    debugger;
     window.addEventListener(
       "resize",
       () => {
@@ -831,6 +830,9 @@ export default class mainIndex extends Vue {
     );
     this.api = this.gridOptions.api;
     this.gridOptions.rowHeight = 30;
+    this.gridOptions.rowDragManaged = true;
+    this.gridOptions.suppressRowDrag = true;
+    this.gridOptions.suppressMovableColumns = true;
     this.setColumnDef();
     this.gridOptions.headerHeight = 60;
     this.gridOptions.suppressScrollOnNewData = false;
