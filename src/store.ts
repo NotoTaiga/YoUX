@@ -32,7 +32,7 @@ export default new Vuex.Store({
   state: {
     pageId: 0,
     selectContent: 0,
-
+    topItemCount: 0,
     masterData: [
       {
         id: 0,
@@ -41,7 +41,7 @@ export default new Vuex.Store({
         target: ['学生'],
         targetStory: {
           student: ['大学に登校する', '好きな教室、場所に移動する', '自動的な認証で出席登録', '自分の鞄やpcなどをデスクに置く', '2次元上のコンテンツと3次元上のコンテンツが混在した自分だけの空間で作業できる'],
-          teacher:['先生のやつ']
+          teacher: ['先生のやつ']
         },
         usetech: ['電子掲示板'],
         text: ['aaaaaaaaaaaaaaa', '改行したい場合はこれで'],
@@ -51,10 +51,12 @@ export default new Vuex.Store({
         id: 1,
         name: '授業中名刺交換',
         place: ['教室'],
-        target: ['学生'],
+        target: ['学生', '先生'],
         targetStory: {},
         usetech: [],
-        text: [],
+        text: ['電子名刺を用意します。',
+          'グループワークでいい成果を出すことができたにも関わらず後日そのメンバーを思い出すことが出来ない、なんてことがなくなります。',
+          '詳しい内容は関連したソリューションとして用意してあるので表から子のソリューションをクリックして確認してみてください。'],
         img: null,
         child: []
       }, {
@@ -64,7 +66,9 @@ export default new Vuex.Store({
         target: ['学生'],
         targetStory: {},
         usetech: [],
-        text: [],
+        text: ['授業中に話している人の顔と声を一致させるための機能です。',
+          '授業中名刺交換をした時に頂いた名刺が画面端に並べて表示され、名刺と同一人物が話すと名刺の外枠が青く光り誰が話しているかをわかりやすくします。',
+          '留学生向けに母国語での名前表示も考えています。'],
         img: null,
         child: []
       }, {
@@ -74,7 +78,10 @@ export default new Vuex.Store({
         target: ['学生'],
         targetStory: {},
         usetech: [],
-        text: [],
+        text: ['デスククラウドでの拡張機能を追加することができます。',
+          '大学の査定に通ったプラグインがプラグインストアに掲載されます。',
+          'プラグインは自己制作することが可能です。機能面でのプラグインでも可能ですし、デザインのみのスキンという形でもストアに申請することは可能です。',
+          '学内でプラグインを作ることが可能になるように授業内でやるプログラム言語での制作が基盤となります。'],
         img: null,
         child: []
       }, {
@@ -84,7 +91,9 @@ export default new Vuex.Store({
         target: ['学生'],
         targetStory: {},
         usetech: [],
-        text: [],
+        text: ['スマホのようなスライドやタップなどを組み合わせたジェスチャーを搭載します。またgoogle',
+          'pixelのような空間認知システムを用いて3次元上のジェスチャーも取り入れることで2次元上では不可能だった命令方法を搭載することで数えきれないバリエーションの操作方法が存在します。',
+          'プリセットのような初期設定は存在しますが個人での自由な設定も可能です。'],
         img: null,
         child: []
       }, {
@@ -94,7 +103,11 @@ export default new Vuex.Store({
         target: ['学生'],
         targetStory: {},
         usetech: [],
-        text: [],
+        text: ['教科書を持ち運ぶ必要はなくなります。',
+          'すべて紙媒体などのアナログ教材はデスククラウドで表示、アプリで編集および管理することができます。',
+          '授業外の配布ならばプリントならばスキャンをし、取り込みが可能。',
+          'また授業中に先生が「ここ重要です！」などキーワードを言ったときは自動的にマーカーを引くなど自動的な補助を予定しています。',
+          '教科書は授業料に含め必要なものを事前に購入・ダウンロードをしておく設定になっています。'],
         img: null,
         child: []
       }, {
@@ -104,7 +117,13 @@ export default new Vuex.Store({
         target: ['学生'],
         targetStory: {},
         usetech: [],
-        text: [],
+        text: ['感情によるセンサーをデスククラウドに追加します。',
+          '普段の平常時の表情を記憶し、揺れ動く大学生の感情のコントロールをお手伝いします。',
+          'データの収集方法として入学初年度の1年間を情報取得期間として確保。',
+          '2年次から取得した情報を使い、授業中の目線の切れる回数や瞬きの回数、授業中の表情などから体調やモチベーションの状態を記録。',
+          '一人一人のデータを作成し比較をできるようにします。',
+          'そのデータを用いて自動的に改善策を提案し、安定した状態へ導けるように寄り添っていきます。'
+        ],
         img: null,
         child: ['名刺交換の感情記録', '疲れ度センサー', '捗り度']
       }, {
@@ -114,7 +133,10 @@ export default new Vuex.Store({
         target: ['学生'],
         targetStory: {},
         usetech: [],
-        text: [],
+        text: ['現在のデジタルハリウッドでは学生証をカードリーダーにタッチすることで出席管理をしていましたがそれを廃止し、デスククラウドのログインに必要な顔認証をもって出席とします。また制度確保のため椅子の感圧によって二重認証をかんがえています。',
+          '座学授業など非アクティブ授業など先生が生徒の出席を管理することが困難な場合は上記の認証方法で80％以上の着席率を確認できた場合のみ出席とするなど先生の意志で出席方法をコントロールできるように考えています。',
+          'おなかが痛いなど特別な事情がある場合はデスククラウドまたは学生APPから申請します。',
+          'また電車の遅延などはデスククラウドを立ち上げたタイミングでルート確認を行い、遅延認証を自動で行います。'],
         img: null,
         child: []
       }, {
@@ -124,7 +146,11 @@ export default new Vuex.Store({
         target: ['学生'],
         targetStory: {},
         usetech: [],
-        text: [],
+        text: ['明日から本気出す病から逃げるため・まず行動してほしい。これらの思いからこの機能を考えました。',
+          '大学に来て最初に机に向かったとき、一日や一週間の目標タスクを設定する時間を設けます。またday todoは今日のはかどり度として一日のをわりに進捗具合、集中して作業で来ていたかなどを結果として確認できます。',
+          'タスクの内容は簡単なものから大学の課題を推奨するタスクまで幅広く対応し、なおかつ自分でタスクを決めることができます。',
+          '課題はパーセンテージで表示し、課題に関係した調査もその中に含みます。提出完了した時に初めて100％になります。',
+          'また感情サーモグラフィーにも対応しているので、疲れているときは簡単なタスクを推奨したり体調不調を感知した場合は帰宅するよう促します。'],
         img: null,
         child: []
       }, {
@@ -134,27 +160,37 @@ export default new Vuex.Store({
         target: ['学生', '先生'],
         targetStory: {},
         usetech: [],
-        text: [],
+        text: ['教室やコワーキングスペースなどでのみ使えるチャットです。',
+          '違う空間とのチャットは不可能で、同じ場にいる人間としかできないようになっておりその空間専用のtwitterと考えてフランクに使われることを想像しています。',
+          '効果的な使い方としては主に授業中の意見交換や先生への質問、コワーキングスペースに関しては課題の相談などを想定しています。',
+          '授業中の特殊機能として授業に関連するトークが白熱した場合先生が認識して授業のテーマに取り上げる機能を考えているので座学の授業でも今まで以上にfreeな授業が生まれると考えています。'],
         img: null,
         child: []
       }, {
         id: 10,
-        name: '学生APP 机模様替え',
+        name: 'デスクcloud 机プラグイン',
         place: ['app'],
         target: ['学生'],
         targetStory: {},
         usetech: [],
-        text: [],
+        text: ['大学の規定による審査を通ったプラグインがプラグインストアに並びます。',
+          'プラグインには生徒の自主制作をメインに外部発注したものなどを想定しています。',
+          'このプラグインを製作するハッカソンを開催したら面白いかもしれませんね。',
+          'また別ソリューションのデスク編集考える事が面倒という方には大学からプリセットという形であらかじめカスタマイズしたものを用意しています。'],
         img: null,
         child: []
       }, {
         id: 11,
-        name: '捗り度',
+        name: 'デスクcloud プラグイン',
         place: ['app'],
         target: ['学生', '先生'],
         targetStory: {},
         usetech: [],
-        text: [],
+        text: ['デスククラウドでの拡張機能を追加することができます。',
+          '大学の査定に通ったプラグインはプラグインストアに掲載されます。',
+          'プラグインは自己制作することが可能で、機能面でのプラグインでも可能ですし、デザインのみのスキンという形でもストアに申請することは可能です。',
+          'またストアに公開するのではなく個人的に使用するための制作も可能です。',
+          '授業で習ったことを生かすための場と考えているので原則として大学内で習得可能なテクノロジーをベースに制作ができるモノを想定しています。'],
         img: null,
         child: []
       }, {
@@ -440,98 +476,15 @@ export default new Vuex.Store({
       }
     ] as dataSet[],
 
-    showData: [
-      {
-        id: 0,
-        name: 'デスクcloud',
-        place: ['All place'],
-        target: ['学生'],
-        targetStory: {
-          student: ['aaa']
-        },
-        usetech: [],
-        text: [],
-        img: null,
-        child: ['授業中名刺交換', 'グループトーク', 'プラグイン', 'ジェスチャー', '教科書表示', '感情サーモグラフィー', '出席管理', 'day todo', '場所チャット', '机模様替え'],
-      }, {
-        id: 1,
-        name: 'aaa',
-        place: ['All place'],
-        target: ['aa'],
-        targetStory: {
-          student: ['aaa']
-        },
-        usetech: [],
-        text: [],
-        img: null,
-        child: ['aa', 'グループトーク', 'プラグイン', 'ジェスチャー', '教科書表示', '感情サーモグラフィー', '出席管理', 'day todo', '場所チャット', '机模様替え'],
-      }, {
-        id: 2,
-        name: 'bb',
-        place: ['bb'],
-        target: ['bb'],
-        targetStory: {
-          student: ['aaa']
-        },
-        usetech: [],
-        text: [],
-        img: null,
-        child: ['bb', 'グループトーク', 'プラグイン', 'ジェスチャー', '教科書表示', '感情サーモグラフィー', '出席管理', 'day todo', '場所チャット', '机模様替え'],
-      }, {
-        id: 3,
-        name: 'cc',
-        place: ['All place'],
-        target: ['学生'],
-        targetStory: {
-          student: ['aaa']
-        },
-        usetech: [],
-        text: [],
-        img: null,
-        child: ['cc', 'グループトーク', 'プラグイン', 'ジェスチャー', '教科書表示', '感情サーモグラフィー', '出席管理', 'day todo', '場所チャット', '机模様替え'],
-      }, {
-        id: 4,
-        name: 'dd',
-        place: ['All place'],
-        target: ['dd'],
-        targetStory: {
-          student: ['aaa']
-        },
-        usetech: [],
-        text: [],
-        img: null,
-        child: ['dd', 'グループトーク', 'プラグイン', 'ジェスチャー', '教科書表示', '感情サーモグラフィー', '出席管理', 'day todo', '場所チャット', '机模様替え'],
-      }, {
-        id: 5,
-        name: 'deed',
-        place: ['ee'],
-        target: ['学生'],
-        targetStory: {
-          student: ['aaa']
-        },
-        usetech: [],
-        text: [],
-        img: null,
-        child: ['ee', 'グループトーク', 'プラグイン', 'ジェスチャー', '教科書表示', '感情サーモグラフィー', '出席管理', 'day todo', '場所チャット', '机模様替え'],
-      }, {
-        id: 6,
-        name: 'ff',
-        place: ['All place'],
-        target: ['学生'],
-        targetStory: {
-          student: ['aaa', 'bbb', 'ccc']
-        },
-        usetech: [],
-        text: [],
-        img: null,
-        child: ['授業中名刺交換', 'グループトーク', 'プラグイン', 'ジェスチャー', '教科書表示', '感情サーモグラフィー', '出席管理', 'day todo', '場所チャット', '机模様替え'],
-      }
-    ] as dataSet[],
+    showData: [] as dataSet[],
 
-    datalevelName: ['aa', 'bb'] as string[],
+    datalevelName: [] as string[],
 
   },
   getters: {
+    getTopItemCount(state) {
+      return state.topItemCount;
+    },
     getPageId(state) {
       return state.pageId;
     },
@@ -546,6 +499,9 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    setTopItemCount(state, newItemCount: number) {
+      state.topItemCount = newItemCount;
+    },
     setPageId(state, pageId: number) {
       state.pageId = pageId;
     },
@@ -554,6 +510,9 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    changeTopItemCount({ commit }, newItemCount: number) {
+      commit('setTopItemCount', newItemCount);
+    },
     changePageId({ commit }, pageId: number) {
       commit('setPageId', pageId);
     },

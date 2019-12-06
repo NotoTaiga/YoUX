@@ -449,11 +449,14 @@ export default class mainFilter extends Vue {
         box-sizing: border-box;
         height: calc(100% - 2.5rem - 2.3rem);
         padding: 0.8rem 0;
+        overflow-y: scroll;
       }
 
       &__item {
+        float: left;
         display: flex;
         align-items: center;
+        margin-right: 0.8rem;
         margin-bottom: 0.8rem;
         cursor: pointer;
 

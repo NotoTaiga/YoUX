@@ -18,16 +18,16 @@
     </div>
     <ag-grid-vue class="masterGrid" :gridOptions="gridOptions" id="grid"></ag-grid-vue>
     <transition name="fade">
-    <mainExplanation v-if="openExplanation" :dataSet="clickDataSet" @close="closeWindow()"></mainExplanation>
+      <mainExplanation v-if="openExplanation" :dataSet="clickDataSet" @close="closeWindow()"></mainExplanation>
     </transition>
     <transition name="fade">
-    <mainFilter
-      v-if="filterState"
-      @close="closeFilter"
-      @reload="reloadGrid"
-      :filterTexts="filterTexts"
-      :filterCategory="categoryFilter"
-    ></mainFilter>
+      <mainFilter
+        v-if="filterState"
+        @close="closeFilter"
+        @reload="reloadGrid"
+        :filterTexts="filterTexts"
+        :filterCategory="categoryFilter"
+      ></mainFilter>
     </transition>
   </div>
 </template>
@@ -484,6 +484,7 @@ export default class mainIndex extends Vue {
             "border-bottom": "none",
             "border-right": "none",
             "padding-left": "0.6rem",
+            "padding-right": "0.6rem",
             cursor: "pointer",
             "background-color": "#fff"
           },
@@ -493,6 +494,7 @@ export default class mainIndex extends Vue {
             el.style.width = "100%";
             el.style.overflow = "hidden";
             el.style.whiteSpace = "nowrap";
+            el.style.textOverflow = "ellipsis";
             if (
               params.data.child ==
               "--------------------------------------------"
@@ -644,6 +646,8 @@ export default class mainIndex extends Vue {
             "border-bottom": "none",
             "border-right": "none",
             "padding-left": "0.6rem",
+            "padding-right": "0.6rem",
+
             cursor: "pointer",
             "background-color": "#fff"
           },
@@ -653,6 +657,7 @@ export default class mainIndex extends Vue {
             el.style.width = "100%";
             el.style.overflow = "hidden";
             el.style.whiteSpace = "nowrap";
+            el.style.textOverflow = "ellipsis";
             if (
               params.data.child ==
               "--------------------------------------------"
@@ -770,6 +775,7 @@ export default class mainIndex extends Vue {
             "border-bottom": "none",
             "border-right": "none",
             "padding-left": "0.6rem",
+            "padding-right": "0.6rem",
             cursor: "pointer",
             "background-color": "#fff"
           },
@@ -779,6 +785,7 @@ export default class mainIndex extends Vue {
             el.style.width = "100%";
             el.style.overflow = "hidden";
             el.style.whiteSpace = "nowrap";
+            el.style.textOverflow = "ellipsis";
             if (
               params.data.child ==
               "--------------------------------------------"
@@ -821,6 +828,7 @@ export default class mainIndex extends Vue {
   }
 
   beforeMount(): void {
+    this.$store.dispatch("changeTopItemCount", 3);
     window.addEventListener(
       "resize",
       () => {
@@ -855,8 +863,9 @@ export default class mainIndex extends Vue {
 <style lang="scss">
 @import "@/assets/style/index.scss";
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .3s;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
@@ -958,6 +967,18 @@ export default class mainIndex extends Vue {
     border-left: 1px solid $black;
     border-bottom: 1px solid $black;
     overflow: hidden;
+  }
+
+  .mainIndex {
+    .headCont {
+      .datalevelBox {
+        &__title {
+          line-height: 5rem;
+          font-size: 1.4rem;
+          margin-right: 1rem;
+        }
+      }
+    }
   }
 }
 </style>
