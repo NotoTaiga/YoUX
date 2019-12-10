@@ -17,8 +17,8 @@
         <span class="late">- click to next -</span>
       </div>
     </div>
-    <router-link to="/main">
-      <div v-if="itemCount >= 3" class="nextBox" @click="changePageId(1)"></div>
+    <router-link to="/description">
+      <div v-if="itemCount >= 3" class="nextBox" @click="changePageId()"></div>
     </router-link>
   </div>
 </template>
@@ -45,12 +45,12 @@ export default class topIndex extends Vue {
     this.itemCount = this.$store.getters.getTopItemCount;
     if (this.itemCount == 0) {
       this.setInterval = setInterval(() => {
-      this.itemCount++;
-      if (this.itemCount >= 3) {
-        this.stopSetInterval();
-      }
-    }, 2500);
-    } 
+        this.itemCount++;
+        if (this.itemCount >= 3) {
+          this.stopSetInterval();
+        }
+      }, 2500);
+    }
   }
 }
 </script>

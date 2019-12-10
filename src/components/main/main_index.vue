@@ -60,6 +60,10 @@ export default class mainIndex extends Vue {
     this.filterTexts = newArr;
   }
 
+  private changePageId() {
+    this.$store.dispatch("changePageId", 1);
+  }
+
   private filterChecker(data: dataSet): boolean {
     let textCheck: boolean = this.textFilterChecker(data.name);
     let categoryFilter: boolean = this.categoryFilterChecker(data);
@@ -828,6 +832,7 @@ export default class mainIndex extends Vue {
   }
 
   beforeMount(): void {
+    this.changePageId();
     this.$store.dispatch("changeTopItemCount", 3);
     window.addEventListener(
       "resize",

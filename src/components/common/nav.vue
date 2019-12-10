@@ -59,9 +59,9 @@ export default class MasterNav extends Vue {
       pageClass: "main"
     },
     {
-      pageLink: "/other",
-      pageText: "その他資料",
-      pageClass: "other"
+      pageLink: "/description",
+      pageText: "YoUXって？",
+      pageClass: "description"
     }
   ];
 
@@ -168,7 +168,7 @@ export default class MasterNav extends Vue {
     background-size: contain;
   }
 
-  .otherIcon {
+  .descriptionIcon {
     background-image: url("../../assets/img/other.png");
     background-size: contain;
   }
