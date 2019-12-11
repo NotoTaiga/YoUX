@@ -270,9 +270,6 @@ export default class mainIndex extends Vue {
   private rowDataArr: any = [];
   private makeRowData() {
     let windowWidth: number = window.screen.availWidth;
-    if (windowWidth > 800) {
-      windowWidth = window.innerWidth;
-    }
     this.rowDataArr = this.showData.map((d, i) => {
       const childText: string =
         d.child.length > 0
@@ -381,11 +378,7 @@ export default class mainIndex extends Vue {
   }
 
   private calcWidthPercent(percent: number) {
-    let windowWidth: number = window.screen.availWidth;
-    if (windowWidth > 800) {
-      windowWidth = window.innerWidth;
-    }
-
+    let windowWidth: number = window.innerWidth;
     let merginWidth: number = 64;
     if (windowWidth < 800) {
       merginWidth = 32;
@@ -468,10 +461,7 @@ export default class mainIndex extends Vue {
   };
 
   private setColumnDef() {
-    let windowWidth: number = window.screen.availWidth;
-    if (windowWidth > 800) {
-      windowWidth = window.innerWidth;
-    }
+    let windowWidth: number = window.innerWidth;
 
     if (windowWidth > 800) {
       this.gridOptions.columnDefs = [

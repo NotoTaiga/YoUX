@@ -103,6 +103,8 @@
 import { dataSet } from "../../interface";
 import { Component, Prop, Vue } from "vue-property-decorator";
 import mainExplanation from "@/components/main/main_explanation.vue";
+import { QuerySelector } from "ag-grid-community";
+
 @Component({
   components: {
     mainExplanation
@@ -255,9 +257,31 @@ export default class description extends Vue {
     this.openExplanation = !this.openExplanation;
   }
 
-  beforeMount(i: number): void {
+  private contentStateArr: boolean[] = [];
+  private contentElementArr: any = [];
+
+  mounted(i: number): void {
     this.changePageId(i);
+    const description = document.querySelector(".description");
+    this.contentElementArr = document.querySelectorAll(".content");
+    this.contentElementArr.forEach(() => {
+      this.contentStateArr.push(false);
+    });
+    this.contentStateArr[0] = true;
+    this.contentElementArr[0].classList.add("show");
+    description!.addEventListener("scroll", () => {
+      const scrollY: any = description!.scrollTop;
+      this.contentStateArr.forEach((bool, i) => {
+        const elementOffset = this.contentElementArr[i].offsetTop;
+        if (scrollY > elementOffset - 300) {
+          this.contentStateArr[i] = true;
+          this.contentElementArr[i].classList.add("show");
+        }
+      });
+    });
   }
+
+  created() {}
 }
 </script>
 
@@ -271,6 +295,7 @@ export default class description extends Vue {
   height: calc(100vh - 50px);
   overflow-y: scroll;
   .content {
+    opacity: 0;
     padding: 15rem 0;
     width: 100%;
     box-sizing: border-box;
@@ -368,6 +393,22 @@ export default class description extends Vue {
       transform: rotate(-45deg) translate(0, 0);
     }
   }
+}
+
+@keyframes rotation {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.show {
+  animation: rotation 2s ease 0s 1 alternate none running;
+  opacity: 1 !important;
 }
 
 .textLeft {
