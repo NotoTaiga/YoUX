@@ -867,6 +867,7 @@ export default class mainIndex extends Vue {
 }
 
 .mainIndex {
+  padding-top: 50px;
   background-color: $white;
   box-sizing: border-box;
   width: 100%;

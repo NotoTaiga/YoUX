@@ -520,6 +520,7 @@ export default class mainFilter extends Vue {
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
+          background-color: $white;
 
           &:before {
             position: absolute;

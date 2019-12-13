@@ -11,7 +11,7 @@
               <ul class="list">
                 <li>場所 : {{place}}</li>
                 <li>ターゲット : {{target}}</li>
-                <li>使用想定技術 : {{useTech}}</li>
+                <li>使用想定技術 : {{useTeck}}</li>
               </ul>
             </div>
             <div class="explanation">
@@ -187,12 +187,12 @@ export default class mainExplanation extends Vue {
   opacity: 0;
 }
 .mainExplanation {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
-  z-index: 9999;
+  z-index: 9999999999;
 
   &__inner {
     width: 100%;
@@ -503,12 +503,12 @@ export default class mainExplanation extends Vue {
             }
           }
 
-          .stateArea{
-            &__inner{
+          .stateArea {
+            &__inner {
               font-size: 1.6rem;
             }
 
-            &__item{
+            &__item {
               font-size: 1.6rem;
             }
           }

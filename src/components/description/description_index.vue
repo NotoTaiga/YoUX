@@ -7,11 +7,13 @@
         <span class="LFont blueFont">YoUX</span>という卒業制作について
         <br />少し話させてください。
       </p>
-      <div class="down">
-        <span></span>Scroll
-      </div>
+      <a href="#" v-scroll-to="'#top'" v-if="scrollIcon">
+        <div class="down">
+          <span></span>Scroll
+        </div>
+      </a>
     </div>
-    <div class="content">
+    <div class="content" id="top">
       <p class="LFont">僕は今の大学生活に満足しています。</p>
       <p class="SFont">大学を通して</p>
       <p class="SFont">知らないことを知り、</p>
@@ -104,6 +106,9 @@ import { dataSet } from "../../interface";
 import { Component, Prop, Vue } from "vue-property-decorator";
 import mainExplanation from "@/components/main/main_explanation.vue";
 import { QuerySelector } from "ag-grid-community";
+import VueScrollTo from "vue-scrollto";
+
+Vue.use(VueScrollTo);
 
 @Component({
   components: {
@@ -120,21 +125,46 @@ export default class description extends Vue {
   private dataArr: dataSet[] = [
     {
       id: 0,
-      name: "デスクcloud",
-      place: ["駿河台ホール"],
-      target: ["学生"],
+      name: "MyColor",
+      place: [
+        "駿河台ホール",
+        "E教室",
+        "３階廊下",
+        "エントランス",
+        "会議室",
+        "LabProto",
+        "カフェテリア",
+        "メディアライブラリー",
+        "大学事務局",
+        "リモート会議室",
+        "職員室",
+        "学生スマートフォン",
+        "職員スマートフォン"
+      ],
+      target: ["学生", "先生", "事務局"],
       targetStory: {
         student: [
-          "大学に登校する",
-          "好きな教室、場所に移動する",
-          "自動的な認証で出席登録",
-          "自分の鞄やpcなどをデスクに置く",
-          "2次元上のコンテンツと3次元上のコンテンツが混在した自分だけの空間で作業できる"
-        ],
-        teacher: ["先生のやつ"]
+          "グループワークや先生との距離が近い授業を受ける。",
+          "相手の雰囲気からメンタル色を提示する。",
+          "授業後周りからの印象を平均化した色を反映する。",
+          "積み重なった色によって中間色が発生し自分だけの色が完成する。"
+        ]
       },
-      usetech: ["電子掲示板"],
-      text: ["aaaaaaaaaaaaaaa", "改行したい場合はこれで"],
+      usetech: ["電子カード"],
+      text: [
+        "MyColorとは文字通りではあるのですが、「自分の色」という意味です。",
+        "自分ってどんな人なのか？自分って何ができるのか？",
+        "そんな自分を見つめる際に色という形で「自分」を教えてくれます。",
+        "具体的に色で表している事は大きく二つで、性格面の「メンタル色」、技術面の「テクニック色」です。",
+        "メンタル色は5レンジャーの原理ををもとに設定しています。テクニック色はdhuで学べるwebや3DCGなど大きい科目の事を色で設定しています。",
+        "ただこれらの色を普遍的な一色で設定するのでは未来ある大学生にとって少々もったいなく感じます。",
+        "ですのでMyColorでは中間色を設けています。",
+        "メンタル色でいうとリーダーである赤色の要素と冷静である青色の要素か混在している学生の場合「紫色」をメンタルカラーとして表示します。",
+        "また最初は何にでも染まれる白色から始まり、自分の興味のあることや目指しているものに向けて勉学に励んでいるうちにMyColorはあなただけの色へと変化していきます。",
+        " ",
+        "MyColorをきっかけに大学を「人生の夏休み」から「人生の分岐点へ」",
+        "そんな思いが詰まったソリューションです。"
+      ],
       img: require("@/assets/img/neko.jpg"),
       child: [
         "授業中名刺交換",
@@ -260,8 +290,9 @@ export default class description extends Vue {
   private contentStateArr: boolean[] = [];
   private contentElementArr: any = [];
 
-  mounted(i: number): void {
-    this.changePageId(i);
+  private scrollIcon: boolean = true;
+  mounted(): void {
+    this.changePageId(2);
     const description = document.querySelector(".description");
     this.contentElementArr = document.querySelectorAll(".content");
     this.contentElementArr.forEach(() => {
@@ -269,8 +300,8 @@ export default class description extends Vue {
     });
     this.contentStateArr[0] = true;
     this.contentElementArr[0].classList.add("show");
-    description!.addEventListener("scroll", () => {
-      const scrollY: any = description!.scrollTop;
+    window.addEventListener("scroll", () => {
+      const scrollY: any = window.pageYOffset;
       this.contentStateArr.forEach((bool, i) => {
         const elementOffset = this.contentElementArr[i].offsetTop;
         if (scrollY > elementOffset - 300) {
@@ -278,6 +309,12 @@ export default class description extends Vue {
           this.contentElementArr[i].classList.add("show");
         }
       });
+
+      if (this.contentStateArr[1]) {
+        this.scrollIcon = false;
+      } else {
+        this.scrollIcon = true;
+      }
     });
   }
 
@@ -292,8 +329,8 @@ export default class description extends Vue {
   padding-left: 32px;
   padding-right: 32px;
   width: 100%;
-  height: calc(100vh - 50px);
-  overflow-y: scroll;
+  // height: calc(100vh - 50px);
+  // overflow-y: scroll;
   .content {
     opacity: 0;
     padding: 15rem 0;
@@ -312,6 +349,10 @@ export default class description extends Vue {
       background-color: $mainBlue;
       color: $white;
     }
+  }
+
+  a {
+    color: #333;
   }
 
   .btnCont {

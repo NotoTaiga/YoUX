@@ -1,7 +1,9 @@
 <template>
   <header class="header">
-    <h1 class="header__ttl">YoUX</h1>
-    <h2 class="header__pageName">{{pageName[nameChange()]}}</h2>
+    <div class="inner">
+      <h1 class="header__ttl">YoUX</h1>
+      <h2 class="header__pageName">{{pageName[nameChange()]}}</h2>
+    </div>
   </header>
 </template>
 
@@ -33,12 +35,12 @@ export default class header extends Vue {
 <style scoped lang="scss">
 @import "@/assets/style/index.scss";
 .header {
-  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 5rem;
-  background-color: $mainBlue;
-  position: relative;
-
+  z-index: 999999;
   &__ttl {
     position: absolute;
     height: 5rem;
@@ -57,6 +59,13 @@ export default class header extends Vue {
     text-align: center;
     font-size: 2rem;
     color: $white;
+  }
+  .inner {
+    box-sizing: border-box;
+    width: 100%;
+    height: 5rem;
+    background-color: $mainBlue;
+    position: relative;
   }
 }
 </style>

@@ -18,7 +18,7 @@
       </div>
     </div>
     <router-link to="/description">
-      <div v-if="itemCount >= 3" class="nextBox" @click="changePageId()"></div>
+      <div v-if="itemCount >= 3" class="nextBox" @click="changePageId(2)"></div>
     </router-link>
   </div>
 </template>
@@ -29,7 +29,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 @Component
 export default class topIndex extends Vue {
   private changePageId(pageId: number) {
-    this.$store.dispatch("changePageId", pageId);
+    this.$store.dispatch("chengePageId", pageId);
   }
 
   private itemCount: number = 0;
