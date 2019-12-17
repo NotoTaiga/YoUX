@@ -329,7 +329,7 @@ export default class description extends Vue {
   padding-left: 32px;
   padding-right: 32px;
   width: 100%;
-  // height: calc(100vh - 50px);
+  // height: calc(100% - 50px);
   // overflow-y: scroll;
   .content {
     opacity: 0;
@@ -392,7 +392,7 @@ export default class description extends Vue {
 
   .firstCont {
     position: relative;
-    height: calc(100vh - 50px);
+    height: calc(100% - 50px);
     display: flex;
     flex-direction: column;
     justify-content: center;

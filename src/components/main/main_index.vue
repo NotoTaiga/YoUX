@@ -926,7 +926,7 @@ export default class mainIndex extends Vue {
 
 .masterGrid {
   width: calc(100% - 6.4rem);
-  height: calc(100vh - 10rem - 1.6rem - 1.6rem);
+  height: calc(100% - 10rem - 1.6rem - 1.6rem);
   font-size: 1.6rem;
   margin: 0 auto;
   border-radius: 2rem;
@@ -956,7 +956,7 @@ export default class mainIndex extends Vue {
 @media screen and (max-width: 800px) {
   .masterGrid {
     width: calc(100% - 3.2rem);
-    height: calc(100vh - 10rem - 1.6rem - 1.6rem);
+    height: calc(100% - 10rem - 1.6rem - 1.6rem);
     font-size: 1.6rem;
     margin: 0 auto;
     border-radius: 2rem;

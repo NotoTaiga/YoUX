@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/YoUX/precache-manifest.2c06ffed8d12721cfbce86da9c52a254.js"
+  "/YoUX/precache-manifest.cbed15f2a34958a132531b2d5cd57a35.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "youx"});

@@ -191,7 +191,7 @@ export default class mainExplanation extends Vue {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   z-index: 9999999999;
 
   &__inner {
@@ -449,7 +449,7 @@ export default class mainExplanation extends Vue {
       }
 
       .imgBox {
-        height: calc(70% - 2.4rem);
+        height: 40rem;
         width: calc(100% - 2.4rem);
         margin: 1.2rem auto;
       }

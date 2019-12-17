@@ -55,7 +55,7 @@ export default class App extends Vue {
 
 <style lang="scss">
 .cont {
-  height: calc(100vh);
+  height: calc(100%);
   display: flex;
 }
 </style>

@@ -67,7 +67,7 @@ export default class topIndex extends Vue {
 .topIndex {
   position: relative;
   width: 100%;
-  height: calc(100vh - 5rem);
+  height: calc(100% - 5rem);
 
   .anime {
     position: absolute;
@@ -75,7 +75,7 @@ export default class topIndex extends Vue {
     left: 0;
     width: 100%;
     font-size: 2.5rem;
-    height: calc(100vh - 7rem);
+    height: calc(100% - 7rem);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -120,7 +120,7 @@ export default class topIndex extends Vue {
   .nextBox {
     position: fixed;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     top: 0;
     left: 0;
     z-index: 9;

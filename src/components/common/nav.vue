@@ -91,7 +91,7 @@ export default class MasterNav extends Vue {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     background-color: $black;
     opacity: 0.5;
     z-index: 99;
@@ -102,7 +102,7 @@ export default class MasterNav extends Vue {
   left: 0;
   top: 5rem;
   z-index: 999;
-  height: calc(100vh - 5rem);
+  height: calc(100% - 5rem);
   width: 15rem;
   background-color: $black;
   font-size: 1.2rem;

@@ -385,7 +385,7 @@ export default class mainFilter extends Vue {
   position: absolute;
   top: 0;
   left: 0;
-  height: 100vh;
+  height: 100%;
   width: 100%;
 
   .blackBox {
@@ -393,7 +393,7 @@ export default class mainFilter extends Vue {
     position: absolute;
     top: 0;
     left: 0;
-    height: 100vh;
+    height: 100%;
     width: 100%;
     background-color: $black;
     opacity: 0.5;
@@ -404,7 +404,7 @@ export default class mainFilter extends Vue {
     position: absolute;
     top: 0;
     right: 0;
-    height: 100vh;
+    height: 100%;
     width: 35rem;
     background-color: $black;
     color: $white;
@@ -563,7 +563,7 @@ export default class mainFilter extends Vue {
     position: absolute;
     top: 0;
     right: 0;
-    height: 100vh;
+    height: 100%;
     width: 35rem;
     background-color: $black;
     border-right: 1px solid #666;
@@ -591,7 +591,7 @@ export default class mainFilter extends Vue {
     }
 
     &__list {
-      height: calc(100vh - 6rem - 6rem - 3.2rem);
+      height: calc(100% - 6rem - 6rem - 3.2rem);
       overflow-y: scroll;
     }
 
