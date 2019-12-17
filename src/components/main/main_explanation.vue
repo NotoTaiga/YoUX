@@ -244,6 +244,7 @@ export default class mainExplanation extends Vue {
       align-items: center;
 
       .changeBtn {
+        background-color: $white;
         cursor: pointer;
         font-size: 1.8rem;
         width: 12rem;
@@ -449,18 +450,18 @@ export default class mainExplanation extends Vue {
       }
 
       .imgBox {
-        height: 40rem;
+        height: 20rem;
         width: calc(100% - 2.4rem);
         margin: 1.2rem auto;
       }
 
       .textBox {
         width: calc(100% - 2.4rem);
-        height: calc(100% - 2.4rem);
+        height: calc(100% - 20rem - 2.4rem);
         margin: 0 auto;
 
         .top {
-          height: 30%;
+          height: 20%;
         }
 
         .title {
@@ -476,7 +477,7 @@ export default class mainExplanation extends Vue {
         }
 
         .explanation {
-          height: 70%;
+          height: 80%;
           &__title {
             height: 2rem;
             font-size: 1.4rem;
