@@ -392,7 +392,7 @@ export default class description extends Vue {
 
   .firstCont {
     position: relative;
-    height: calc(100% - 50px);
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "0bb3378e4a6c8f9e5fc2",
-    "url": "/YoUX/css/app.09fb28b1.css"
+    "revision": "015aaf4de6c32f732172",
+    "url": "/YoUX/css/app.69a967c8.css"
   },
   {
-    "revision": "0bb3378e4a6c8f9e5fc2",
-    "url": "/YoUX/js/app.05e06c8e.js"
+    "revision": "015aaf4de6c32f732172",
+    "url": "/YoUX/js/app.e606d1ae.js"
   },
   {
     "revision": "e9f1d183a0f6e47c5e2f",
@@ -40,7 +40,7 @@ self.__precacheManifest = [
     "url": "/YoUX/img/filter_black.8e586a4a.png"
   },
   {
-    "revision": "0fa4d28d65ad0b481778b1f1e8069822",
+    "revision": "50b654677c5b82f3616ab58a353915f6",
     "url": "/YoUX/index.html"
   },
   {

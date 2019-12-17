@@ -65,17 +65,21 @@ export default class topIndex extends Vue {
 }
 
 .topIndex {
+  box-sizing: border-box;
   position: relative;
   width: 100%;
-  height: calc(100% - 5rem);
+  padding-top: 5rem;
+  height: 100%;
 
   .anime {
+    box-sizing: border-box;
+    padding-top: 5rem;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     font-size: 2.5rem;
-    height: calc(100% - 7rem);
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
