@@ -713,12 +713,19 @@ export default new Vuex.Store({
         child: ['MR授業 空間タイマー', 'MR授業 現実変更', 'MR授業 質問翻訳', 'MR授業 学生の食いつきポイント', 'MR授業 場所チャット確認', 'MR授業 グループトークアシスト', 'MR授業 MyColor判断', 'MR授業 学生のMyColor判断', 'MR授業 投票ツール', 'MR授業 掘り下げ',]
       }, {
         id: 60,
-        name: 'MR授業 空間タイマー',
+        name: 'MR授業 授業ツール',
         place: ['教室'],
         target: ['先生'],
         targetStory: {},
         usetech: [],
-        text: [],
+        text: ["実際に授業で使えるツールを紹介します。",
+          "授業はじめに名刺交換と自己紹介を行う際に円滑に進んでいるかを表示します。円滑に進んでいない場合ビックリマークのような警告マークとTAを向かわせるボタンがが出ます、警告マークをタップすると協力的ではない生徒の名前などの原因となるものが表示されます。加えて自然解決の可能性も表示されるので先生側が問題ありと判断した場合TAボタンを押すことで円滑に進ませることが可能です。",
+          "MyColorと連携しており、授業に参加している生徒のMyColorを見ることが出来ます。グループワークなどで色による意図的な組み合わせなどが可能になるので先生側が望んでいる授業をすることが出来ます。",
+          "他には先生が話した話題に対して掘り下げるかを聞けるようにします。",
+          "反応はMRで知ることが出来るので生徒がどの話題にどう興味を持っているのかを知ることが出来ます。",
+          "後はタイマーや投票ツールなどになります。",
+          "上記のツールを使うことによりより能動的で先生の意図している授業が可能になるはずです。"
+        ],
         img: null,
         child: []
       }, {
@@ -728,7 +735,11 @@ export default new Vuex.Store({
         target: ['先生'],
         targetStory: {},
         usetech: [],
-        text: [],
+        text: ["現実変更と聞くと？になるかもしれませんが、実際の教室を変化させるときに使います。",
+          "照明や音声プロジェクターなどの起動・設定・変更を行えるようにするもので、事前にジェスチャーなどを登録しておきます。",
+          "照明であれば、事前に登録したジェスチャーを割り当てそのジェスチャーを行うことで自由に照明の変更・調整をすることが出来ます。",
+          "音声も同様に自分が使いやすいジェスチャーを使って音量調整が可能になります。",
+          "映像に関してはスマホの拡大・縮小するジェスチャーをすることによって好きな部分を拡大・縮小することが可能です、今までパワーポイントを見てて小さくて見えない画像などの問題を解消できます。"],
         img: null,
         child: []
       }, {
@@ -738,7 +749,9 @@ export default new Vuex.Store({
         target: ['先生'],
         targetStory: {},
         usetech: [],
-        text: [],
+        text: ["現環境ではでまだ日本語が得意ではない留学生から質問や意見をもらった際に先生側がうまく意味を読み取れず留学生が欲しい意見を得られない場合が多々あります。",
+          "この質問翻訳は授業中リアルタイムで留学生が質問を投げかけてきた時、MRを付けている先生はツイッターのような吹き出しで質問が生徒の上に出てきます。それをタップすることによって翻訳済みの状態で拡大してみることが可能です。",
+          "言語の壁を気にせず、授業に臨めるのは嬉しいですね。"],
         img: null,
         child: []
       }, {
@@ -814,7 +827,7 @@ export default new Vuex.Store({
       }, {
         id: 70,
         name: 'feedback',
-        place: ['教室'],
+        place: ['先生APP', '学生APP'],
         target: ['先生'],
         targetStory: {},
         usetech: [],
@@ -824,7 +837,7 @@ export default new Vuex.Store({
       }, {
         id: 71,
         name: 'feedback 授業印象',
-        place: ['教室'],
+        place: ['先生APP', '学生APP'],
         target: ['先生'],
         targetStory: {},
         usetech: [],
@@ -834,7 +847,7 @@ export default new Vuex.Store({
       }, {
         id: 72,
         name: 'feedback クラスの授業反応',
-        place: ['教室'],
+        place: ['先生APP', '学生APP'],
         target: ['先生'],
         targetStory: {},
         usetech: [],
@@ -844,7 +857,7 @@ export default new Vuex.Store({
       }, {
         id: 73,
         name: 'feedback 授業から学べるテクニック色',
-        place: ['教室'],
+        place: ['先生APP', '学生APP'],
         target: ['先生'],
         targetStory: {},
         usetech: [],
@@ -854,7 +867,7 @@ export default new Vuex.Store({
       }, {
         id: 74,
         name: 'feedback キーポイント集中度',
-        place: ['教室'],
+        place: ['先生APP', '学生APP'],
         target: ['先生'],
         targetStory: {},
         usetech: [],
@@ -864,7 +877,7 @@ export default new Vuex.Store({
       }, {
         id: 75,
         name: 'feedback 授業データ',
-        place: ['教室'],
+        place: ['先生APP', '学生APP'],
         target: ['先生'],
         targetStory: {},
         usetech: [],
@@ -874,7 +887,7 @@ export default new Vuex.Store({
       }, {
         id: 76,
         name: 'feedback 遅延情報',
-        place: ['教室'],
+        place: ['先生APP', '学生APP'],
         target: ['先生'],
         targetStory: {},
         usetech: [],
@@ -884,7 +897,7 @@ export default new Vuex.Store({
       }, {
         id: 77,
         name: 'feedback 前年との差分',
-        place: ['教室'],
+        place: ['先生APP'],
         target: ['先生'],
         targetStory: {},
         usetech: [],
@@ -894,7 +907,7 @@ export default new Vuex.Store({
       }, {
         id: 78,
         name: 'feedback 学生のMyColor基準',
-        place: ['教室'],
+        place: ['先生APP', '学生APP'],
         target: ['先生'],
         targetStory: {},
         usetech: [],
@@ -1048,7 +1061,7 @@ export default new Vuex.Store({
           "授業中に先生を補助するソリューションから授業外の時間に学生が使用する遊びの空間としても使えるソリューションを考えてみました。",
           "少しでも記憶に残る授業をできるようにをテーマにしているので関連ソリューションから見てみてください。"],
         img: require('./assets/img/Classroom.jpg'),
-        child: ['教室 空間時間', '教室 サークル利用',]
+        child: ['授業中名刺交換', 'グループトーク', 'デスクcloud 出席管理', '授業中名刺交換 自己紹介デスクハッキング', '授業中名刺交換 聞き手デスク', '授業中名刺交換 話し手デスク', '授業中名刺交換 ゲスト講師名刺', 'MR授業', '教室 空間時間', '教室 サークル利用', '事務局 教室へのアクション',]
       }, {
         id: 91,
         name: '教室 空間時間',
