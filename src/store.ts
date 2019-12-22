@@ -862,7 +862,7 @@ export default new Vuex.Store({
         targetStory: {},
         usetech: [],
         text: [],
-        img: null,
+        img: require('./assets/img/mycolor.jpg'),
         child: []
       }, {
         id: 74,
@@ -872,7 +872,7 @@ export default new Vuex.Store({
         targetStory: {},
         usetech: [],
         text: [],
-        img: null,
+        img: require('./assets/img/keyPoint.jpg'),
         child: []
       }, {
         id: 75,
@@ -882,7 +882,7 @@ export default new Vuex.Store({
         targetStory: {},
         usetech: [],
         text: [],
-        img: null,
+        img: require('./assets/img/Progress.jpg'),
         child: []
       }, {
         id: 76,
@@ -892,7 +892,7 @@ export default new Vuex.Store({
         targetStory: {},
         usetech: [],
         text: [],
-        img: null,
+        img: require('./assets/img/train.png'),
         child: []
       }, {
         id: 77,
@@ -902,7 +902,7 @@ export default new Vuex.Store({
         targetStory: {},
         usetech: [],
         text: [],
-        img: null,
+        img: require('./assets/img/Progress.jpg'),
         child: []
       }, {
         id: 78,
@@ -912,7 +912,7 @@ export default new Vuex.Store({
         targetStory: {},
         usetech: [],
         text: [],
-        img: null,
+        img: require('./assets/img/mycolor.jpg'),
         child: []
       }, {
         id: 79,
@@ -922,7 +922,7 @@ export default new Vuex.Store({
         targetStory: {},
         usetech: [],
         text: [],
-        img: null,
+        img: require('./assets/img/cafeteria.jpg'),
         child: []
       }, {
         id: 80,
@@ -932,7 +932,7 @@ export default new Vuex.Store({
         targetStory: {},
         usetech: [],
         text: [],
-        img: null,
+        img: require('./assets/img/coworking.jpg'),
         child: ['コワーキングスペース 離席タスク', 'コワーキングスペース 離席まで後何%？', 'コワーキングスペース コワーキングチャット',]
       }, {
         id: 81,
@@ -942,7 +942,7 @@ export default new Vuex.Store({
         targetStory: {},
         usetech: [],
         text: [],
-        img: null,
+        img: require('./assets/img/leaveTask.png'),
         child: []
       }, {
         id: 82,
@@ -952,7 +952,7 @@ export default new Vuex.Store({
         targetStory: {},
         usetech: [],
         text: [],
-        img: null,
+        img: require('./assets/img/up.png'),
         child: []
       }, {
         id: 83,
@@ -975,7 +975,7 @@ export default new Vuex.Store({
           "なのでエントランスは学生たちの輝かしい部分、大学としてみてほしい部分を押し出せるようにと考えました。",
           "また、外部の方との商談スペースとしての活用も考えソリューションを作ってみました。",
           "関連ソリューションを見てみてください。"],
-        img: null,
+        img: require('./assets/img/entrance.png'),
         child: ['エントランス 入館受付', 'エントランス 待ち合わせ', 'エントランス 学内システム使用権原', 'エントランス おいでエレベータ', 'エントランス リモート会議',]
       }, {
         id: 84,
@@ -988,7 +988,7 @@ export default new Vuex.Store({
           "また外部の方が学内に来る場合ほとんどの確率で待ち合わせをしている人がいるはずです。",
           "その待ち合わせをしている人に対して外部の方がエレベーターに乗っタイミングやある一定の距離近づいてきたタイミングで通知を送ります。",
           "外部の方も学内の方も両方待ち時間というものが発生しないよう子のソリューションを考えました。"],
-        img: null,
+        img: require('./assets/img/entrance.png'),
         child: []
       }, {
         id: 85,
@@ -1001,7 +1001,7 @@ export default new Vuex.Store({
           "電車遅延などでそもそもの到着が遅れてしまう場合はその旨の通知とコワーキングスペースの利用など丁度いい時間つぶしの提案を考えています。",
           "時間つぶしとして提示されたコワーキングスペースの席は仮抑えとして使用できる状態を担保できるよう考えています。",
           "また、遅延があらかじめわかる場合会議室の予約を後ろにずらすなど柔軟な対応を考えています。"],
-        img: null,
+        img: require('./assets/img/entrance.png'),
         child: []
       }, {
         id: 86,
@@ -1013,7 +1013,7 @@ export default new Vuex.Store({
         text: ["外部APPでの学内システムの使用権原を付与します。",
           "また学内にいるとき使う可能性があるもののみを開放し行動の制限をかけることが可能です。",
           "また講師として呼ばれている場合には一部先生APPの使用権原の付与も考えています。"],
-        img: null,
+        img: require('./assets/img/app.jpg'),
         child: []
       }, {
         id: 87,
@@ -1027,7 +1027,7 @@ export default new Vuex.Store({
           "そんな時に限ってエレベーターはなかなか来ないものです...",
           "ですので次のスケジュールがカツカツな人の場合エントランスorDENからエレベータを読んでおくことが可能です。",
           "余計な心配をせず会議に集中できますね。"],
-        img: null,
+        img: require('./assets/img/elevator.png'),
         child: []
       }, {
         id: 88,
@@ -1038,7 +1038,7 @@ export default new Vuex.Store({
         usetech: [],
         text: ["エントランスの二つ目の顔としてリモート会議の場としての使用を想定しています。",
           "全体的にまじめな空間という事もあり締まりある状態でリモート会議ができると考えています。"],
-        img: null,
+        img: require('./assets/img/remote.jpg'),
         child: []
       }, {
         id: 89,
@@ -1048,7 +1048,7 @@ export default new Vuex.Store({
         targetStory: {},
         usetech: [],
         text: [],
-        img: null,
+        img: require('./assets/img/drink.jpg'),
         child: []
       }, {
         id: 90,
@@ -1080,7 +1080,7 @@ export default new Vuex.Store({
           "ですので、授業中は壁掛け時計ではなく部屋の雰囲気で時間経過を感じれるようにしていきます。",
           "小学校時代のように気がついたら日が暮れている教室。",
           "時間に囚われない授業ができるようにと願いを込めてこのソリューションを考えました。"],
-        img: require('./assets/img/Classroom.jpg'),
+        img: require('./assets/img/spaceTime.jpg'),
         child: []
       }, {
         id: 92,
