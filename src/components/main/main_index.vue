@@ -350,7 +350,6 @@ export default class mainIndex extends Vue {
   }
 
   private backClick() {
-    debugger;
     this.rmNameLevels();
     const masterData: dataSet[] = this.getMasterData();
     const arr: string[] = this.getNameLevelArr();
@@ -886,12 +885,17 @@ export default class mainIndex extends Vue {
     margin-bottom: 1.6rem;
 
     .datalevelBox {
+      max-width: calc(100% - 3.5rem - 1.6rem);
       display: flex;
       align-items: center;
       &__title {
+        width: calc(100%);
         line-height: 5rem;
         font-size: 1.8rem;
         margin-right: 1rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
   }
