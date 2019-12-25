@@ -41,7 +41,6 @@ export default new Vuex.Store({
         target: ['学生'],
         targetStory: {
           student: ['大学に登校する', '好きな教室、場所に移動する', '自動的な認証で出席登録', '自分の鞄やpcなどをデスクに置く', '2次元上のコンテンツと3次元上のコンテンツが混在した自分だけの空間で作業できる'],
-          teacher: ['先生のやつ']
         },
         usetech: ['電子掲示板'],
         text: ["教科書のために無駄な荷物が増える、無駄な荷物を持ったまま電車に揺られる、授業中も使うか分からないのに。",
@@ -138,7 +137,9 @@ export default new Vuex.Store({
         name: 'デスクcloud 出席管理',
         place: ['駿河台ホール', '教室'],
         target: ['学生'],
-        targetStory: {},
+        targetStory: {
+          student: ['大学に登校する。', '席に座る', '自動で顔認証し自動で出席とする。']
+        },
         usetech: [],
         text: ['現在のデジタルハリウッドでは学生証をカードリーダーにタッチすることで出席管理をしていましたがそれを廃止し、デスククラウドのログインに必要な顔認証をもって出席とします。また制度確保のため椅子の感圧によって二重認証をかんがえています。',
           '座学授業など非アクティブ授業など先生が学生の出席を管理することが困難な場合は上記の認証方法で80％以上の着席率を確認できた場合のみ出席とするなど先生の意志で出席方法をコントロールできるように考えています。',
@@ -159,7 +160,7 @@ export default new Vuex.Store({
           '課題はパーセンテージで表示し、課題に関係した調査もその中に含みます。提出完了した時に初めて100％になります。',
           'また感情サーモグラフィーにも対応しているので、疲れているときは簡単なタスクを推奨したり体調不調を感知した場合は帰宅するよう促します。'],
         img: require('./assets/img/dayToDo.jpg'),
-        child: []
+        child: ['学生APP Day ToDo確認', 'Day ToDo 取得テクニック色', 'Day ToDo 達成している比率が高いタスク', 'Day ToDo 余韻で走ったタスク', 'Day ToDo 捗り度',]
       }, {
         id: 9,
         name: '場所チャット',
@@ -172,7 +173,7 @@ export default new Vuex.Store({
           '効果的な使い方としては主に授業中の意見交換や先生への質問、コワーキングスペースに関しては課題の相談などを想定しています。',
           '授業中の特殊機能として授業に関連するトークが白熱した場合先生が認識して授業のテーマに取り上げる機能を考えているので座学の授業でも今まで以上にfreeな授業が生まれると考えています。'],
         img: require('./assets/img/talk.jpg'),
-        child: []
+        child: ['MR授業 場所チャット確認', 'デスクcloud',]
       }, {
         id: 10,
         name: 'デスクcloud 机プラグイン',
@@ -213,7 +214,7 @@ export default new Vuex.Store({
           "細かいデータとして名刺を渡す側は顔が強張っているか、貰う側は俯き気味じゃ無いかなどデスクcloudやアプリを通して記録しておきます。",
           "これによって名刺を見返すときに名前で思い出すのではなく名前と感情を頼り思い出すことができるのでより鮮明に相手を思い出すことができます。"],
         img: require('./assets/img/nameCardholder.png'),
-        child: []
+        child: ['学生APP 名刺管理',]
       }, {
         id: 13,
         name: '疲れ度センサー',
@@ -328,7 +329,7 @@ export default new Vuex.Store({
           "長い期間での変化を知りたいのであれば年表としての機能もあるので、時系列バーに沿って自分がどれだけ成長したかを知ることが出来ます。"
         ],
         img: require('./assets/img/mycolor.jpg'),
-        child: []
+        child: ['学生APP 名刺管理',]
       }, {
         id: 32,
         name: '名刺管理　友達ジャンル',
@@ -339,7 +340,7 @@ export default new Vuex.Store({
         text: ["自分で名刺のジャンル分けを行うことが出来ます。",
           "ジャンル自体の設定もできることにより、友達でも得意分野によって分けることもできます。"],
         img: require('./assets/img/friend.png'),
-        child: []
+        child: ['学生APP 名刺管理',]
       }, {
         id: 33,
         name: '名刺管理　名刺リストアップ',
@@ -352,7 +353,7 @@ export default new Vuex.Store({
           "授業内の情報であればfeedbackと連携し、シラバスやアジェンダ、グループメンバーなどが表示されます。",
           "プライベートの場合は、交換した場所や紹介してくれた友人の情報が見れます。"],
         img: require('./assets/img/namecard.png'),
-        child: []
+        child: ['学生APP 名刺管理',]
       }, {
         id: 34,
         name: '名刺管理　友達全体のMyColor傾向',
@@ -363,7 +364,7 @@ export default new Vuex.Store({
         text: ["自分が友達になろうと思う人がどうゆうmycolor傾向にあるのか気になりませんか？",
           "友達全体のmycolorの傾向を知ることが出来るので自分の好きな人種が分かるかもしれませんね！"],
         img: require('./assets/img/mycolor.jpg'),
-        child: []
+        child: ['学生APP 名刺管理',]
       }, {
         id: 35,
         name: '名刺管理　今必要な名刺',
@@ -374,7 +375,7 @@ export default new Vuex.Store({
         text: ["自分がやりたいことや必要なスキルから見て今必要な名刺をピックアップします。",
           "ピックアップされた方はあなたにとって必ず価値のある方です、一度会ってみては？"],
         img: require('./assets/img/namecard.png'),
-        child: []
+        child: ['学生APP 名刺管理',]
       }, {
         id: 36,
         name: '名刺管理　急成長名刺',
@@ -386,7 +387,7 @@ export default new Vuex.Store({
           "みたいな人をピックアップします。",
           "そうゆう方に勉強法を聞いてみるのも成長する一手かもしれませんね！"],
         img: require('./assets/img/Progress.jpg'),
-        child: []
+        child: ['学生APP 名刺管理',]
       }, {
         id: 37,
         name: '名刺管理　これからかかわる可能性',
@@ -399,7 +400,7 @@ export default new Vuex.Store({
           "個のソリューションはネガティブな人に向けて、一度でも名刺を交換したことのある友人もしくは知り合いをこれから先の自分の行動にどうかかわってくるのかを表示するシステムです。",
           "知り合いが近くにいると思うと気持ちもが少し明るくなりませんか？"],
         img: require('./assets/img/namecard.png'),
-        child: []
+        child: ['学生APP 名刺管理',]
       }, {
         id: 22,
         name: '学生APP',
@@ -465,7 +466,7 @@ export default new Vuex.Store({
           "メンタル的にきつい状況であれば事務局に頼ることを視野に入れる。など",
           "要因は一日監視をして改善を促すのではなく自分で要因を追求し改善をするための助けとするためのシステムです。"],
         img: require('./assets/img/dayToDo.jpg'),
-        child: []
+        child: ['Day ToDo', '学生APP Day ToDo確認', 'Day ToDo 取得テクニック色', 'Day ToDo 達成している比率が高いタスク', 'Day ToDo 余韻で走ったタスク', 'Day ToDo 捗り度',]
       }, {
         id: 41,
         name: '学生証　電子化',
@@ -477,7 +478,7 @@ export default new Vuex.Store({
           "私たちが普段持つスマホで利用することが可能になります、学生用のアプリと連携するのでmycolorの変化もリアルタイムで学生証のデザインに反映していきます。",
           "学生APPは名刺交換もできるので必要に応じて学生証の情報などを手軽に見ることができます。"],
         img: require('./assets/img/cloud.jpg'),
-        child: []
+        child: ['学生証']
       }, {
         id: 42,
         name: 'MyColor 卒業証書',
@@ -494,7 +495,7 @@ export default new Vuex.Store({
           "写真や文字ではなく色を見るだけで頑張った自分を思い出せる。",
           "ただの証明書を思い出の詰まった一枚に変えるソリューションを提供します。"],
         img: require('./assets/img/graduationCertificate.png'),
-        child: []
+        child: ['MyColor']
       }, {
         id: 43,
         name: 'MyColor メンタル色',
@@ -509,7 +510,7 @@ export default new Vuex.Store({
           "学生生活が終わる時期にはゼミ担当教員が全体を見てメンタル色ポイントを振ります、これはほかの判断基準に比べて大きなものになります。"
         ],
         img: require('./assets/img/mycolor.jpg'),
-        child: []
+        child: ['MyColor']
       }, {
         id: 44,
         name: 'MyColor テクニック色',
@@ -526,7 +527,7 @@ export default new Vuex.Store({
           "自分が努力したことを周りが知らないのはもったいないですよね？",
           "これからは努力した分自信をもっていきましょう！"],
         img: require('./assets/img/mycolor.jpg'),
-        child: []
+        child: ['MyColor']
       }, {
         id: 45,
         name: 'MyColor MyColor単位査定申請',
@@ -540,7 +541,7 @@ export default new Vuex.Store({
           "査定基準は大学側が用意したDay ToDoの達成率が高いことや、ハッカソンのような技術の必要なコンテスト、大学の価値が上がるような制作や計画、就職活動で立派な成果を残したときなど。",
           "簡単なものではありませんが、達成したときは実際に自分の色にその努力が加わるだけではなく喉から手が出るほど欲しい1単位をもらえます。"],
         img: require('./assets/img/mycolor.jpg'),
-        child: []
+        child: ['MyColor']
       }, {
         id: 47,
         name: '学生APP 名刺管理',
@@ -558,10 +559,12 @@ export default new Vuex.Store({
         child: []
       }, {
         id: 49,
-        name: '学生APP リアルタイム教科書',
+        name: 'リアルタイム教科書',
         place: ['学生APP'],
-        target: ['学生'],
-        targetStory: {},
+        target: ['学生', '先生'],
+        targetStory: {
+          student: ['先生が任意のボタンを押しながら話をする', '教科書に自動的にマーカーを引く']
+        },
         usetech: [],
         text: ["授業で主に使われるものです。",
           "教授がここ重要！などメモや線引きが必要な言葉を自動的に認識し、クラウドデスク内の教科書に記入するというものです。",
@@ -572,10 +575,12 @@ export default new Vuex.Store({
         child: []
       }, {
         id: 50,
-        name: '学生APP リアルタイムPDF',
+        name: 'リアルタイムPDF',
         place: ['学生APP'],
         target: ['学生'],
-        targetStory: {},
+        targetStory: {
+          student: ['先生が任意のボタンを押しながら話をする', 'PDFに自動的にマーカーを引く']
+        },
         usetech: [],
         text: ["資料がPDFで配布された際、教科書とPDFを交互に見て内容確認するのは非常に効率が悪いですよね？",
           "リアルタイム教科書と連携し、PDFの参照した部分と教科書の紐づいているところを自動的に開いてくれる機能になります。",
@@ -592,7 +597,7 @@ export default new Vuex.Store({
         text: ["デスククラウドの編集をスマホの学生アプリでも行うことが出来るというものです。",
           "内容はデスクcloudリストのデスクcloud編集を参照してください。"],
         img: require('./assets/img/cloud.jpg'),
-        child: []
+        child: ['デスクcloud',]
       }, {
         id: 52,
         name: '学生APP デスクプラグインの申請',
@@ -603,7 +608,7 @@ export default new Vuex.Store({
         text: ["デスクプラグインの申請を学生アプリでもできるようにするものです。",
           "自主制作したデスクプラグインを公開することができ、大学側が認定しセキュリティ審査を通ることが出来ればプラグインストアに公開することが出来ます。"],
         img: require('./assets/img/cloud.jpg'),
-        child: []
+        child: ['デスクcloud',]
       }, {
         id: 53,
         name: '学生APP ラッキーDay',
@@ -633,7 +638,7 @@ export default new Vuex.Store({
         text: ["デスクcloudで指定したDay ToDoをアプリケーションから確認できるようにしたソリューションです。",
           "やることは決めたけど家に帰ったときなどに確認をできるようにしています。"],
         img: require('./assets/img/dayToDo.jpg'),
-        child: ['Day ToDo 取得テクニック色', 'Day ToDo 達成している比率が高いタスク', 'Day ToDo 余韻で走ったタスク', 'Day ToDo 捗り度',]
+        child: ['Day ToDo 取得テクニック色', 'Day ToDo 達成している比率が高いタスク', 'Day ToDo 余韻で走ったタスク', 'Day ToDo 捗り度', 'デスクcloud',]
       }, {
         id: 55,
         name: 'Day ToDo 取得テクニック色',
@@ -646,14 +651,14 @@ export default new Vuex.Store({
           "テクニック色と関係のあるタスクをこなすとそのタスクの大きさによってMy Colorが変動します。",
           "形になる努力はとても楽しいものですね！"],
         img: require('./assets/img/mycolor.jpg'),
-        child: []
+        child: ['Day ToDo',]
       }, {
         id: 56,
         name: 'Day ToDo 達成している比率が高いタスク',
         place: ['no'],
         target: ['学生'],
         targetStory: {},
-        usetech: [],
+        usetech: ['Day ToDo',],
         text: ["毎日タスクをこなしていると自分が達成しやすいタスクと達成しにくいタスクが見えてきます。Day ToDoでは可視化し見やすくします。",
           "ジャンル別に集計をし、自分が苦手とするタスクを知ることで苦手な分野も理解出来ると思います。苦手な分野が多い方は少しずつ簡単なタスクから解消していきましょう。",
           "簡単なタスクなら全体的にできる方は、もう少し難しいタスクに挑戦してみては？"],
@@ -672,7 +677,7 @@ export default new Vuex.Store({
           "タスクの種類によってはテクニック色にも反映します。",
           "調子のいい日にいつも以上に作業するのはいいことなのでどんどん頑張りましょう！"],
         img: require('./assets/img/dayToDo.jpg'),
-        child: []
+        child: ['Day ToDo',]
       }, {
         id: 58,
         name: 'Day ToDo 捗り度',
@@ -685,7 +690,7 @@ export default new Vuex.Store({
           "余韻でこなしたタスクは成果として認められるものを行ったのか、無駄なものをタスクとしてこなしたかなどを捗り度として判断し、達成している比率が高いタスクと低いタスクを比較し、改善を促します。",
           "常に意味のある行動をお手伝いします。"],
         img: require('./assets/img/dayToDo.jpg'),
-        child: []
+        child: ['Day ToDo',]
       }, {
         id: 59,
         name: 'MR授業',
@@ -717,7 +722,7 @@ export default new Vuex.Store({
           "上記のツールを使うことによりより能動的で先生の意図している授業が可能になるはずです。"
         ],
         img: require('./assets/img/MR.png'),
-        child: []
+        child: ['MR授業',]
       }, {
         id: 61,
         name: 'MR授業 現実変更',
@@ -731,7 +736,7 @@ export default new Vuex.Store({
           "音声も同様に自分が使いやすいジェスチャーを使って音量調整が可能になります。",
           "映像に関してはスマホの拡大・縮小するジェスチャーをすることによって好きな部分を拡大・縮小することが可能です、今までパワーポイントを見てて小さくて見えない画像などの問題を解消できます。"],
         img: require('./assets/img/MR.png'),
-        child: []
+        child: ['MR授業',]
       }, {
         id: 62,
         name: 'MR授業 質問翻訳',
@@ -743,7 +748,7 @@ export default new Vuex.Store({
           "この質問翻訳は授業中リアルタイムで留学生が質問を投げかけてきた時、MRを付けている先生はツイッターのような吹き出しで質問が生徒の上に出てきます。それをタップすることによって翻訳済みの状態で拡大してみることが可能です。",
           "言語の壁を気にせず、授業に臨めるのは嬉しいですね。"],
         img: require('./assets/img/translation.png'),
-        child: []
+        child: ['MR授業',]
       }, {
         id: 63,
         name: 'MR授業 学生の食いつきポイント',
@@ -753,7 +758,7 @@ export default new Vuex.Store({
         usetech: [],
         text: [],
         img: require('./assets/img/classStudy.png'),
-        child: []
+        child: ['MR授業',]
       }, {
         id: 64,
         name: 'MR授業 場所チャット確認',
@@ -767,7 +772,7 @@ export default new Vuex.Store({
           '質問や意見は生徒の頭上に表示され、タップすることで拡大して見ることが出来、共有したい意見や質問があればピックアップという形で生徒の頭上の吹き出しを掴んでスクリーンまで持っていくとそのチャットを共有することが可能で、デスククラウドにも表示されます。',
           '学生の意見などを保存して見返したいという場合は吹き出しをもってファイルのような入れ物に入れるとストックすることもできます。'],
         img: require('./assets/img/talk.jpg'),
-        child: []
+        child: ['MR授業',]
       }, {
         id: 65,
         name: 'MR授業 グループトークアシスト',
@@ -787,7 +792,7 @@ export default new Vuex.Store({
           'これで、もっと話したかったのに。がなくなりそうですね！'
         ],
         img: require('./assets/img/talk.jpg'),
-        child: []
+        child: ['MR授業',]
       }, {
         id: 66,
         name: 'MR授業 MyColor判断',
@@ -798,7 +803,7 @@ export default new Vuex.Store({
         text: ['MRでmy colorの判断を行い、適用することができます。',
           '判断材料は、feed backの学生の意見やグループトークの役割などになります。グループトークの場合はメンタル色が変更対象で、先生の判断によってmy colorにポイントが振られるので反映サイズとしては大きめなものになります。'],
         img: require('./assets/img/mycolor.jpg'),
-        child: []
+        child: ['MR授業', 'MyColor']
       }, {
         id: 68,
         name: 'MR授業 投票ツール',
@@ -811,7 +816,7 @@ export default new Vuex.Store({
           '先生が出した質問が学生のデスククラウドに表示され、投票をすることが可能になります。',
           '授業の幅が広い授業には有用になるツールになるでしょう。'],
         img: require('./assets/img/vote.png'),
-        child: []
+        child: ['MR授業',]
       }, {
         id: 69,
         name: 'MR授業 掘り下げ',
@@ -824,7 +829,7 @@ export default new Vuex.Store({
           'どのソリューションでもMRの個人的な意見や質問は問いかけてきた本人の頭上に表示されます。今回の掘り下げ希望も同様で先生にはタップしてもらいます。',
           '投票ツールなどと連携をしているので、掘り下げ希望が来たら他にもそう思っている生徒がいるか聞いてみて授業方針を決めることもできます。'],
         img: require('./assets/img/talk.jpg'),
-        child: []
+        child: ['MR授業',]
       }, {
         id: 70,
         name: 'feedback',
@@ -838,7 +843,7 @@ export default new Vuex.Store({
           '今後は授業印象を記入してもらうことになりました。',
           '内容よりも印象が大きく残ることが多いのでそれを参考に先生は授業を考えられる形にします。'],
         img: require('./assets/img/Progress.jpg'),
-        child: ['feedback 授業印象', 'feedback クラスの授業反応', 'feedback 授業から学べるテクニック色', 'feedback キーポイント集中度', 'feedback 授業データ', 'feedback 遅延情報', 'feedback 前年との差分', 'feedback 学生のMyColor基準',]
+        child: ['feedback 授業印象', 'feedback クラスの授業反応', 'feedback 授業から学べるテクニック色', 'feedback キーポイント集中度', 'feedback 授業データ', 'feedback 遅延情報', 'feedback 前年との差分', 'feedback 学生のMyColor基準', 'MR授業',]
       }, {
         id: 71,
         name: 'feedback 授業印象',
@@ -851,7 +856,7 @@ export default new Vuex.Store({
           '学生アプリの名刺管理で授業中の名刺交換したときの授業印象を改めて見れるようになっています。',
           '自分が書いたものになるのでわかりやすく思い出せるようにその場の出来事などを加えて思い出すトリガーとしての印象を記入してもらい、あとから授業を思い返せるようになっています。'],
         img: require('./assets/img/classStudy.png'),
-        child: []
+        child: ['feedback',]
       }, {
         id: 72,
         name: 'feedback クラスの授業反応',
@@ -861,7 +866,7 @@ export default new Vuex.Store({
         usetech: [],
         text: [],
         img: require('./assets/img/classStudy.png'),
-        child: []
+        child: ['feedback',]
       }, {
         id: 67,
         name: 'feedback myColor判断',
@@ -876,7 +881,7 @@ export default new Vuex.Store({
           '授業を受けている人数が少ないほど先生とのコミュニケーションを深く行うことができるのでメンタル色の反映率が大きくなります。',
           '授業の成績とメンタル色は関係ないのでご安心を。'],
         img: require('./assets/img/mycolor.jpg'),
-        child: []
+        child: ['feedback', 'MyColor',]
       }, {
         id: 73,
         name: 'feedback 授業から学べるテクニック色',
@@ -888,7 +893,7 @@ export default new Vuex.Store({
           '授業のアジェンダから得られるのは先生が指定したテクニック色になりますが、授業を受ける中で他の技術が得られた場合申請を行い受理されることで得ることができます。',
           '先生が想定しない、良い知識が得られることがある場合それは評価されるべきだと思いこのソリューションが生まれました。'],
         img: require('./assets/img/mycolor.jpg'),
-        child: []
+        child: ['feedback', 'MyColor', 'MyColor テクニック色',]
       }, {
         id: 74,
         name: 'feedback キーポイント集中度',
@@ -898,7 +903,7 @@ export default new Vuex.Store({
         usetech: [],
         text: [],
         img: require('./assets/img/keyPoint.jpg'),
-        child: []
+        child: ['feedback',]
       }, {
         id: 75,
         name: 'feedback 授業データ',
@@ -908,7 +913,7 @@ export default new Vuex.Store({
         usetech: [],
         text: [],
         img: require('./assets/img/Progress.jpg'),
-        child: []
+        child: ['feedback',]
       }, {
         id: 76,
         name: 'feedback 遅延情報',
@@ -918,7 +923,7 @@ export default new Vuex.Store({
         usetech: [],
         text: [],
         img: require('./assets/img/train.png'),
-        child: []
+        child: ['feedback',]
       }, {
         id: 77,
         name: 'feedback 前年との差分',
@@ -928,7 +933,7 @@ export default new Vuex.Store({
         usetech: [],
         text: [],
         img: require('./assets/img/Progress.jpg'),
-        child: []
+        child: ['feedback',]
       }, {
         id: 78,
         name: 'feedback 学生のMyColor基準',
@@ -938,7 +943,7 @@ export default new Vuex.Store({
         usetech: [],
         text: [],
         img: require('./assets/img/mycolor.jpg'),
-        child: []
+        child: ['feedback', 'MyColor',]
       }, {
         id: 79,
         name: 'カフェテリア',
@@ -968,7 +973,7 @@ export default new Vuex.Store({
         usetech: [],
         text: [],
         img: require('./assets/img/leaveTask.png'),
-        child: []
+        child: ['コワーキングスペース',]
       }, {
         id: 82,
         name: 'コワーキングスペース 離席まで後何%？',
@@ -978,7 +983,7 @@ export default new Vuex.Store({
         usetech: [],
         text: [],
         img: require('./assets/img/up.png'),
-        child: []
+        child: ['コワーキングスペース',]
       }, {
         id: 83,
         name: 'コワーキングスペース コワーキングチャット',
@@ -988,7 +993,7 @@ export default new Vuex.Store({
         usetech: [],
         text: [],
         img: require('./assets/img/talk.jpg'),
-        child: []
+        child: ['コワーキングスペース',]
       }, {
         id: 83,
         name: 'エントランス',
@@ -1014,7 +1019,7 @@ export default new Vuex.Store({
           "その待ち合わせをしている人に対して外部の方がエレベーターに乗っタイミングやある一定の距離近づいてきたタイミングで通知を送ります。",
           "外部の方も学内の方も両方待ち時間というものが発生しないよう子のソリューションを考えました。"],
         img: require('./assets/img/entrance.png'),
-        child: []
+        child: ['エントランス',]
       }, {
         id: 85,
         name: 'エントランス 待ち合わせ',
@@ -1027,7 +1032,7 @@ export default new Vuex.Store({
           "時間つぶしとして提示されたコワーキングスペースの席は仮抑えとして使用できる状態を担保できるよう考えています。",
           "また、遅延があらかじめわかる場合会議室の予約を後ろにずらすなど柔軟な対応を考えています。"],
         img: require('./assets/img/entrance.png'),
-        child: []
+        child: ['エントランス',]
       }, {
         id: 86,
         name: 'エントランス 学内システム使用権原',
@@ -1039,7 +1044,7 @@ export default new Vuex.Store({
           "また学内にいるとき使う可能性があるもののみを開放し行動の制限をかけることが可能です。",
           "また講師として呼ばれている場合には一部先生APPの使用権原の付与も考えています。"],
         img: require('./assets/img/app.jpg'),
-        child: []
+        child: ['エントランス',]
       }, {
         id: 87,
         name: 'エントランス おいでエレベータ',
@@ -1053,7 +1058,7 @@ export default new Vuex.Store({
           "ですので次のスケジュールがカツカツな人の場合エントランスorDENからエレベータを読んでおくことが可能です。",
           "余計な心配をせず会議に集中できますね。"],
         img: require('./assets/img/elevator.png'),
-        child: []
+        child: ['エントランス',]
       }, {
         id: 88,
         name: 'エントランス リモート会議',
@@ -1064,7 +1069,7 @@ export default new Vuex.Store({
         text: ["エントランスの二つ目の顔としてリモート会議の場としての使用を想定しています。",
           "全体的にまじめな空間という事もあり締まりある状態でリモート会議ができると考えています。"],
         img: require('./assets/img/remote.jpg'),
-        child: []
+        child: ['エントランス',]
       }, {
         id: 89,
         name: '自動販売機',
@@ -1074,7 +1079,7 @@ export default new Vuex.Store({
         usetech: [],
         text: [],
         img: require('./assets/img/drink.jpg'),
-        child: []
+        child: ['学生APP']
       }, {
         id: 90,
         name: '教室',
@@ -1106,7 +1111,7 @@ export default new Vuex.Store({
           "小学校時代のように気がついたら日が暮れている教室。",
           "時間に囚われない授業ができるようにと願いを込めてこのソリューションを考えました。"],
         img: require('./assets/img/spaceTime.jpg'),
-        child: []
+        child: ['教室',]
       }, {
         id: 92,
         name: '教室 サークル利用',
@@ -1119,7 +1124,7 @@ export default new Vuex.Store({
           "各サークルが使用する時は自分たちが活動しやすいように空間アレンジする事でサークルの特色が色濃く出ます。",
           "空間からサークル活動へお手伝いを！"],
         img: require('./assets/img/Classroom.jpg'),
-        child: []
+        child: ['教室',]
       }, {
         id: 93,
         name: '事務局',
@@ -1149,7 +1154,7 @@ export default new Vuex.Store({
           'コレらの人に対しては事務局からもアプローチしやすいように別枠でのリストアップを考えています。',
           '事務局の手間が少なくなる事が目標です。'],
         img: require('./assets/img/help.png'),
-        child: []
+        child: ['事務局',]
       }, {
         id: 95,
         name: '事務局 MyColor名刺の発行',
@@ -1162,7 +1167,7 @@ export default new Vuex.Store({
           "この時に新しく自分の名刺を作るのも良いと思いますが、自分での大学での取り組みが大きく解るMyColorを名刺として作る事ができるようにと考えています。",
           "自分を外に売る上で利点として使ってほしいです。"],
         img: require('./assets/img/mycolor.jpg'),
-        child: []
+        child: ['事務局', 'MyColor',]
       }, {
         id: 96,
         name: '事務局 教室へのアクション',
@@ -1178,7 +1183,7 @@ export default new Vuex.Store({
           "と、思ったので教室の端末へ事務局からアクセスできるよう考えました。",
           "これで無駄な要因での授業遅延がなくなります。"],
         img: require('./assets/img/ElectronicAction.png'),
-        child: []
+        child: ['事務局',]
       }, {
         id: 97,
         name: '外部APP',
@@ -1214,7 +1219,7 @@ export default new Vuex.Store({
         usetech: [],
         text: [],
         img: require('./assets/img/summer.png'),
-        child: []
+        child: ['事務局',]
       }, {
         id: 100,
         name: '教室 隙間時間',
@@ -1227,7 +1232,7 @@ export default new Vuex.Store({
           "そんな時ただ教室として使うのは勿体ない気がしています。ですので学生の自主制作などを流す会場として使いたいと考えています。",
           "プロジェクトをやってみたい時自分が求めている人材が見つかるかもしれません。"],
         img: require('./assets/img/Classroom.jpg'),
-        child: []
+        child: ['教室',]
       }, {
         id: 101,
         name: 'DEN',
@@ -1252,7 +1257,7 @@ export default new Vuex.Store({
           "また、予約が取れない事が原因でプロジェクトが進まないなんて事を無くすためにプロジェクトメンバーの予定が合いそうな場所を計算しあらかじめ会議室を仮予約して置けるようにしました。",
           "また会議の重要度から混雑しているタイミングの予約時、優先的に部屋を予約できるようにも考えています。"],
         img: require('./assets/img/saveDen.png'),
-        child: []
+        child: ['DEN',]
       }, {
         id: 103,
         name: 'DEN 会議室保存',
@@ -1267,7 +1272,7 @@ export default new Vuex.Store({
           "ホワイトボードを電子化し自分の今行っているプロジェクトに対して会議室の状態を保存しておけるというものです。",
           "未来の技術という事で現実での書き心地を表現できると考えています。"],
         img: require('./assets/img/den.jpg'),
-        child: []
+        child: ['DEN',]
       }, {
         id: 104,
         name: 'DEN 自動議事録',
@@ -1281,7 +1286,7 @@ export default new Vuex.Store({
           "これを避けるために会議時の盛り上がりや、ホワイトボードの書き方から計算し決定事項など必要なもののみをピックアップし議事録を自動で作成します。",
           "また、会議を重ねる毎にプロジェクトメンバーが好む議事録へと変化していく学習システムを考えています。"],
         img: require('./assets/img/memo.jpg'),
-        child: []
+        child: ['DEN',]
       }, {
         id: 105,
         name: 'DEN 会議室の初期設定',
@@ -1296,7 +1301,7 @@ export default new Vuex.Store({
           "これらのロジックを会議前に設定できるように考えています。",
           "またこれらを使っていく中で自分たちにあった形を作りだしロジックとして登録しておく事も可能です。"],
         img: require('./assets/img/Configuration.png'),
-        child: []
+        child: ['DEN',]
       }, {
         id: 106,
         name: 'DEN ちょっと休憩',
@@ -1310,7 +1315,7 @@ export default new Vuex.Store({
           "リアルの紙を使用せず電子ボードを使っているため会議から離れる場合は周りのボードを森の映像にするなどメンバーの安らぐものに変える事ができます。",
           "僕自身、休憩の時ぐらい会議内容から離れたいのでこんなソリューションを作ってみました。"],
         img: require('./assets/img/break.png'),
-        child: []
+        child: ['DEN',]
       },
     ] as dataSet[],
 

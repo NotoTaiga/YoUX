@@ -350,6 +350,7 @@ export default class mainIndex extends Vue {
   }
 
   private backClick() {
+    debugger;
     this.rmNameLevels();
     const masterData: dataSet[] = this.getMasterData();
     const arr: string[] = this.getNameLevelArr();
@@ -366,11 +367,9 @@ export default class mainIndex extends Vue {
     } else {
       const name: string = arr[arr.length - 1];
       const nowData: any = masterData.find(d => {
-        masterData.forEach(d => {
-          if (this.filterChecker(d)) {
-            return d.name === name;
-          }
-        });
+        if (this.filterChecker(d)) {
+          return d.name === name;
+        }
       });
       this.changeRowData(nowData.child);
       this.updateAggrid();

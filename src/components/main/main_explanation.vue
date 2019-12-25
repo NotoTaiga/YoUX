@@ -116,16 +116,20 @@ export default class mainExplanation extends Vue {
 
   private makeNowStoryText() {
     const nowTextArr: string[] = this.storyTextArr[this.storyState];
-    let newArr: string[] = [];
-    nowTextArr.forEach((text, i) => {
-      if (i == nowTextArr.length - 1) {
-        newArr.push(text);
-      } else {
-        newArr.push(text, "↓");
-      }
-    });
+    if (!nowTextArr) {
+      this.nowStoryText = ["ストーリは想定していないので説明をご覧ください。"];
+    } else {
+      let newArr: string[] = [];
+      nowTextArr.forEach((text, i) => {
+        if (i == nowTextArr.length - 1) {
+          newArr.push(text);
+        } else {
+          newArr.push(text, "↓");
+        }
+      });
 
-    this.nowStoryText = newArr;
+      this.nowStoryText = newArr;
+    }
   }
 
   private closeWindow() {
