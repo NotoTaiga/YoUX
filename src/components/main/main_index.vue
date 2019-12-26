@@ -160,8 +160,9 @@ export default class mainIndex extends Vue {
       "学生APP",
       "先生APP",
       "外部APP",
-      '廊下',
-      'その他'
+      "廊下",
+      "その他",
+      "該当なし"
     ],
     target: ["学生", "先生", "事務局", "外部"],
     child: ["有り", "無し"],
