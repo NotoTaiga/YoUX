@@ -25,6 +25,11 @@ a {
   text-decoration: none;
 }
 
+.stopScroll {
+  height: 100vh !important;
+  overflow: hidden !important;
+}
+
 @media screen and (max-width: 400px) {
   html {
     // font-size: 50%;

@@ -132,9 +132,13 @@ export default class mainExplanation extends Vue {
   }
 
   private closeWindow() {
+    let body = document.querySelector("body");
+    body!.classList.remove("stopScroll");
     this.$emit("close");
   }
   beforeMount(): void {
+    let body = document.querySelector("body");
+    body!.classList.add("stopScroll");
     this.title = this.dataSet.name;
     this.dataSet.place.forEach((place, i) => {
       if (i == this.dataSet.place.length - 1) {
