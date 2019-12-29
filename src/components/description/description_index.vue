@@ -71,12 +71,13 @@
     <div class="content">
       <p class="SFont">自信のあるものを3個ピックアップしてみました</p>
       <p class="SFont">名前の響きで気になるものでいいので見ていただけませんか？</p>
+      <div class="btnCont">
+        <button @click="clickBtn(0)">MyColor</button>
+        <button @click="clickBtn(1)">デスクcloud</button>
+        <button @click="clickBtn(2)">空間時間</button>
+      </div>
     </div>
-    <div class="btnCont">
-      <button @click="clickBtn(0)">MyColor</button>
-      <button @click="clickBtn(1)">拡張授業</button>
-      <button @click="clickBtn(2)">デスクcloud</button>
-    </div>
+
     <div class="content">
       <p class="SFont">このようなものを何個も考えてみました。</p>
       <p class="SFont">面白いなと思っていただけたら嬉しいです。</p>
@@ -124,33 +125,12 @@ export default class description extends Vue {
 
   private dataArr: dataSet[] = [
     {
-      id: 0,
+      id: 24,
       name: "MyColor",
-      place: [
-        "駿河台ホール",
-        "E教室",
-        "３階廊下",
-        "エントランス",
-        "会議室",
-        "LabProto",
-        "カフェテリア",
-        "メディアライブラリー",
-        "大学事務局",
-        "リモート会議室",
-        "職員室",
-        "学生スマートフォン",
-        "職員スマートフォン"
-      ],
-      target: ["学生", "先生", "事務局"],
-      targetStory: {
-        student: [
-          "グループワークや先生との距離が近い授業を受ける。",
-          "相手の雰囲気からメンタル色を提示する。",
-          "授業後周りからの印象を平均化した色を反映する。",
-          "積み重なった色によって中間色が発生し自分だけの色が完成する。"
-        ]
-      },
-      usetech: ["電子カード"],
+      place: ["学生APP"],
+      target: ["学生"],
+      targetStory: {},
+      usetech: [],
       text: [
         "MyColorとは文字通りではあるのですが、「自分の色」という意味です。",
         "自分ってどんな人なのか？自分って何ができるのか？",
@@ -161,28 +141,38 @@ export default class description extends Vue {
         "ですのでMyColorでは中間色を設けています。",
         "メンタル色でいうとリーダーである赤色の要素と冷静である青色の要素か混在している学生の場合「紫色」をメンタルカラーとして表示します。",
         "また最初は何にでも染まれる白色から始まり、自分の興味のあることや目指しているものに向けて勉学に励んでいるうちにMyColorはあなただけの色へと変化していきます。",
-        " ",
+        "",
         "MyColorをきっかけに大学を「人生の夏休み」から「人生の分岐点へ」",
         "そんな思いが詰まったソリューションです。"
       ],
-      img: require("@/assets/img/neko.jpg"),
+      img: require("@/assets/img/mycolor.jpg"),
       child: [
-        "授業中名刺交換",
-        "グループトーク",
-        "デスクcloud プラグイン",
-        "デスクcloud ジェスチャー",
-        "デスクcloud 資料表示",
-        "感情サーモグラフィー",
-        "デスクcloud 出席管理",
-        "day ToDo",
-        "場所チャット",
-        "机模様替え"
+        "MyColor 卒業証書",
+        "MyColor メンタル色",
+        "MyColor テクニック色",
+        "MyColor MyColor単位査定申請"
       ]
     },
     {
       id: 0,
       name: "デスクcloud",
-      place: ["駿河台ホール"],
+      place: [
+        "駿河台ホール",
+        "教室",
+        "エントランス",
+        "DEN",
+        "LabProto",
+        "カフェテリア",
+        "メディアライブラリー",
+        "事務局",
+        "職員室",
+        "学生APP",
+        "先生APP",
+        "外部APP",
+        "廊下",
+        "その他",
+        "該当なし"
+      ],
       target: ["学生"],
       targetStory: {
         student: [
@@ -191,12 +181,18 @@ export default class description extends Vue {
           "自動的な認証で出席登録",
           "自分の鞄やpcなどをデスクに置く",
           "2次元上のコンテンツと3次元上のコンテンツが混在した自分だけの空間で作業できる"
-        ],
-        teacher: ["先生のやつ"]
+        ]
       },
       usetech: ["電子掲示板"],
-      text: ["aaaaaaaaaaaaaaa", "改行したい場合はこれで"],
-      img: require("@/assets/img/neko.jpg"),
+      text: [
+        "教科書のために無駄な荷物が増える、無駄な荷物を持ったまま電車に揺られる、授業中も使うか分からないのに。",
+        "僕はこれを繰り返すうちに面倒だと考え小学生のころのように自分の机に教科書を置きっぱなしにして帰りたいなと思ってます。",
+        "それなら実装してしまおう！机の状態をクラウド保存することでいつでもどこでも自分の机に。",
+        "本がデータになるなら教科書もデータになる、それなら机だって板である必要はない。",
+        "また、デスクが電子化することで与えることのできる役割は増えていきます。出席管理、グループワークの円滑化など未来の大学生活をよりよくする提案をしています。",
+        "是非関連ソリューションで全貌を見てみてください！"
+      ],
+      img: require("@/assets/img/cloud.jpg"),
       child: [
         "授業中名刺交換",
         "グループトーク",
@@ -205,41 +201,34 @@ export default class description extends Vue {
         "デスクcloud 資料表示",
         "感情サーモグラフィー",
         "デスクcloud 出席管理",
-        "day ToDo",
+        "Day ToDo",
         "場所チャット",
-        "机模様替え"
+        "デスクcloud 机プラグイン",
+        "デスクcloud プラグイン"
       ]
     },
     {
-      id: 0,
-      name: "デスクcloud",
-      place: ["駿河台ホール"],
-      target: ["学生"],
-      targetStory: {
-        student: [
-          "大学に登校する",
-          "好きな教室、場所に移動する",
-          "自動的な認証で出席登録",
-          "自分の鞄やpcなどをデスクに置く",
-          "2次元上のコンテンツと3次元上のコンテンツが混在した自分だけの空間で作業できる"
-        ],
-        teacher: ["先生のやつ"]
-      },
-      usetech: ["電子掲示板"],
-      text: ["aaaaaaaaaaaaaaa", "改行したい場合はこれで"],
-      img: require("@/assets/img/neko.jpg"),
-      child: [
-        "授業中名刺交換",
-        "グループトーク",
-        "デスクcloud プラグイン",
-        "デスクcloud ジェスチャー",
-        "デスクcloud 資料表示",
-        "感情サーモグラフィー",
-        "デスクcloud 出席管理",
-        "day ToDo",
-        "場所チャット",
-        "机模様替え"
-      ]
+      id: 91,
+      name: "教室 空間時間",
+      place: ["駿河台ホール", "教室"],
+      target: ["学生", "先生", "事務局", "外部"],
+      targetStory: {},
+      usetech: [],
+      text: [
+        "小学校の頃外で遊んでいたときは夢中で遊んでいました。",
+        "めちゃくちゃ楽しくて気づいたら日が落ち始めて。",
+        "ただ、始業式の校長先生の話などは長く感じました。",
+        "その時僕は何度も時計を見ていました。",
+        "まだ1分しか経ってない…",
+        "みたいな感じに。",
+        "「見つめる鍋は煮えたたない」",
+        "ことわざからもあるくらいです。",
+        "ですので、授業中は壁掛け時計ではなく部屋の雰囲気で時間経過を感じれるようにしていきます。",
+        "小学校時代のように気がついたら日が暮れている教室。",
+        "時間に囚われない授業ができるようにと願いを込めてこのソリューションを考えました。"
+      ],
+      img: require("@/assets/img/spaceTime.jpg"),
+      child: ["教室"]
     }
   ];
   private clickDataSet: dataSet = {

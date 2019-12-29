@@ -11,7 +11,6 @@
               <ul class="list">
                 <li>場所 : {{place}}</li>
                 <li>ターゲット : {{target}}</li>
-                <li>使用想定技術 : {{useTeck}}</li>
               </ul>
             </div>
             <div class="explanation">
