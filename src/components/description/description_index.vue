@@ -64,12 +64,12 @@
         僕らはこのシステムの事を
         <br />
         <span class="MFont blueFont">ソリューション</span>
-        <br />と呼び、数にして約200個ほど考えてきました。
+        <br />と呼び、繋がりも意識して色々と考えてみました。
       </p>
     </div>
 
     <div class="content">
-      <p class="SFont">自信のあるものを3個ピックアップしてみました</p>
+      <p class="SFont">とりあえず自信のあるものを3個ピックアップしてみました</p>
       <p class="SFont">名前の響きで気になるものでいいので見ていただけませんか？</p>
       <div class="btnCont">
         <button @click="clickBtn(0)">MyColor</button>

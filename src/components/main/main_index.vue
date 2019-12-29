@@ -933,7 +933,7 @@ export default class mainIndex extends Vue {
   height: calc(100% - 5rem - 1.6rem - 1.6rem);
   font-size: 1.6rem;
   margin: 0 auto;
-  border-radius: 2rem;
+  border-radius: 0.8rem;
   border-left: 1px solid $black;
   border-bottom: 1px solid $black;
   overflow: hidden;
@@ -953,7 +953,7 @@ export default class mainIndex extends Vue {
 }
 
 .ag-header-container {
-  border-radius: 2rem 2rem 0 0;
+  border-radius: 0.8rem 0.8rem 0 0;
   overflow: hidden;
 }
 
@@ -963,7 +963,7 @@ export default class mainIndex extends Vue {
     height: calc(100% - 5rem - 1.6rem - 1.6rem);
     font-size: 1.6rem;
     margin: 0 auto;
-    border-radius: 2rem;
+    border-radius: 0.8rem;
     border-left: 1px solid $black;
     border-bottom: 1px solid $black;
     overflow: hidden;
