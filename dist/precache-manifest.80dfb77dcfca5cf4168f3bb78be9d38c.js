@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "0a749d05711d0a745612",
-    "url": "/css/app.cf889bfe.css"
+    "revision": "27e97f18702c8c84e425",
+    "url": "/css/app.ccb85d1a.css"
   },
   {
-    "revision": "0a749d05711d0a745612",
-    "url": "/js/app.8943de8d.js"
+    "revision": "27e97f18702c8c84e425",
+    "url": "/js/app.bcc09d76.js"
   },
   {
     "revision": "e9f1d183a0f6e47c5e2f",
@@ -88,6 +88,10 @@ self.__precacheManifest = [
     "url": "/img/friend.44bd15d5.png"
   },
   {
+    "revision": "ddbc400f01f80dab924eb3ca3ac6b91a",
+    "url": "/img/help_pc.ddbc400f.png"
+  },
+  {
     "revision": "8b8436364e85b4ba0cca9458e7901bab",
     "url": "/img/vote.8b843636.png"
   },
@@ -146,6 +150,10 @@ self.__precacheManifest = [
   {
     "revision": "578469407f79ff0e5c2784397e508d54",
     "url": "/img/thermography.57846940.jpg"
+  },
+  {
+    "revision": "89c5c3d68466d0f1402337918d688b6d",
+    "url": "/img/help_phone.89c5c3d6.png"
   },
   {
     "revision": "39cdfb6d50e11d8d94c03eda2bf99f5f",
@@ -208,7 +216,7 @@ self.__precacheManifest = [
     "url": "/img/Concentration.17075716.png"
   },
   {
-    "revision": "e59939154bd9a1b550f56534be53cb63",
+    "revision": "8aaeba8a5945b9b831adccba6154abe5",
     "url": "/index.html"
   },
   {
