@@ -313,6 +313,9 @@ export default class description extends Vue {
 
 <style scoped lang="scss">
 @import "@/assets/style/index.scss";
+button {
+  cursor: pointer;
+}
 .description {
   box-sizing: border-box;
   padding-left: 32px;
@@ -352,6 +355,7 @@ export default class description extends Vue {
     justify-content: center;
 
     button {
+      cursor: pointer;
       margin: 0 1rem 2rem;
       width: 150px;
       height: 40px;

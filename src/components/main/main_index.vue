@@ -29,6 +29,9 @@
         :filterCategory="categoryFilter"
       ></mainFilter>
     </transition>
+    <transition name="fade">
+      <mainHelp v-if="openMainHelp" @closeMainHelp="closeMainHelp"></mainHelp>
+    </transition>
   </div>
 </template>
 
@@ -43,6 +46,7 @@ import {
 
 import mainFilter from "@/components/main/main_filter.vue";
 import mainExplanation from "@/components/main/main_explanation.vue";
+import mainHelp from "@/components/main/main_help.vue";
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { AgGridVue } from "ag-grid-vue";
 
@@ -50,10 +54,16 @@ import { AgGridVue } from "ag-grid-vue";
   components: {
     AgGridVue,
     mainExplanation,
-    mainFilter
+    mainFilter,
+    mainHelp
   }
 })
 export default class mainIndex extends Vue {
+  private openMainHelp: boolean = true;
+  private closeMainHelp() {
+    this.openMainHelp = false;
+  }
+
   //filter
   private filterTexts: string[] = [];
   private changeFilterTexts(newArr: string[]) {
