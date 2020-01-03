@@ -65,6 +65,7 @@
             @click="changePageState(0)"
           >説明</button>
           <button
+            v-if="isStory()"
             class="changeBtn"
             :class="[pageState == 1 ? 'changeBtn--active' : '']"
             @click="changePageState(1)"
@@ -113,10 +114,13 @@ export default class mainExplanation extends Vue {
     this.makeNowStoryText();
   }
 
+  private isStory(){
+    return this.nowStoryText.length > 0;
+  }
   private makeNowStoryText() {
     const nowTextArr: string[] = this.storyTextArr[this.storyState];
     if (!nowTextArr) {
-      this.nowStoryText = ["ストーリは想定していないので説明をご覧ください。"];
+      this.nowStoryText = [];
     } else {
       let newArr: string[] = [];
       nowTextArr.forEach((text, i) => {
