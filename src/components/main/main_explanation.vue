@@ -84,7 +84,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 })
 export default class mainExplanation extends Vue {
   @Prop() private dataSet!: dataSet;
-
+  private maxPlaceLength: number = 15;
   private title: string = "";
   private useTeck: string = "";
   private place: string = "";
@@ -114,7 +114,7 @@ export default class mainExplanation extends Vue {
     this.makeNowStoryText();
   }
 
-  private isStory(){
+  private isStory() {
     return this.nowStoryText.length > 0;
   }
   private makeNowStoryText() {
@@ -144,13 +144,19 @@ export default class mainExplanation extends Vue {
     let body = document.querySelector("body");
     body!.classList.add("stopScroll");
     this.title = this.dataSet.name;
-    this.dataSet.place.forEach((place, i) => {
-      if (i == this.dataSet.place.length - 1) {
-        this.place += place;
-      } else {
-        this.place += place + " , ";
-      }
-    });
+
+    if (this.dataSet.place.length == this.maxPlaceLength) {
+      this.place = "All place";
+    } else {
+      this.dataSet.place.forEach((place, i) => {
+        if (i == this.dataSet.place.length - 1) {
+          this.place += place;
+        } else {
+          this.place += place + " , ";
+        }
+      });
+    }
+
     this.dataSet.target.forEach((target, i) => {
       if (i == this.dataSet.target.length - 1) {
         this.target += target;

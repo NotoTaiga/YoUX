@@ -37,7 +37,7 @@
     <div class="categoryBox" v-if="categorySelectBox">
       <div class="categoryBox__head">
         <h4 class="categoryBox__title">{{nowCategory.categoryTitle}}</h4>
-        <button class="categoryBox__allSelect" @click="allChangeNowSelectState()">全選択</button>
+        <button class="categoryBox__allSelect" @click="allChangeNowSelectState()">{{allChangeText}}</button>
       </div>
       <ul class="categoryBox__list">
         <li
@@ -46,7 +46,7 @@
           :key="'filterText'+index"
           @click="changeNowSelectState(index)"
         >
-          <div class="categoryBox__check">a</div>
+          <div class="categoryBox__check"></div>
           {{text}}
         </li>
       </ul>
@@ -192,6 +192,8 @@ export default class mainFilter extends Vue {
   private changeNowSelectState(i: number) {
     this.$set(this.nowSelectState, i, !this.nowSelectState[i]);
   }
+
+  private allChangeText: string = "全選択";
   private allChangeNowSelectState() {
     let selectState: boolean[] = this.nowSelectState;
     let allSelectState: boolean = false;
@@ -200,6 +202,10 @@ export default class mainFilter extends Vue {
         allSelectState = true;
       }
     }
+
+    if (allSelectState) this.allChangeText = "全解除";
+    else this.allChangeText = "全選択";
+
     selectState.forEach((d, l) => {
       this.$set(this.nowSelectState, l, allSelectState);
     });
@@ -259,6 +265,17 @@ export default class mainFilter extends Vue {
     this.setNowCategory(i);
     this.openCategorySelectBox();
     this.setNowSelectState();
+
+    let selectState: boolean[] = this.nowSelectState;
+    let allSelectState: boolean = true;
+    for (let i = 0; i < selectState.length; i++) {
+      if (!selectState[i]) {
+        allSelectState = true;
+      }
+    }
+
+    if (allSelectState) this.allChangeText = "全選択";
+    else this.allChangeText = "全解除";
   }
 
   private confirmBtn() {
@@ -616,6 +633,32 @@ export default class mainFilter extends Vue {
       border-radius: 0.4rem;
       background-color: $white;
       margin-right: 1.6rem;
+      position: relative;
+
+      &::before,
+      &::after {
+        content: "";
+        display: block;
+        position: absolute;
+      }
+
+      &:before {
+        width: 16px;
+        height: 16px;
+        left: 0;
+        top: 2px;
+      }
+
+      &:after {
+        border-left: 2px solid #eee;
+        border-bottom: 2px solid #eee;
+        width: 6px;
+        height: 3px;
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+        left: 5px;
+        top: 7px;
+      }
     }
 
     &__footer {

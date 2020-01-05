@@ -164,7 +164,7 @@ export default class mainIndex extends Vue {
       "DEN",
       "LabProto",
       "カフェテリア",
-      "メディアライブラリー",
+      "コワーキングスペース",
       "事務局",
       "職員室",
       "学生APP",
