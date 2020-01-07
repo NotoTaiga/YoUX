@@ -1530,7 +1530,7 @@ export default new Vuex.Store({
           "また必ずしも人の手でやる必要のな工程を体験できるスペースとしても考えています。",
           "職人の博物館のようなスペースです。"],
         img: null,
-        child: []
+        child: ['LabProto 使用者管理']
       }, {
         id: 99,
         name: '学生APP 長期リマインダー',
@@ -1642,7 +1642,7 @@ export default new Vuex.Store({
           "そんな時はちょっと休憩モード。",
           "リアルの紙を使用せず電子ボードを使っているため会議から離れる場合は周りのボードを森の映像にするなどメンバーの安らぐものに変える事ができます。",
           "僕自身、休憩の時ぐらい会議内容から離れたいのでこんなソリューションを作ってみました。"],
-        img: require('./assets/img/break.png'),
+        img: require('./assets/img/den.jpg'),
         child: ['DEN',]
       }, {
         id: 107,
@@ -1657,7 +1657,7 @@ export default new Vuex.Store({
           "また学生はMyColorを使用した名刺の交換をしていくので先生自身のMyColorを設定し生徒と交換することができます。それ等の管理も先生APP上で完結するように考えています。",
           "学生の学生生活が良くなるか悪くなるかは先生の技量に大きくかかっているのでより良くするためのお手伝いとしてこのソリューションを考えました。"
         ],
-        img: require('./assets/img/break.png'),
+        img: require('./assets/img/app.jpg'),
         child: ['場所チャット', 'MyColor', '捗り度', 'MyColor メンタル色', 'feedback', 'feedback 授業印象', 'feedback クラスの授業反応', 'feedback myColor判断', 'feedback 授業から学べるテクニック色', 'feedback キーポイント集中度', 'feedback 授業データ', 'feedback 遅延情報', 'feedback 前年との差分', 'エントランス 学内システム使用権原', '自動販売機',]
       }, {
         id: 107,
@@ -1671,8 +1671,23 @@ export default new Vuex.Store({
           "タスクの数だけ疑問や問題があるという事です。またそれと同じ数だけ解決法があります。",
           "なのでコワーキングの使用をしている学生にはコワーキングスペースで今まで解決してきたタスクの中から今取り組んでいるタスクに類似しているモノを判別しヒントとなるwebページや本などを表示します。"
         ],
-        img: require('./assets/img/break.png'),
+        img: require('./assets/img/coworking.jpg'),
         child: ['コワーキングスペース']
+      },
+      {
+        id: 107,
+        name: 'LabProto 使用者管理',
+        place: ['LabProto'],
+        target: ['学生','事務'],
+        targetStory: {},
+        usetech: [],
+        text: [
+          "今までは入り口のQRコードを読み取り申請することで使用者を管理していました。これをDayToDoと連携することで簡単にしようと考えました。",
+          "LabProtoでの作成は明確にタスクとして定義できます。ですのでDayToDoでの設定具合を見ればいつLabProtoを使用するかを判断することができます。",
+          "これによりQRをとり使用申請をするという手間を減らしつつ今日使おうとしている人を把握することができます。"
+        ],
+        img: require('./assets/img/coworking.jpg'),
+        child: ['LabProto']
       },
 
 

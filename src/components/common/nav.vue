@@ -17,6 +17,11 @@
               {{state.pageText}}
             </li>
           </router-link>
+          <a href="https://drive.google.com/open?id=1oBKfaqBLTV3GwQDy3Eno9lonzR9B0ryX">
+            <li class="nav__item">
+              <div class="icon fileIcon"></div>資料を見る
+            </li>
+          </a>
         </ul>
       </nav>
 
@@ -54,14 +59,14 @@ export default class MasterNav extends Vue {
       pageClass: "home"
     },
     {
-      pageLink: "/main",
-      pageText: "資料一覧",
-      pageClass: "main"
-    },
-    {
       pageLink: "/description",
       pageText: "YoUXって？",
       pageClass: "description"
+    },
+    {
+      pageLink: "/main",
+      pageText: "資料一覧",
+      pageClass: "main"
     }
   ];
 
@@ -169,6 +174,11 @@ export default class MasterNav extends Vue {
   }
 
   .descriptionIcon {
+    background-image: url("../../assets/img/YoUXtte.png");
+    background-size: contain;
+  }
+
+  .fileIcon {
     background-image: url("../../assets/img/other.png");
     background-size: contain;
   }

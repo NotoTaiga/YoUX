@@ -1,7 +1,9 @@
 <template>
   <header class="header">
     <div class="inner">
-      <h1 class="header__ttl">YoUX</h1>
+      <h1 class="header__ttl">
+        <router-link to="/" @click="changePageId(0)">YoUX</router-link>
+      </h1>
       <h2 class="header__pageName">{{pageName[nameChange()]}}</h2>
     </div>
   </header>
@@ -12,12 +14,15 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
 export default class header extends Vue {
+  private changePageId(i: number) {
+    return this.$store.dispatch("changePageId", i);
+  }
   //   @Prop() private msg!: string;
   private name: string = "";
   private pageName: string[] = [
     "HOME",
-    "ソリューション一覧",
     "YoUXって？",
+    "ソリューション一覧",
     "その他資料"
   ];
   mounted(): void {
@@ -35,6 +40,9 @@ export default class header extends Vue {
 <style scoped lang="scss">
 @import "@/assets/style/index.scss";
 .header {
+  a {
+    color: $white;
+  }
   position: fixed;
   top: 0;
   left: 0;

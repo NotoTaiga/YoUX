@@ -71,7 +71,7 @@ export default class mainIndex extends Vue {
   }
 
   private changePageId() {
-    this.$store.dispatch("changePageId", 1);
+    this.$store.dispatch("changePageId", 2);
   }
 
   private filterChecker(data: dataSet): boolean {

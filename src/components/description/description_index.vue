@@ -103,12 +103,12 @@
         <br />あなたの興味のあるものを見てみてください。
       </p>
       <p class="LFont blueFont">YoUX</p>
-      <router-link to="/main" @click="chengePageId(1)">
+      <router-link to="/main" @click="changePageId(2)">
         <button>ソリューションリストへ</button>
       </router-link>
-      <router-link to="/other" @click="chengePageId(1)">
+      <a href="https://drive.google.com/open?id=1oBKfaqBLTV3GwQDy3Eno9lonzR9B0ryX">
         <button>資料を見てみる</button>
-      </router-link>
+      </a>
     </div>
     <mainExplanation v-if="openExplanation" :dataSet="clickDataSet" @close="toggleExplanation()"></mainExplanation>
   </div>
@@ -215,7 +215,7 @@ export default class description extends Vue {
 
   private scrollIcon: boolean = true;
   mounted(): void {
-    this.changePageId(2);
+    this.changePageId(1);
     const description = document.querySelector(".description");
     this.contentElementArr = document.querySelectorAll(".content");
     this.contentElementArr.forEach(() => {

@@ -18,7 +18,7 @@
       </div>
     </div>
     <router-link to="/description">
-      <div v-if="itemCount >= 3" class="nextBox" @click="changePageId(2)"></div>
+      <div v-if="itemCount >= 3" class="nextBox" @click="changePageId(1)"></div>
     </router-link>
   </div>
 </template>

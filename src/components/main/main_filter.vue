@@ -102,7 +102,7 @@ export default class mainFilter extends Vue {
         "DEN",
         "LabProto",
         "カフェテリア",
-        "メディアライブラリー",
+        "コワーキングスペース",
         "事務局",
         "職員室",
         "学生APP",
@@ -120,7 +120,7 @@ export default class mainFilter extends Vue {
         "DEN",
         "LabProto",
         "カフェテリア",
-        "メディアライブラリー",
+        "コワーキングスペース",
         "事務局",
         "職員室",
         "学生APP",
@@ -158,13 +158,6 @@ export default class mainFilter extends Vue {
       select: ["有り", "無し"],
       selectText: "All",
       filterText: ["有り", "無し"]
-    },
-    {
-      category: "usetech",
-      categoryTitle: "使用想定技術",
-      select: [],
-      selectText: "All",
-      filterText: []
     }
   ];
 

@@ -2,7 +2,7 @@
   <div id="app">
     <MasterHeader></MasterHeader>
     <div class="cont">
-      <MasterNav v-if="getPageId() == 1"></MasterNav>
+      <MasterNav v-if="getPageId() == 2"></MasterNav>
       <router-view />
     </div>
   </div>
@@ -37,10 +37,10 @@ export default class App extends Vue {
       case "/":
         pageId = 0;
         break;
-      case "/main":
+      case "/description":
         pageId = 1;
         break;
-      case "/description":
+      case "/main":
         pageId = 2;
         break;
       case "/other":
