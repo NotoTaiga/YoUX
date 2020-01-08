@@ -487,7 +487,7 @@ export default class mainFilter extends Vue {
           padding: 0;
           cursor: pointer;
           border: none;
-
+          background-color: $white;
           &:hover {
             background-color: $alert;
             color: $white;
