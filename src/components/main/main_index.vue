@@ -912,10 +912,11 @@ export default class mainIndex extends Vue {
   }
 
   .icon {
+    padding: 0;
+    box-sizing: border-box;
     text-align: center;
     height: 3.5rem;
     width: 3.5rem;
-    box-sizing: border-box;
     border: $black solid 2px;
     background-color: $white;
     line-height: 1rem;

@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "4129faeb81d024ae02c8",
-    "url": "/css/app.bb934185.css"
+    "revision": "5cccf9d8db383727babc",
+    "url": "/css/app.c313b2f9.css"
   },
   {
-    "revision": "4129faeb81d024ae02c8",
-    "url": "/js/app.a4e3cffa.js"
+    "revision": "5cccf9d8db383727babc",
+    "url": "/js/app.6fcf98f6.js"
   },
   {
     "revision": "e9f1d183a0f6e47c5e2f",
@@ -212,8 +212,12 @@ self.__precacheManifest = [
     "url": "/img/Concentration.17075716.png"
   },
   {
-    "revision": "a4b398cefe021720d721d02fed0b4861",
+    "revision": "f7dcfbe07a0f26e936eaf5a597c6d842",
     "url": "/index.html"
+  },
+  {
+    "revision": "6ad7b10054d68efc5224a362b33c7374",
+    "url": "/logo.png"
   },
   {
     "revision": "b6216d61c03e6ce0c9aea6ca7808f7ca",
